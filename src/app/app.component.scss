@@ -9,3 +9,42 @@
       margin-right: 11px;
   }
 }
+
+.nav-wrapper .branding, .header-nav, .header-actions {
+  background-color: rgb(0, 51, 102);
+}
+.sign1{
+  position: absolute;
+  right: 0%;
+  margin-left: 1100px;
+}
+
+// .header-nav {
+//   background-color:white;
+// }
+// <clr-main-container>
+//   <div class ='nav-wrapper' *ngIf='isdisable'>
+//   <clr-header >
+//     <div class="branding">
+//       <a href="#" class="nav-link">
+//         <span class="clr-icon clr-clarity-logo"></span>
+//         <span class="title">Clarity</span>
+//       </a>
+//     </div>
+//       <div class="header-nav" [clr-nav-level]="1">
+//           <a class="nav-link" href="#" [routerLink]="['/home']" routerLinkActive="active"><span class="nav-text">Home</span></a>
+//           <a class="nav-link" href="#" [routerLink]="['/about']" routerLinkActive="active"><span class="nav-text">About</span></a>
+//           <a class='nav-link' href='#' [routerLink]="['/register']" routerLinkActive="active" (click)='signUp()'><span class="nav-text">Sign Up</span></a>
+//           <a class='nav-link' href='#' [routerLink]="['/login']" routerLinkActive="active"><span class="nav-text">log in</span></a>
+//       </div>
+//     <div class="header-actions">
+//     </div>
+//   </clr-header>
+//   </div>
+//   <div class="content-container">
+//     <div class="content-area">
+//       <router-outlet></router-outlet>
+//       <!--<app-registration></app-registration>-->
+//     </div>
+//   </div>
+// </clr-main-container>

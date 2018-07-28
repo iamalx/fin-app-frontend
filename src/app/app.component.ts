@@ -9,4 +9,10 @@ import { Router } from '@angular/router';
 export class AppComponent {
     constructor(private router: Router) {
     }
+    
+isdisable: boolean= true;
+    signUp() {
+       // console.log(this.isdisable)
+    this.isdisable = false;
+    }
 }

@@ -4,7 +4,10 @@
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
 <p>This is a Clarity seed application. This is the default page that loads for the application.</p>
-
+<app-logout></app-logout>
+<p *ngIf ='user'>
+Welcome home {{user.firstName}}
+</p>
 <clr-dropdown>
     <button clrDropdownTrigger class="btn">
         Dropdown
@@ -18,3 +21,36 @@
         <a clrDropdownItem href="javascript://">Link 2</a>
     </clr-dropdown-menu>
 </clr-dropdown>
+
+<div class="row">
+  <div class="col-md-6">
+    <div style="display: block;">
+    <canvas baseChart width="400" height="400"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                
+                
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+    </div>
+    <!--[colors]="lineChartColors"-->
+  </div>
+  <div class="col-md-6" style="margin-bottom: 10px">
+    <table class="table table-responsive table-condensed">
+      <tr>
+        <th *ngFor="let label of lineChartLabels">{{label}}</th>
+      </tr>
+      <tr *ngFor="let d of lineChartData">
+        <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+      </tr>
+    </table>
+    <button (click)="randomize()">CLICK</button>
+  </div>
+</div> 
+{{data1}}
+<!--<button [routerLink]="['/home']">firstChild</button>-->
+<!--, {outlet: {firstChild:['/register']}}-->
+<!--<router-outlet name='firstChild' ></router-outlet>-->
