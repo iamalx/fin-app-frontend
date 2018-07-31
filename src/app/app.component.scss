@@ -13,10 +13,11 @@
 .nav-wrapper .branding, .header-nav, .header-actions {
   background-color: rgb(0, 51, 102);
 }
-.sign1{
-  position: absolute;
-  right: 0%;
-  margin-left: 1100px;
+.not-login, .yes-login{
+  //border: 1px solid black;
+  position: relative;
+  left: 1100px;
+  // margin-left: 30%;
 }
 
 // .header-nav {

@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   
   ngOnInit() {
   }
+  
   noMatchMessage: string = '';
   noFillMessage: string = '';
   
@@ -33,10 +34,11 @@ export class LoginComponent implements OnInit {
 subscribeFunt() {
    this._user.getLogin(this.userData)
     .subscribe((response: any) => {
-  console.log(response);
+  //console.log(response);
    window.sessionStorage.setItem('token', response.token);
    window.sessionStorage.setItem('userId', response.userId);
     this._router.navigate([`/home`]);
+    this._user.displayLogin = true;
     })
 };
 

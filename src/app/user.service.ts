@@ -7,6 +7,7 @@ export class UserService {
   constructor(public _http: HttpClient) { }
   
   url: string=  "https://summer-2018-alex-phortonssf.c9users.io:8080/api/finUsers";
+  displayLogin: boolean = false
   
   postSign(newUser) {
     return this._http.post("https://summer-2018-alex-phortonssf.c9users.io:8080/api/finUsers", newUser)
