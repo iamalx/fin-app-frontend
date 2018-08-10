@@ -9,16 +9,17 @@ import { Router,ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private _user: UserService, 
+    constructor( private _user: UserService, 
                private _router: Router) { }
   
-  ngOnInit() {
-  }
+    ngOnInit() {
+        
+    }
   
-  noMatchMessage: string = '';
-  noFillMessage: string = '';
-  
-  userData: any = {
+    noMatchMessage: string = '';
+    noFillMessage: string = '';
+    
+    userData: any = {
       email: '',
       password: ''
     }
@@ -30,33 +31,29 @@ export class LoginComponent implements OnInit {
 //     data => { this.userData = data}
 //     )
 // };
-
-subscribeFunt() {
-   this._user.getLogin(this.userData)
-    .subscribe((response: any) => {
-  //console.log(response);
-   window.sessionStorage.setItem('token', response.token);
-   window.sessionStorage.setItem('userId', response.userId);
-    this._router.navigate([`/home`]);
-    this._user.displayLogin = true;
-    })
-};
-
-loginFunct(email:string, password: string) {
-  if(email !='' &&  password != '') {
-    this.userData.email = email;
-    this.userData.password = password;
-     this.noFillMessage ='';
-     this.subscribeFunt();
-    // if(email == this.userData.email && password == this.userData.password ) {
-      
-    //   this._router.navigate([`/`])
-    // }else {
-    //   alert( `Email and password do not match
-    // Please try again`)
-    // }
-  } else {
-    this.noFillMessage ='Please fill in all spaces'
-  }
-};
+//subscribes a user and gives a token 
+    subscribeFunt() {
+        this._user.getLogin(this.userData)
+            .subscribe((response: any) => {
+              //console.log(response);
+                window.sessionStorage.setItem('token', response.token);
+                window.sessionStorage.setItem('userId', response.userId);
+                console.log(window.sessionStorage.setItem('token', response.token), "login1");
+                console.log(window.sessionStorage.setItem('userId', response.userId), "log2");
+                this._user.showUserNav(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'));
+                this._router.navigate([`/home`]);
+                this._user.loginFavorite = "My Favorites";
+            })
+    };
+//called when buttton is clicked and sets the user input values to Userdata obj
+    loginFunct(email:string, password: string) {
+        if(email !='' &&  password != '') {
+            this.userData.email = email;
+            this.userData.password = password;
+            this.noFillMessage ='';
+            this.subscribeFunt();
+        } else {
+            this.noFillMessage ='Please fill in all spaces'
+         }
+    };
 }

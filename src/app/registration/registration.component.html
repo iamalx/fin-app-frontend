@@ -1,38 +1,36 @@
- <div class="wrapper">
-    <div class="main">
-      <h1>Sign Up</h1>
+<div class="wrapper card">
+  <div class="main">
+    <h1>Sign Up</h1>
 
-      <main class="typeSec">
-        <form>
-          <label for="">First Name</label><br>
-          <input type="text" class='required' name="firstname" #firstName ><br> 
-          Last Name<br>
-          <input type="text" name="lastname" #lastName><br>
-          Email<br>
-          <input type="text" name="email" #email><br> 
-          Password<br>
-          <input type="text" name="password" #password type='password' ><br>
-          Repeat Password<br>
-          <input type="text" name="repassword" #repassword>
-          <div class='message'>
-        {{passwordError}}<br>
-        {{fillmessage}}
+    <main class="typeSec">
+      <form>
+        <label for="">First Name</label><br>
+        <input type="text" class='required' name="firstname" #firstName required><br> Last Name<br>
+        <input type="text" name="lastname" #lastName required><br> Email
+        <br>
+        <input type="text" name="email" #email required><br> Password
+        <br>
+        <input type="text" name="password" #password type='password' required><br> Repeat Password<br>
+        <input type="text" name="repassword" #repassword required>
+        <div class='message'>
+          {{passwordError}}<br> {{fillmessage}}
         </div>
-          
-        </form>
-      </main>
 
-      <section class="sign">
-        
-          <a id="up" class="btn btn-primary"(click)="signFunct(firstName.value, lastName.value, email.value, password.value,  repassword.value)"><span> Sign up </span></a>
-          <a id="in" class='btn btn-link' (click)="logFunct()"> <span>Sign in </span></a>
-      
-      </section>
-    </div>
+      </form>
+    </main>
 
-    <aside id="pic">
-      <img id='pic1' [src] = 'img'>
-    </aside>
+    <section class="sign">
 
+      <a id="up" class="btn btn-primary" (click)="signFunct(firstName.value, lastName.value, email.value, password.value,  repassword.value)"><span> Sign up </span></a>
+      <a id="in" class='btn btn-link' (click)="logFunct()"> <span>Sign in </span></a>
 
+    </section>
   </div>
+
+  <aside id="pic">
+    <img id='pic1' [src]='img'>
+  </aside>
+
+
+</div>
+ 

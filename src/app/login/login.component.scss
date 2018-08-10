@@ -1,85 +1,101 @@
-.wrapper{
+.wrapper {
     border-radius: 20px;
     position: absolute;
-    left: 38%;
+    left: 40%;
     top: 20%;
-     background: linear-gradient(to bottom, rgb(26, 140, 255), rgb(51, 153, 255));  
+    background: linear-gradient(to bottom, rgb(26, 140, 255), rgb(51, 153, 255));
     width: 390px;
     height: 550px;
     color: white;
 }
+
 .clr-icon {
-  &.clr-clarity-logo {
-      background-image: url(/images/clarity_logo.svg);
-      border: 1px solid black;
-      width: 200px;
-      height: 150px;
-  }
-    
+    &.clr-clarity-logo {
+        background-image: url(/images/clarity_logo.svg);
+        width: 150px;
+        height: 100px;
+        margin-left: 35px;
+    }
+
 }
-h1 , p{
-    color:white;
+
+#header,
+p {
+    color: white;
     font-weight: 600;
 }
 
-.upper{
-    text-align: center;
-     position: relative;
-     top: 30px;
-     color: white;
+#header {
+    position: relative;
+    top: -10px;
 }
+
+.upper {
+    text-align: center;
+    position: relative;
+    top: 25px;
+    color: white;
+}
+
 .form-class {
     position: relative;
-    top: 40px;
+    top: 30px;
     left: 7%;
 
 }
-.inputbox{
+
+.inputbox {
     color: white;
     width: 300px;
     height: 60px;
     font-size: 20px;
     opacity: 1;
-    border-bottom-color: white ;
-    
+    border-bottom-color: white;
+
 }
- ::placeholder {
+
+::placeholder {
 
     opacity: 1;
 }
-#remember{
-   
-    border:none;
+
+#remember {
+
+    border: none;
     background-color: white;
     width: 17px;
     height: 17px;
 }
+
 .bottom {
     text-align: center;
     position: relative;
     top: 100px;
-    
+
 }
 
-#login-button{
+#login-button {
     border-radius: 25px;
-    background-color:white;
-    //color:black;
+    background-color: white;
+    position: relative;
+    top: 10px; //color:black;
     border: none;
     width: 100px;
     height: 45px;
-    //font-size: 20px;
+    margin-bottom: 12px; //font-size: 20px;
 }
+
 a p {
     background-color: grey;
     width: 50px;
     height: 50px;
-    position:relative;
+    position: relative;
     left: 45%;
     top: 20px;
 }
+
 .message {
-   
+
     position: relative;
     top: 12%;
     left: 30%;
@@ -100,7 +116,6 @@ a p {
 //          <input type='text'><br>
 //          <input type='text'><br>
 //          <input type='text'><br>
-         
 //      </form>     
 //     </div> 
 //     <div class='bottom'>

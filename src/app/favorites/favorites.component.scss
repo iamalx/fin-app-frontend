@@ -1,0 +1,33 @@
+.table-wrapper {
+    position: relative;
+    left: -11px;
+    top: 20px;
+}
+
+.main-table {
+    margin-top: 0px;
+}
+
+#label {
+    margin-top: 0px;
+    margin-left: 6px;
+    width: 380px;
+    display: block;
+}
+
+.fav-wrapper {
+    position: absolute;
+    top: 15%;
+}
+.favList {
+   
+    display: flex;
+}
+.delete {
+   
+}
+.delete-item {
+    padding: 4px;
+}
+
+

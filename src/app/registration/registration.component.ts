@@ -31,47 +31,46 @@ export class RegistrationComponent implements OnInit {
     this.newUser.password = pass; 
   };
   
-  putFunct() {
-   this._user.postSign(this.newUser)
-  .subscribe((response: any) => {
-           console.log(response);
-   window.sessionStorage.setItem('token', response.token);
-   window.sessionStorage.setItem('userId', response.userId);
-    this._router.navigate([`/home`])
-  
-      })
-     
-    };
-    alertFunct() {
+   alertFunct() {
      alert(`Account succesfully created
     First Name: ${this.newUser.firstName}
     Last Name: ${this.newUser.lastName}
-    email: ${this.newUser.email}`);
+    Email: ${this.newUser.email}`);
   };
   
-  signFunct(first:string, last:string, email:string, pass:string, repassword: string) {
-    
-  if (first != '' && last !='' && email!= '' && pass != '' && repassword !='' ) {
-    this.fillmessage = '';
-    if(pass == repassword) {
-       this.passwordError = '';
-      //console.log(first, last, email, pass)
-      this.setnewUser(first, last,email, pass);
-      // console.log(this.newUser)
-      this.putFunct();
-   // this.alertFunct();
-    this._router.navigate([`/login`])
-    } else { 
-      this.passwordError = 'password did not match'
-    }
+  putFunct() {
+   this._user.postSign(this.newUser)
+    .subscribe((response: any) => {
+      console.log(response);
+      window.sessionStorage.setItem('token', response.token);
+      window.sessionStorage.setItem('userId', response.userId);
+      console.log(window.sessionStorage.setItem('token', response.token), "register1");
+      console.log(window.sessionStorage.setItem('userId', response.userId), "register2");
+      this.alertFunct();
+      this._router.navigate([`/login`])
+    })
      
-  } else {
-      this.fillmessage = 'please fill all spaces'
-    }
+  };
+   
+  
+  signFunct(first:string, last:string, email:string, pass:string, repassword: string) {
+    if (first != '' && last !='' && email!= '' && pass != '' && repassword !='' ) {
+      this.fillmessage = '';
+      if(pass == repassword) {
+        this.passwordError = '';
+        this.setnewUser(first, last,email, pass);
+        this.putFunct();
+        this._router.navigate([`/login`])
+      } else { 
+      this.passwordError = 'password did not match'
+        }
+    } else {
+    this.fillmessage = 'please fill all spaces'
+      }
   };
   
   
   logFunct() {
-  this._router.navigate([`/login`])
-  }
+    this._router.navigate([`/login`])
+  };
 }
