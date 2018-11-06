@@ -41,15 +41,11 @@ export class RegistrationComponent implements OnInit {
   putFunct() {
    this._user.postSign(this.newUser)
     .subscribe((response: any) => {
-      console.log(response);
       window.sessionStorage.setItem('token', response.token);
       window.sessionStorage.setItem('userId', response.userId);
-      console.log(window.sessionStorage.setItem('token', response.token), "register1");
-      console.log(window.sessionStorage.setItem('userId', response.userId), "register2");
       this.alertFunct();
       this._router.navigate([`/login`])
     })
-     
   };
    
   signFunct(first:string, last:string, email:string, pass:string, repassword: string) {
@@ -62,10 +58,10 @@ export class RegistrationComponent implements OnInit {
         this._router.navigate([`/login`])
       } else { 
       this.passwordError = 'password did not match'
-        }
+      }
     } else {
     this.fillmessage = 'please fill all spaces'
-      }
+    }
   };
   
   

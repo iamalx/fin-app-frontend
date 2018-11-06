@@ -17,7 +17,6 @@ export class LogoutComponent implements OnInit {
   onLogout() {
     this._user.displayLogin = false;
     this._user.logOut(window.sessionStorage.getItem('token'));
-    console.log(this._user.logOut(window.sessionStorage.getItem('token')), "logout-getItem");
     window.sessionStorage.clear();
     this._router.navigateByUrl('/login');
     this._user.loginFavorite = 'Login to add to favorites';

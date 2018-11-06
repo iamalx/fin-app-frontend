@@ -98,9 +98,6 @@ export class HomeComponent implements OnInit {
     close: string =''
     volume: string =''
     
-    //----------------------------------------------
-   
-    
     constructor(private _user:UserService,
                 private _apiService: StockApiService) {}
     //subscribe for mlab & loopback
@@ -120,13 +117,13 @@ export class HomeComponent implements OnInit {
       //this._apiService.stockSymbol = '';
       this._apiService.getStockData(symbol)
         .subscribe((response) =>  {
-          console.log("response", response)
           //this._apiService.stockSymbol = '';
           this.mainProperty = response[this._apiService.mainPropertyKey];
-          for (let property in this.mainProperty) {
-              this.finalClosingDataArray.push(parseFloat(this.mainProperty[property]['4. close']));
+          for(let property in this.mainProperty) {
+            this.finalClosingDataArray.push(parseFloat(this.mainProperty[property]['4. close']));
           };
-          this.finalClosingDataArray = this.finalClosingDataArray.reverse().slice(this._apiService.sliceNum1);
+          this.finalClosingDataArray = this.finalClosingDataArray.reverse()
+            .slice(this._apiService.sliceNum1);
           //this.finalMonthChartArray.push(Object.keys(response['Time Series (Daily)']));
           //console.log(this.finalMonthChartArray, "finalMonth");
           this.finalLineChartArray = [ 
@@ -139,58 +136,44 @@ export class HomeComponent implements OnInit {
           //-------------------------------------------------------------------------------- side bar info
           //------------------------------------------------------------------------------- graph & table dates 
           this.lineChartLabels = [];
-         // console.log(this.mainProperty, 'mainprop>')
           this.finalMonthChartArray = Object.keys(this.mainProperty);
-         // console.log(this.finalMonthChartArray, 'dates in an array?');
           this.finalMonthChartArray = this.finalMonthChartArray.reverse().slice(this._apiService.sliceNum1);
-         // console.log(this.finalMonthChartArray, "reversed & sliced?");
           this.lineChartLabels = this.finalMonthChartArray;
           //this.finalMonthTableArray = this.lineChartLabels.slice(88,102);
           //this.finalMonthChartArray[0].forEach(item => console.log(item));
           // for(let i = 0; i < this.finalMonthChartArray.length ; i++) {
-          // console.log(this.finalMonthChartArray[0][i]);
           // };
-          
+          //------------------------------------------------------------------------------- set stock prices to global property 
           this.dailyProp = response["Time Series (Daily)"];
-          console.log(this.dailyProp, "dailyProp");
           for(let prop in this.dailyProp) {
-            this.arrayOfDailyDates.push(this.dailyProp[prop]);
-            
+            this.arrayOfDailyDates.push(this.dailyProp[prop]); 
           };
-          console.log(this.arrayOfDailyDates, 'arrayOfDailyDates');
           this.objofDailyData = this.arrayOfDailyDates[0];
           this.date = Object.keys(this.dailyProp)[0];
-          
-          console.log(this.objofDailyData, 'objofDailyData');
           this.open = this.objofDailyData["1. open"];
-         
           this.high = this.objofDailyData["2. high"];
           this.low = this.objofDailyData["3. low"]; 
           this.close = this.objofDailyData["4. close"]; 
           this.volume = this.objofDailyData["5. volume"]; 
-          
         });
       // un-comment if you want to show all of ur searches (bellow)
       //this.lineChartData = [];
       this.finalClosingDataArray =[];
       //this._apiService.stockSymbol = '';
     };
-    
-     //----------------------------------------------------------------------------------------- fav list stock price
-
+  //----------------------------------------------------------------------------------------- fav list stock price
+  //different api to request different data 
   getDailyyData(symbol) {
     this._apiService.stockUrl= 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=';
     this._apiService.stockUrl2 = '&outputsize=compact&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey = 'Time Series (Daily)';
     this.onApi(symbol);
   };
-
-  getWeeklyData(symbol) {
-    
+//WIP
+  getWeeklyData(symbol) { 
   }; 
   
   getMonthlyData(symbol) {
-   
     this._apiService.stockUrl = 'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=';
     this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey = 'Monthly Time Series';
@@ -198,8 +181,5 @@ export class HomeComponent implements OnInit {
   };
   
   getYearlyData(symbol) {
-    
   }  
- //------------------------------------------------------------------------------------------------------------------------------   
-    
  }
