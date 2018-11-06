@@ -92,15 +92,12 @@ export class FavoritesComponent implements OnInit {
   
   
   deleteAvail() {}
-  
-  
   deleteFavcomp(finUserId, id) {
     console.log(finUserId, id)
     this._user.deleteFavUser(window.sessionStorage.getItem('token'), id , finUserId )
     .subscribe( response => {
       this.getFav();
       console.log(response, "delete-subsc");
-      
     })
   }
 

@@ -12,19 +12,15 @@ export class LoginComponent implements OnInit {
     constructor( private _user: UserService, 
                private _router: Router) { }
   
-    ngOnInit() {
-        
-    }
+    ngOnInit() {}
   
     noMatchMessage: string = '';
     noFillMessage: string = '';
-    
     userData: any = {
       email: '',
       password: ''
     }
 
-  
 // getdataberification() {
 //   return this._user.getLogin()
 //   .subscribe(

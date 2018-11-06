@@ -52,7 +52,6 @@ export class RegistrationComponent implements OnInit {
      
   };
    
-  
   signFunct(first:string, last:string, email:string, pass:string, repassword: string) {
     if (first != '' && last !='' && email!= '' && pass != '' && repassword !='' ) {
       this.fillmessage = '';
