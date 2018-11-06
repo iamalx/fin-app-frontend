@@ -23,6 +23,7 @@ export class UserService {
   logOut(token) {
     return this._http.post(this.url + '/logout' + '?access_token'+ token , {})
   }
+  //=============================================================================================================================
   //usser/{id} ????
   //http://summer-2018-alex-phortonssf.c9users.io:8080/api/finUsers/
   //http://summer-2018-alex-phortonssf.c9users.io:8080/api/finUsers/5b62691b88106e9d9db0a66d?access_token=G1bgLQBTgHFw1zqGWpmNEETiZphqvA1m9HyKyRigF0lIrlsx7B8Xnc8e7YfXRsji
@@ -49,7 +50,7 @@ export class UserService {
     return this._http.delete('https://summer-2018-alex-phortonssf.c9users.io:8080/api/finUsers/' + finUserId + '/favorites/' + id + '?access_token=' + token)
   //5b626eab3da9b69e0bc7fe8b?access_token=G1bgLQBTgHFw1zqGWpmNEETiZphqvA1m9HyKyRigF0lIrlsx7B8Xnc8e7YfXRsji
   };
-  
+  //call in constructor
   showUserNav(id: any, token: any) {
     console.log(window.sessionStorage.getItem('token'), "Service-logout-getItem");
     console.log(window.sessionStorage.getItem('userId'), "Service-logout-getItem2");
@@ -58,7 +59,5 @@ export class UserService {
       this.displayLogin = true;
     }
   }
-  
- 
   
 }
