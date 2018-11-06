@@ -31,11 +31,8 @@ export class LoginComponent implements OnInit {
     subscribeFunt() {
         this._user.getLogin(this.userData)
             .subscribe((response: any) => {
-              //console.log(response);
                 window.sessionStorage.setItem('token', response.token);
                 window.sessionStorage.setItem('userId', response.userId);
-                console.log(window.sessionStorage.setItem('token', response.token), "login1");
-                console.log(window.sessionStorage.setItem('userId', response.userId), "log2");
                 this._user.showUserNav(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'));
                 this._router.navigate([`/home`]);
                 this._user.loginFavorite = "My Favorites";

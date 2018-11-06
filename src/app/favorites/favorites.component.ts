@@ -14,9 +14,9 @@ export class FavoritesComponent implements OnInit {
   constructor( private _user: UserService,
               private _stock: StockApiService, 
               private _home: HomeComponent) { }
-   ngOnInit() {
-   this.getFav();
-  
+
+  ngOnInit() {
+    this.getFav();
   }
   
   listArray: any = [];
@@ -27,26 +27,18 @@ export class FavoritesComponent implements OnInit {
   realTimeDataProp: string = '';
   finalClosingPrice: any[] = [];
   finalPriceNumber: string = '';
-  
-  
 //   onLink(item) {
 //   this._home.onApi(item)
 //   this._stock.serviceIntraDay(index.symbol)
 //     .subscribe( response => {
 // }
   getIntraPrice() {
-    console.log(this.listArray, "listArray");
-  // console.log(this.listArray[i].symbol, "inforLoop");
     this.listArray.map( index => {
     this._stock.serviceIntraDay(index.symbol)
       .subscribe( response => {
-        console.log(index, "subs-symbol");
         this.realTimeDataProp = response["Time Series (15min)"]; 
-        console.log(this.realTimeDataProp, "realTimeDataProp");
         this.finalProp = Object.keys(this.realTimeDataProp)[0];
-        console.log(this.finalProp, "final closign");
         this.finalClosingPrice.push(this.realTimeDataProp[this.finalProp]["4. close"]);
-        console.log(this.finalProp, "final closign");
       })
     })
   };
@@ -66,39 +58,27 @@ export class FavoritesComponent implements OnInit {
   //     })
   //   }
   // };
-  
   getFav() {
-    console.log("getFav");
     this._user.getFavoritesData(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
-    .subscribe((response) => {
-      console.log(response, 'respons-get/FaV');
+    .subscribe((response: any) => {
       this.listArray = response;
       this.getIntraPrice();
       this.finalClosingPrice =[];
     })  
   }
-
 //adds a stock to fav by posting list obj and unique id and token of user 
   addFavorite() {
-    this.list.symbol = this._stock.stockSymbol; 
-    console.log(this.list);
+    this.list.symbol = this._stock.stockSymbol;
     this._user.saveFavorite(this.list, window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
       .subscribe((response: any) => {
-        console.log(response, "yes");
         this.getFav();
-        
       })
   };
-  
-  
   deleteAvail() {}
   deleteFavcomp(finUserId, id) {
-    console.log(finUserId, id)
     this._user.deleteFavUser(window.sessionStorage.getItem('token'), id , finUserId )
-    .subscribe( response => {
+    .subscribe( (response: any) => {
       this.getFav();
-      console.log(response, "delete-subsc");
     })
   }
-
 }
