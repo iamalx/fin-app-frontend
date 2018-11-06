@@ -1,5 +1,6 @@
 
 <clr-main-container>
+<!--==== NAVIGATION ===============-->
   <div class ='nav-wrapper' >
     <!--*ngIf='isdisable'-->
   <clr-header >
@@ -9,16 +10,33 @@
         <span class="title">Clarity</span>
       </a>
     </div>
-      <div class="header-nav" [clr-nav-level]="1">
+    <div class="header-nav" [clr-nav-level]="1">
           <a class="nav-link" href="#" [routerLink]="['/home']" routerLinkActive="active"><span class="nav-text">Home</span></a>
           <a class="nav-link" href="#" [routerLink]="['/about']" routerLinkActive="active"><span class="nav-text">About</span></a>
-          <a class='nav-link sign1' href='#' [routerLink]="['/register']" routerLinkActive="active" (click)='signUp()'><span class="nav-text">Sign Up</span></a>
-          <a class='nav-link sign2'href='#' [routerLink]="['/login']" routerLinkActive="active"><span class="nav-text">log in</span></a>
+     
+        
       </div>
-    <div class="header-actions">
+      <div class='middle'>
+      <!--<form class="search">-->
+      <!--  <label for="search_input" (Keyup.enter)='onClick()'>-->
+      <!--      <input id="search_input" type="text" placeholder="Search for keywords...">-->
+      <!--  </label>-->
+      <!--</form>-->
     </div>
+  <!--===== Left tabs ===================-->
+     <div *ngIf='!_user.displayLogin' class='header-actions'>  
+    
+          <a class='nav-link sign1' href='#' [routerLink]="['/register']" routerLinkActive="active" (click)='signUp()'><span class="nav-text">Sign Up</span></a>
+          <a class='nav-link sign2' href='#' [routerLink]="['/login']" routerLinkActive="active"><span class="nav-text">log in</span></a>
+     </div>
+     <div *ngIf='_user.displayLogin' class='header-actions'>
+      <a class='nav-link sign1'  routerLinkActive="active"><span class="nav-text">My profile</span></a>
+      <app-logout></app-logout>
+     </div>
+    
   </clr-header>
   </div>
+<!-- ==== END NAV  ---- >  Content  ================================== -->
   <div class="content-container">
     <div class="content-area">
       <router-outlet></router-outlet>

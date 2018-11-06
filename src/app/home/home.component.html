@@ -3,54 +3,107 @@
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
-<p>This is a Clarity seed application. This is the default page that loads for the application.</p>
-<app-logout></app-logout>
-<p *ngIf ='user'>
-Welcome home {{user.firstName}}
-</p>
-<clr-dropdown>
-    <button clrDropdownTrigger class="btn">
-        Dropdown
-        <clr-icon shape="caret down"></clr-icon>
-    </button>
-    <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-        <a clrDropdownItem href="javascript://">Action 1</a>
-        <a clrDropdownItem href="javascript://">Action 2</a>
-        <div class="dropdown-divider"></div>
-        <a clrDropdownItem href="javascript://">Link 1</a>
-        <a clrDropdownItem href="javascript://">Link 2</a>
-    </clr-dropdown-menu>
-</clr-dropdown>
+<!--<clr-dropdown>-->
+<!--    <button clrDropdownTrigger class="btn">-->
+<!--        Dropdown-->
+<!--        <clr-icon shape="caret down"></clr-icon>-->
+<!--    </button>-->
+<!--    <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">-->
+<!--        <a clrDropdownItem href="javascript://">Action 1</a>-->
+<!--        <a clrDropdownItem href="javascript://">Action 2</a>-->
+<!--        <div class="dropdown-divider">-->
 
-<div class="row">
-  <div class="col-md-6">
-    <div style="display: block;">
-    <canvas baseChart width="400" height="400"
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                
-                
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+<!--        </div>-->
+<!--        <a clrDropdownItem href="javascript://">Link 1</a>-->
+<!--        <a clrDropdownItem href="javascript://">Link 2</a>-->
+<!--    </clr-dropdown-menu>-->
+<!--</clr-dropdown> <br>-->
+<!--THis is favorites section-->
+<div class='fav'>
+  <p id='userName' *ngIf='user'>
+    Welcome home! {{user.firstName}}
+  </p>
+
+  <app-favorites></app-favorites>
+  
+  <div class='search1'>
+    <div class='options1'>
+      <button (click)='getDailyyData(stockName.value)' class='item'>Daily</button>
+      <button (click)='getWeeklyData(stockName.value)' class='item'>Weekly</button>
+      <button (click)='getMonthlyData(stockName.value)' class='item'>Monthly</button>
+      <button (click)='getYearlyData(stockName.value)' class='item'>Yearly</button>
     </div>
-    <!--[colors]="lineChartColors"-->
+    <input id='searchBox' class="..search" type="text" placeholder='  Enter stock symbol...' name="stockName" #stockName>
+    <button id='submitButton' class='btn btn-primary' name='submitName' (click)='onApi(stockName.value)'>
+Search</button>
   </div>
-  <div class="col-md-6" style="margin-bottom: 10px">
-    <table class="table table-responsive table-condensed">
-      <tr>
-        <th *ngFor="let label of lineChartLabels">{{label}}</th>
-      </tr>
-      <tr *ngFor="let d of lineChartData">
-        <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
-      </tr>
-    </table>
-    <button (click)="randomize()">CLICK</button>
+  <div class='wrapper card'>
+    <div class="row" *ngIf='finalLineChartArray.length > 0 '>
+
+      <div class="table1" style="margin-bottom: 10px">
+
+        <table class="dates1 table table-responsive table-condensed">
+          <tr>
+            <th *ngFor="let label of lineChartLabels">{{label}}</th>
+          </tr>
+          <tr *ngFor="let d of lineChartData">
+            <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+          </tr>
+        </table>
+        <!--<button (click)="randomize()">CLICK</button>-->
+      </div>
+      <div class=" chart1">
+        <div>
+          <canvas baseChart width="1090%" height="500%" id='canvas' 
+          [datasets]="lineChartData" 
+          [labels]="lineChartLabels" 
+          [colors]="lineChartColors"
+          [options]="lineChartOptions" 
+          [legend]="lineChartLegend" 
+          [chartType]="lineChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+        </div>
+       
+      </div>
+    </div>
   </div>
-</div> 
-{{data1}}
-<!--<button [routerLink]="['/home']">firstChild</button>-->
-<!--, {outlet: {firstChild:['/register']}}-->
-<!--<router-outlet name='firstChild' ></router-outlet>-->
+<!--------------------------------------------------------------------------------------------------------------------->
+  <div class="row side1">
+    <div class="col-lg-5 col-md-8 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-header">
+        Stock daily data: {{ tickersymbolSearch || uppercase}}
+        </div>
+        <div class="card-block">
+          <div class="card-title">
+            <ol>
+              <li>Open: {{open}}
+              <li>High: {{high}}
+              <li>Low: {{low}}
+              <li>Close: {{close}}
+              <li>Volume: {{volume}}
+            </ol>
+          </div>
+          <div class="card-text">
+            {{date}}
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-sm btn-link">Click to see more data</button>
+          <button class="btn btn-sm btn-link">Click to see news about this stock</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{data1}}
+
+
+  <!--<button [routerLink]="['/home']">firstChild</button>-->
+  <!--, {outlet: {firstChild:['/register']}}-->
+  <!--<router-outlet name='firstChild' ></router-outlet>-->
+  <!--<form class="search search2">-->
+  <!--        <label for="search_input">-->
+  <!--            <input id="search_input" type="text" placeholder="Search for keywords...">-->
+  <!--        </label>-->
+  <!--    </form>-->

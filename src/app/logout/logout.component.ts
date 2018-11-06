@@ -13,10 +13,13 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit() {
   }
-  
-onLogout() {
-  this._user.logOut(window.sessionStorage.getItem('token'));
-  window.sessionStorage.clear();
-  this._router.navigateByUrl('/login');
-}
+  //logs out by calling logOut in user.service and sending token
+  onLogout() {
+    this._user.displayLogin = false;
+    this._user.logOut(window.sessionStorage.getItem('token'));
+    console.log(this._user.logOut(window.sessionStorage.getItem('token')), "logout-getItem");
+    window.sessionStorage.clear();
+    this._router.navigateByUrl('/login');
+    this._user.loginFavorite = 'Login to add to favorites';
+  }
 }
