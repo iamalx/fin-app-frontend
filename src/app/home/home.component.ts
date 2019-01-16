@@ -185,7 +185,7 @@ export class HomeComponent implements OnInit {
   };
 
   getWeeklyData(symbol) {
-    
+    //test commit to remote 
   }; 
   
   getMonthlyData(symbol) {
