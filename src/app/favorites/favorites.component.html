@@ -4,53 +4,34 @@
     <div class="col-xs-2 table-wrapper">
         <label id='label'>{{_user.loginFavorite}} </label>
         <div class='favList'>
-        <table class="table main-table">
-            <thead>
-                <tr>
-                    <th class="left">Stock</th>
-                    <th class="left">Price</th>
-                   
-                </tr>
-            </thead>
-            <tbody *ngIf='_user.displayLogin'>
-                
-                <tr *ngFor="let item of listArray; let i = index">
-                    <td class="left"><a (click)="onLink(item.symbol)">{{item.symbol}}</a></td>
-                    <td class=''>{{finalClosingPrice[i]}}</td>
-                     <!--<td  class="">{{returnIntraPrice(item[i])}}</td>-->
-                     
-                   
-                </tr>
-                
-                
-                
+            <table class="table main-table">
+                <thead>
+                    <tr>
+                        <th class="left">Stock</th>
+                        <th class="left">Price</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf='_user.displayLogin'>
+                    <tr *ngFor="let item of listArray; let i = index">
+                        <td class="left"><a (click)="onLink(item.symbol)">{{item.symbol}}</a></td>
+                        <td class=''>{{finalClosingPrice[i]}}</td>
+                         <!--<td  class="">{{returnIntraPrice(item[i])}}</td>-->
+                    </tr>
                 </tbody>
-        </table>
-        <!--{{finalClosingPrice}}-->
-               <!----------------------------- -->
-                 <table class="delete">
-            <thead>
-                <tr>
-                    <th class=""></th>
-                   
-                </tr>
-            </thead>
-            <tbody *ngIf='_user.displayLogin'>
-                <tr  *ngFor="let item of listArray">
-                  <td class='delete-item'><button class='btn btn-danger-outline btn-sm'(click)='deleteFavcomp(item.finUserId, item.id)'>-</button></td>
-                  
-                </tr>
-        </tbody>
-        </table>
+            </table>
+            <table class="delete">
+                <thead>
+                    <tr>
+                        <th class=""></th>
+                    </tr>
+                </thead>
+                <tbody *ngIf='_user.displayLogin'>
+                    <tr  *ngFor="let item of listArray">
+                        <td class='delete-item'><button class='btn btn-danger-outline btn-sm'(click)='deleteFavcomp(item.finUserId, item.id)'>-</button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-                <!--<tr>-->
-                <!--    <td class="left">Dracula</td>-->
-                <!--    <td class="left">Garlic</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                <!--    <td class="left">Wolfman</td>-->
-                <!--    <td class="left">Squirrels</td>-->
-                <!--</tr>-->
             
     </div>
 </div>
