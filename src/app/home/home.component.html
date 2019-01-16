@@ -23,7 +23,7 @@
   <p id='userName' *ngIf='user'>
     Welcome home! {{user.firstName}}
   </p>
-
+  
   <app-favorites></app-favorites>
   
   <div class='search1'>
@@ -35,13 +35,13 @@
     </div>
     <input id='searchBox' class="..search" type="text" placeholder='  Enter stock symbol...' name="stockName" #stockName>
     <button id='submitButton' class='btn btn-primary' name='submitName' (click)='onApi(stockName.value)'>
-Search</button>
+      Search
+    </button>
   </div>
+  
   <div class='wrapper card'>
     <div class="row" *ngIf='finalLineChartArray.length > 0 '>
-
       <div class="table1" style="margin-bottom: 10px">
-
         <table class="dates1 table table-responsive table-condensed">
           <tr>
             <th *ngFor="let label of lineChartLabels">{{label}}</th>
@@ -50,7 +50,6 @@ Search</button>
             <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
           </tr>
         </table>
-        <!--<button (click)="randomize()">CLICK</button>-->
       </div>
       <div class=" chart1">
         <div>
@@ -64,11 +63,10 @@ Search</button>
           (chartHover)="chartHovered($event)"
           (chartClick)="chartClicked($event)"></canvas>
         </div>
-       
       </div>
     </div>
   </div>
-<!--------------------------------------------------------------------------------------------------------------------->
+
   <div class="row side1">
     <div class="col-lg-5 col-md-8 col-sm-12 col-xs-12">
       <div class="card">
@@ -96,14 +94,6 @@ Search</button>
       </div>
     </div>
   </div>
-  {{data1}}
+  
 
-
-  <!--<button [routerLink]="['/home']">firstChild</button>-->
-  <!--, {outlet: {firstChild:['/register']}}-->
-  <!--<router-outlet name='firstChild' ></router-outlet>-->
-  <!--<form class="search search2">-->
-  <!--        <label for="search_input">-->
-  <!--            <input id="search_input" type="text" placeholder="Search for keywords...">-->
-  <!--        </label>-->
-  <!--    </form>-->
+  
