@@ -98,9 +98,8 @@ export class HomeComponent implements OnInit {
     close: string =''
     volume: string =''
     
-    //----------------------------------------------
+//----------------------------------------------
    
-    
     constructor(private _user:UserService,
                 private _apiService: StockApiService) {}
     //subscribe for mlab & loopback
