@@ -1,23 +1,21 @@
 <div class='wrapper card' width='500px'>
-    <div class='upper'>
-     <span class="clr-icon clr-clarity-logo" ></span>
-     <h1 id='header'>LOG IN</h1>
-      </div>
-    <div class='form-class'>
-     <form>
-         <input   type='text' class='inputbox' placeholder='Email' #email><br>
-         <input  type='password' class='inputbox' placeholder='Password' #password><br><br>
-         
-     </form>
-    
-       <label for="remember"><input type='checkbox' id= 'remember'>Remeber me</label>
-    </div> 
-    <div class='message'> 
-     {{noFillMessage}}
+  <div class='upper'>
+    <span class="clr-icon clr-clarity-logo" ></span>
+    <h1 id='header'>LOG IN</h1>
+  </div>
+  <div class='form-class'>
+    <form>
+      <input type='text' class='inputbox' placeholder='Email' #email><br>
+      <input type='password' class='inputbox' placeholder='Password' #password><br><br>
+    </form>
+    <label for="remember"><input type='checkbox' id= 'remember'>Remeber me</label>
+  </div> 
+  <div class='message'> 
+    {{noFillMessage}}
     {{noMatchMessage}}
-    </div>  
-    <div class='bottom'>
-        <button id='login-button'  class='btn' (click)='loginFunct(email.value, password.value)'>Login</button><br>
-        <a>Forgot Password</a>
-    </div>
+  </div>  
+  <div class='bottom'>
+    <button id='login-button'  class='btn' (click)='loginFunct(email.value, password.value)'>Login</button><br>
+    <a>Forgot Password</a>
+   </div>
 </div>
