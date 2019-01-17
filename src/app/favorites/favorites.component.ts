@@ -38,18 +38,15 @@ export class FavoritesComponent implements OnInit {
     symbolArray.map( index => {
       this._stock.serviceIntraDay(index.symbol)
         .subscribe( response => {
-          // console.log(response, "#1")
-          // console.log(response['Meta Data']['2. Symbol'])
-          this.favoriteData.symbol = response['Meta Data']['2. Symbol']
-          //let timeSeriesObj = response["Time Series (15min)"])
-          let priceKey = Object.keys(response["Time Series (15min)"])[0]
-          this.favoriteData.price = response["Time Series (15min)"][priceKey]["4. close"]
-          console.log(priceKey, "#2")
-          console.log(this.favoriteData.price, "#3")
+          console.log(response, "#1")
+          console.log(response['Meta Data']['2. Symbol'])
+          // this.favoriteData.symbol = response['Meta Data']['2. Symbol']
+          // let priceKey = Object.keys(response["Time Series (15min)"])[0]
+          // this.favoriteData.price = response["Time Series (15min)"][priceKey]["4. close"]
+          // this.favoriteList.push(this.favoriteData)
+          // this.favoriteData = {}
+          // console.log(this.favoriteList, "#4")
           
-          this.favoriteList.push(this.favoriteData)
-          this.favoriteData = {}
-          console.log(this.favoriteList, "#4")
           // console.log(response, this.favoriteData, '#2')
           // this.finalProp = Object.keys(response["Time Series (15min)"])[0]
           // this.finalClosingPrice.push(this.realTimeDataProp[this.finalProp]["4. close"])
@@ -60,6 +57,7 @@ export class FavoritesComponent implements OnInit {
   getFav() {
     this._user.getFavoritesData(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
     .subscribe((response: any) => {
+      console.log(response)
       this.finalClosingPrice =[];
       this.getIntraPrice(response);
     })  
