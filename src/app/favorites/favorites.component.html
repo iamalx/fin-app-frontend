@@ -1,6 +1,6 @@
 <div class='fav-wrapper'>
     <button [disabled]='!_user.displayLogin' class='btn btn-outline' (click)='addFavorite()' type="submit"><strong>+ ADD</strong></button>
-    <button *ngIf='_user.displayLogin' class='btn btn-danger-outline' (click)='deleteFav()' type="submit">Delete</button>
+    <button *ngIf='_user.displayLogin' class='btn btn-danger-outline' (click)='deleteFavorite()' type="submit">Delete</button>
     <div class="col-xs-2 table-wrapper">
         <label id='label'>{{_user.loginFavorite}} </label>
         <div class='favList'>
@@ -26,8 +26,8 @@
                     </tr>
                 </thead>
                 <tbody *ngIf='_user.displayLogin'>
-                    <tr  *ngFor="let item of listArray">
-                        <td class='delete-item'><button class='btn btn-danger-outline btn-sm'(click)='deleteFavcomp(item.finUserId, item.id)'>-</button></td>
+                    <tr  *ngFor="let item of stockArray">
+                        <td class='delete-item'><button class='btn btn-danger-outline btn-sm'(click)='deleteFavcomp()'>{{item.id}}</button></td>
                     </tr>
                 </tbody>
             </table>

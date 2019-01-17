@@ -57,10 +57,10 @@ export class RegistrationComponent implements OnInit {
         this.putFunct();
         this._router.navigate([`/login`])
       } else { 
-      this.passwordError = 'password did not match'
+      this.passwordError = 'Password did not match'
       }
     } else {
-    this.fillmessage = 'please fill all spaces'
+    this.fillmessage = 'Please fill in all spaces'
     }
   };
   

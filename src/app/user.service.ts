@@ -47,6 +47,7 @@ export class UserService {
   //DELETE /finUsers/{id}/favorites/{fk}
   //http://summer-2018-alex-phortonssf.c9users.io:8080/api/finUsers/5b62691b88106e9d9db0a66d/favorites/5b62784f3027359ff7119639?access_token=bJj6XqxHafpMvhlEcOI24N1L80NsE6gCDQkBli1dExkfExhqs0ZHkv6vC5oru504
   deleteFavUser(token: any, id: any, finUserId: any) {
+    console.log('in service', token, id, finUserId)
     return this._http.delete('https://summer-2018-alex-phortonssf.c9users.io:8080/api/finUsers/' + finUserId + '/favorites/' + id + '?access_token=' + token)
   //5b626eab3da9b69e0bc7fe8b?access_token=G1bgLQBTgHFw1zqGWpmNEETiZphqvA1m9HyKyRigF0lIrlsx7B8Xnc8e7YfXRsji
   };

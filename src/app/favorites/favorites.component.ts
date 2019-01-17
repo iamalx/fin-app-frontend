@@ -19,14 +19,17 @@ export class FavoritesComponent implements OnInit {
     this.getFav();
   };
   
-  favoriteList: any = [];
+  favoriteList: array = [];
   favoriteData: any = {};
-
-  
+  stockArray: array = [];
+  stockData: any = {}
+ // step 2) for each index send the ticker symbol to obtain an obj with the price and stock symbol (metadata), place those 2 in an obj and then push them in an array.
+ // (side note: the ticker symbol is send in the order they appear in the 'stockArray', but are not received in order(FavoriteList), therefore, it is not easy to link price, symbol and id in the same obj in order)
   getIntraPrice(symbolArray: any) {
     symbolArray.map( index => {
       this._stock.serviceIntraDay(index.symbol)
         .subscribe( response => {
+          console.log(response, "#2")
           this.favoriteData.symbol = response['Meta Data']['2. Symbol']
           let priceKey = Object.keys(response["Time Series (15min)"])[0]
           this.favoriteData.price = response["Time Series (15min)"][priceKey]["4. close"]
@@ -35,29 +38,41 @@ export class FavoritesComponent implements OnInit {
         })
       })
   }
-
+// 1st step) Get all favorite stock symbols from backend and place corresponding instance ID and symbol in an obj and push it in array; invoke getIntraPrice to get the price from the API   
   getFav() {
     this._user.getFavoritesData(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
     .subscribe((response: any) => {
+     console.log(response, "#3.1")
+     response.forEach( each => {
+       this.stockData.id = each.id;
+       this.stockData.symbol = each.symbol;
+       this.stockArray.push(this.stockData)
+       this.stockData = {}
+     })
+     
+      console.log(this.stockArray, '#3.2')
       this.finalClosingPrice =[];
       this.getIntraPrice(response);
     })  
  }
  
-//adds a stock to fav by posting list obj and unique id and token of user 
+//adds a stock to fav by posting list obj, unique id and token of user 
   addFavorite() {
-    this.list.symbol = this._stock.stockSymbol;
-    this._user.saveFavorite(this.list, window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
+    let list = {}
+    list.symbol = this._stock.stockSymbol;
+    this._user.saveFavorite(.symbol, window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
       .subscribe((response: any) => {
         this.getFav();
       })
   };
   
   deleteAvail() {}
-  
-  deleteFavcomp(finUserId, id) {
-    this._user.deleteFavUser(window.sessionStorage.getItem('token'), id , finUserId)
+  // delete favorite stock symbol by sending token, and userId to banckend
+  deleteFavorite() {
+    console.log('presed')
+    this._user.deleteFavUser(window.sessionStorage.getItem('token'), id , window.sessionStorage.getItem('userId'))
       .subscribe( (response: any) => {
+        console.log(response)
         this.getFav();
       })
   }

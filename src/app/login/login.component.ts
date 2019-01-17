@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
 //     )
 // };
 //subscribes a user and gives a token 
+
     subscribeFunt() {
         this._user.getLogin(this.userData)
             .subscribe((response: any) => {
