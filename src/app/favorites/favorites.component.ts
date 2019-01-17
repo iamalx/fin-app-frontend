@@ -38,22 +38,18 @@ export class FavoritesComponent implements OnInit {
     symbolArray.map( index => {
       this._stock.serviceIntraDay(index.symbol)
         .subscribe( response => {
-          console.log(response, "#1")
-          console.log(response['Meta Data']['2. Symbol'])
-          // this.favoriteData.symbol = response['Meta Data']['2. Symbol']
-          // let priceKey = Object.keys(response["Time Series (15min)"])[0]
-          // this.favoriteData.price = response["Time Series (15min)"][priceKey]["4. close"]
-          // this.favoriteList.push(this.favoriteData)
-          // this.favoriteData = {}
-          // console.log(this.favoriteList, "#4")
-          
-          // console.log(response, this.favoriteData, '#2')
-          // this.finalProp = Object.keys(response["Time Series (15min)"])[0]
-          // this.finalClosingPrice.push(this.realTimeDataProp[this.finalProp]["4. close"])
+           console.log(response, "#1")
+          // console.log(response['Meta Data']['2. Symbol'])
+          this.favoriteData.symbol = response['Meta Data']['2. Symbol']
+          let priceKey = Object.keys(response["Time Series (15min)"])[0]
+          this.favoriteData.price = response["Time Series (15min)"][priceKey]["4. close"]
+          this.favoriteList.push(this.favoriteData)
+          this.favoriteData = {}
+          console.log(this.favoriteList, "#4")
         })
       })
   }
-  
+
   getFav() {
     this._user.getFavoritesData(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
     .subscribe((response: any) => {
@@ -62,23 +58,6 @@ export class FavoritesComponent implements OnInit {
       this.getIntraPrice(response);
     })  
  }
-  
-  // getIntraPrice() {
-  //   let finalProp: string = ""; 
-  //   console.log(this.listArray, "listArray")
-  //   for(let i = 0; i < this.listArray.length; i++ ) {
-  //     console.log(this.listArray[i].symbol, "inforLoop");
-  //     this._stock.serviceIntraDay(this.listArray[i].symbol) 
-  //       .subscribe( response => {
-  //       console.log(this.listArray[i].symbol, "subs-symbol");
-  //         this.realTimeDataProp = response["Time Series (15min)"]; 
-  //         console.log(this.realTimeDataProp);
-  //         finalProp = Object.keys(this.realTimeDataProp)[0];
-  //         this.finalClosingPrice.push(this.realTimeDataProp[Object.keys(this.realTimeDataProp)[0]]["4. close"]);
-  //         console.log(this.finalClosingPrice, "final closign");
-  //     })
-  //   }
-  // };
  
 //adds a stock to fav by posting list obj and unique id and token of user 
   addFavorite() {

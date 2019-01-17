@@ -12,9 +12,9 @@
                     </tr>
                 </thead>
                 <tbody *ngIf='_user.displayLogin'>
-                    <tr *ngFor="let item of listArray; let i = index">
+                    <tr *ngFor="let item of favoriteList; let i = index">
                         <td class="left"><a (click)="onLink(item.symbol)">{{item.symbol}}</a></td>
-                        <td class=''>{{finalClosingPrice[i]}}</td>
+                        <td class=''>{{item.price}}</td>
                          <!--<td  class="">{{returnIntraPrice(item[i])}}</td>-->
                     </tr>
                 </tbody>
