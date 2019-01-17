@@ -44,23 +44,24 @@ export class FavoritesComponent implements OnInit {
   getFav() {
     this._user.getFavoritesData(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
     .subscribe((response: any) => {
-     console.log(response, "#3.1")
-     response.forEach( each => {
-       this.stockData.id = each.id;
-       this.stockData.symbol = each.symbol;
-       this.stockArray.push(this.stockData)
-       this.stockData = {}
-     })
-     
+      console.log(response, "#3.1")
+      response.forEach( each => {
+        this.stockData.id = each.id;
+        this.stockData.symbol = each.symbol;
+        this.stockArray.push(this.stockData)
+        this.stockData = {}
+      })
+
       console.log(this.stockArray, '#3.2')
-      this.finalClosingPrice =[];
       this.getIntraPrice(response);
     })  
- }
- 
+  }
+
 //adds a stock to fav by posting list obj, unique id and token of user 
   addFavorite() {
-    let list = {}
+    let list = {
+      symbol: ''
+    }
     list.symbol = this._stock.stockSymbol;
     this._user.saveFavorite(list, window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
       .subscribe((response: any) => {
