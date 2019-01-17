@@ -22,7 +22,9 @@ export class FavoritesComponent implements OnInit {
   favoriteList: array = [];
   favoriteData: any = {};
   stockArray: array = [];
-  stockData: any = {}
+  stockData: any = {};
+  //idAndSymbol: any = {};
+  
  // step 2) for each index send the ticker symbol to obtain an obj with the price and stock symbol (metadata), place those 2 in an obj and then push them in an array.
  // (side note: the ticker symbol is send in the order they appear in the 'stockArray', but are not received in order(FavoriteList), therefore, it is not easy to link price, symbol and id in the same obj in order)
   getIntraPrice(symbolArray: any) {
@@ -60,7 +62,7 @@ export class FavoritesComponent implements OnInit {
   addFavorite() {
     let list = {}
     list.symbol = this._stock.stockSymbol;
-    this._user.saveFavorite(.symbol, window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
+    this._user.saveFavorite(list, window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
       .subscribe((response: any) => {
         this.getFav();
       })
@@ -68,7 +70,7 @@ export class FavoritesComponent implements OnInit {
   
   deleteAvail() {}
   // delete favorite stock symbol by sending token, and userId to banckend
-  deleteFavorite() {
+  deleteFavorite(id) {
     console.log('presed')
     this._user.deleteFavUser(window.sessionStorage.getItem('token'), id , window.sessionStorage.getItem('userId'))
       .subscribe( (response: any) => {
