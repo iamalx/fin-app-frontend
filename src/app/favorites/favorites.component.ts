@@ -21,31 +21,17 @@ export class FavoritesComponent implements OnInit {
   
   favoriteList: any = [];
   favoriteData: any = {};
-  list: any = {
-    symbol: ''
-  };
-  finalProp: string = '';
-  realTimeDataProp: string = '';
-  finalClosingPrice: any[] = [];
-  finalPriceNumber: string = '';
-//   onLink(item) {
-//   this._home.onApi(item)
-//   this._stock.serviceIntraDay(index.symbol)
-//     .subscribe( response => {
-// }
+
   
   getIntraPrice(symbolArray: any) {
     symbolArray.map( index => {
       this._stock.serviceIntraDay(index.symbol)
         .subscribe( response => {
-           console.log(response, "#1")
-          // console.log(response['Meta Data']['2. Symbol'])
           this.favoriteData.symbol = response['Meta Data']['2. Symbol']
           let priceKey = Object.keys(response["Time Series (15min)"])[0]
           this.favoriteData.price = response["Time Series (15min)"][priceKey]["4. close"]
           this.favoriteList.push(this.favoriteData)
           this.favoriteData = {}
-          console.log(this.favoriteList, "#4")
         })
       })
   }
@@ -53,7 +39,6 @@ export class FavoritesComponent implements OnInit {
   getFav() {
     this._user.getFavoritesData(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
     .subscribe((response: any) => {
-      console.log(response)
       this.finalClosingPrice =[];
       this.getIntraPrice(response);
     })  
