@@ -17,13 +17,14 @@ export class FavoritesComponent implements OnInit {
 
   ngOnInit() {
     this.getFav();
-  }
+  };
   
-  listArray: any = [];
+  favoriteList: any = [];
+  favoriteData: any = {};
   list: any = {
     symbol: ''
   };
-  finalProp: string = ''; 
+  finalProp: string = '';
   realTimeDataProp: string = '';
   finalClosingPrice: any[] = [];
   finalPriceNumber: string = '';
@@ -32,16 +33,38 @@ export class FavoritesComponent implements OnInit {
 //   this._stock.serviceIntraDay(index.symbol)
 //     .subscribe( response => {
 // }
-  getIntraPrice() {
-    this.listArray.map( index => {
-    this._stock.serviceIntraDay(index.symbol)
-      .subscribe( response => {
-        this.realTimeDataProp = response["Time Series (15min)"]; 
-        this.finalProp = Object.keys(this.realTimeDataProp)[0];
-        this.finalClosingPrice.push(this.realTimeDataProp[this.finalProp]["4. close"]);
+  
+  getIntraPrice(symbolArray: any) {
+    symbolArray.map( index => {
+      this._stock.serviceIntraDay(index.symbol)
+        .subscribe( response => {
+          // console.log(response, "#1")
+          // console.log(response['Meta Data']['2. Symbol'])
+          this.favoriteData.symbol = response['Meta Data']['2. Symbol']
+          //let timeSeriesObj = response["Time Series (15min)"])
+          let priceKey = Object.keys(response["Time Series (15min)"])[0]
+          this.favoriteData.price = response["Time Series (15min)"][priceKey]["4. close"]
+          console.log(priceKey, "#2")
+          console.log(this.favoriteData.price, "#3")
+          
+          this.favoriteList.push(this.favoriteData)
+          this.favoriteData = {}
+          console.log(this.favoriteList, "#4")
+          // console.log(response, this.favoriteData, '#2')
+          // this.finalProp = Object.keys(response["Time Series (15min)"])[0]
+          // this.finalClosingPrice.push(this.realTimeDataProp[this.finalProp]["4. close"])
+        })
       })
-    })
-  };
+  }
+  
+  getFav() {
+    this._user.getFavoritesData(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
+    .subscribe((response: any) => {
+      this.finalClosingPrice =[];
+      this.getIntraPrice(response);
+    })  
+ }
+  
   // getIntraPrice() {
   //   let finalProp: string = ""; 
   //   console.log(this.listArray, "listArray")
@@ -58,14 +81,7 @@ export class FavoritesComponent implements OnInit {
   //     })
   //   }
   // };
-  getFav() {
-    this._user.getFavoritesData(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
-    .subscribe((response: any) => {
-      this.listArray = response;
-      this.getIntraPrice();
-      this.finalClosingPrice =[];
-    })  
-  }
+ 
 //adds a stock to fav by posting list obj and unique id and token of user 
   addFavorite() {
     this.list.symbol = this._stock.stockSymbol;
@@ -74,11 +90,13 @@ export class FavoritesComponent implements OnInit {
         this.getFav();
       })
   };
+  
   deleteAvail() {}
+  
   deleteFavcomp(finUserId, id) {
-    this._user.deleteFavUser(window.sessionStorage.getItem('token'), id , finUserId )
-    .subscribe( (response: any) => {
-      this.getFav();
-    })
+    this._user.deleteFavUser(window.sessionStorage.getItem('token'), id , finUserId)
+      .subscribe( (response: any) => {
+        this.getFav();
+      })
   }
 }
