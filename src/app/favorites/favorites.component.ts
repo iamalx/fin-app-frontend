@@ -19,14 +19,13 @@ export class FavoritesComponent implements OnInit {
     this.getFav();
   };
   
-  favoriteList: array = [];
+  favoriteList: any = [];
   favoriteData: any = {};
-  stockArray: array = [];
+  stockArray: any = [];
   stockData: any = {};
-  //idAndSymbol: any = {};
   
- // step 2) for each index send the ticker symbol to obtain an obj with the price and stock symbol (metadata), place those 2 in an obj and then push them in an array.
- // (side note: the ticker symbol is send in the order they appear in the 'stockArray', but are not received in order(FavoriteList), therefore, it is not easy to link price, symbol and id in the same obj in order)
+// step 2) for each index send the ticker symbol to obtain an obj with the price and stock symbol (metadata), place those 2 in an obj and then push them in an array.
+// (side note: the ticker symbol is send in the order they appear in the 'stockArray', but are not received in order(FavoriteList), therefore, it is not easy to link price, symbol and id in the same obj in order)
   getIntraPrice(symbolArray: any) {
     symbolArray.map( index => {
       this._stock.serviceIntraDay(index.symbol)

@@ -150,11 +150,11 @@ export class HomeComponent implements OnInit {
           };
           this.objofDailyData = this.arrayOfDailyDates[0];
           this.date = Object.keys(this.dailyProp)[0];
-          this.open = this.objofDailyData["1. open"];
-          this.high = this.objofDailyData["2. high"];
-          this.low = this.objofDailyData["3. low"]; 
-          this.close = this.objofDailyData["4. close"]; 
-          this.volume = this.objofDailyData["5. volume"]; 
+          this.open = this.objofDailyData["1. open"].slice(0,6);
+          this.high = this.objofDailyData["2. high"].slice(0,6);
+          this.low = this.objofDailyData["3. low"].slice(0,6); 
+          this.close = this.objofDailyData["4. close"].slice(0,6); 
+          
         });
       // un-comment if you want to show all of ur searches (bellow)
       //this.lineChartData = [];

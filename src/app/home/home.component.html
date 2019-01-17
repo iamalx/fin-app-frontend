@@ -21,7 +21,7 @@
 <!--THis is favorites section-->
 <div class='fav'>
   <p id='userName' *ngIf='user'>
-    Welcome home! {{user.firstName}}
+    Welcome! {{user.firstName}}
   </p>
   
   <app-favorites></app-favorites>
@@ -71,7 +71,7 @@
     <div class="col-lg-5 col-md-8 col-sm-12 col-xs-12">
       <div class="card">
         <div class="card-header">
-        Stock daily data: {{ tickersymbolSearch || uppercase}}
+        Daily Price: {{ tickersymbolSearch || uppercase}}
         </div>
         <div class="card-block">
           <div class="card-title">
@@ -80,16 +80,15 @@
               <li>High: {{high}}
               <li>Low: {{low}}
               <li>Close: {{close}}
-              <li>Volume: {{volume}}
             </ol>
           </div>
           <div class="card-text">
             {{date}}
           </div>
         </div>
-        <div class="card-footer">
-          <button class="btn btn-sm btn-link">Click to see more data</button>
-          <button class="btn btn-sm btn-link">Click to see news about this stock</button>
+        <div *ngIf = 'open' class="card-footer">
+          <button class="btn btn-sm btn-link">see more data</button>
+          <button class="btn btn-sm btn-link">discover similar stocks</button>
         </div>
       </div>
     </div>
