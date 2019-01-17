@@ -77,16 +77,16 @@
           <div class="card-title">
             <ol>
               <li>Open: {{open}}
+              <li>Close: {{close}}
               <li>High: {{high}}
               <li>Low: {{low}}
-              <li>Close: {{close}}
             </ol>
           </div>
           <div class="card-text">
             {{date}}
           </div>
         </div>
-        <div *ngIf = 'open' class="card-footer">
+        <div *ngIf='open || high' class="card-footer">
           <button class="btn btn-sm btn-link">see more data</button>
           <button class="btn btn-sm btn-link">discover similar stocks</button>
         </div>

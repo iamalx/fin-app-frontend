@@ -6,15 +6,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { ClarityModule } from '@clr/angular';
 import { AppComponent } from './app.component';
 import { ROUTING } from "./app.routing";
+
 import { HomeComponent } from "./home/home.component";
 import { AboutComponent } from "./about/about.component";
 import { RegistrationComponent } from './registration/registration.component';
-import { UserService } from './user.service';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import { StockApiService } from './stock-api.service'
-import { ChartsModule } from 'ng2-charts';
 import { FavoritesComponent } from './favorites/favorites.component';
+
+import { StockApiService } from './stock-api.service'
+import { NewsApiService } from './news-api.service';
+import { UserService } from './user.service';
+
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
     declarations: [
@@ -37,7 +42,8 @@ import { FavoritesComponent } from './favorites/favorites.component';
     ],
     providers: [
         UserService,
-        StockApiService
+        StockApiService,
+        NewsApiService
     ],
     bootstrap: [AppComponent]
 })

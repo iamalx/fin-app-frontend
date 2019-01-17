@@ -10,6 +10,7 @@ import { LogoutComponent } from '../logout/logout.component';
 import { UserService } from '../user.service';
 import { Component, OnInit } from '@angular/core';
 import { StockApiService } from '../stock-api.service';
+import { NewsApiService } from '../news-api.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
   
   //logic for the the chart from ng2Charts ==================================
   // linechartData is the main array that displays the graph
-   public lineChartData: Array<any> = [
+  public lineChartData: Array<any> = [
     {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
     {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
     {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
@@ -58,7 +59,7 @@ export class HomeComponent implements OnInit {
   ];
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
- 
+
   // public randomize():void {
   //   let _lineChartData:Array<any> = new Array(this.lineChartData.length);
   //   for (let i = 0; i < this.lineChartData.length; i++) {
@@ -99,7 +100,8 @@ export class HomeComponent implements OnInit {
     volume: string =''
     
     constructor(private _user:UserService,
-                private _apiService: StockApiService) {}
+                private _apiService: StockApiService,
+                private _newsService: NewsApiService) {}
     //subscribe for mlab & loopback
     ngOnInit() {
      this._user.getUser(sessionStorage.getItem("userId"), sessionStorage.getItem('token'))
@@ -154,7 +156,11 @@ export class HomeComponent implements OnInit {
           this.high = this.objofDailyData["2. high"].slice(0,6);
           this.low = this.objofDailyData["3. low"].slice(0,6); 
           this.close = this.objofDailyData["4. close"].slice(0,6); 
-          
+
+          this._newsService.stockNewsCall(this.tickersymbolSearch)
+            .subscribe( (response: any) => {
+              console.log(response, "inSubscribe#") 
+            })
         });
       // un-comment if you want to show all of ur searches (bellow)
       //this.lineChartData = [];
@@ -184,4 +190,4 @@ export class HomeComponent implements OnInit {
   
   getYearlyData(symbol) {
   }  
- }
+}
