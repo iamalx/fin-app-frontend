@@ -98,6 +98,10 @@ export class HomeComponent implements OnInit {
     low: string =''
     close: string =''
     volume: string =''
+   //---------------------------
+
+   newsData: any;
+   newsArray: any[] = []
     
     constructor(private _user:UserService,
                 private _apiService: StockApiService,
@@ -160,6 +164,20 @@ export class HomeComponent implements OnInit {
           this._newsService.stockNewsCall(this.tickersymbolSearch)
             .subscribe( (response: any) => {
               console.log(response, "inSubscribe#") 
+              response.forEach( each => {
+                this.newsData = {
+                title: each.headline,
+                img: each.image,
+                source: each.source,
+                summary: each.summary.slice(0, 75),
+                url: each.url
+                };
+                
+                this.newsArray.push(this.newsData)
+                this.newsData = {};
+
+              })
+              console.log(this.newsData, this.newsArray)
             })
         });
       // un-comment if you want to show all of ur searches (bellow)
