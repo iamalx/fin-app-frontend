@@ -67,53 +67,57 @@
     </div>
   </div>
 
-  <div class="row side1">
-    <div class="col-lg-5 col-md-8 col-sm-12 col-xs-12">
-      <div class="card">
-        <div class="card-header">
-        Daily Price: {{ tickersymbolSearch || uppercase}}
-        </div>
-        <div class="card-block">
-          <div class="card-title">
-            <ol>
-              <li>Open: {{open}}
-              <li>Close: {{close}}
-              <li>High: {{high}}
-              <li>Low: {{low}}
-            </ol>
+  <div class= 'main-side'>
+  
+    <div class="row side1">
+      <div class="col-lg-5 col-md-8 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="card-header">
+          Daily Price: {{ tickersymbolSearch || uppercase}}
           </div>
-          <div class="card-text">
-            {{date}}
+          <div class="card-block">
+            <div class="card-title">
+              <ol>
+                <li>Open: {{open}}
+                <li>Close: {{close}}
+                <li>High: {{high}}
+                <li>Low: {{low}}
+              </ol>
+            </div>
+            <div class="card-text">
+              {{date}}
+            </div>
           </div>
-        </div>
-        <div *ngIf='open || high' class="card-footer">
-          <button class="btn btn-sm btn-link">see more data</button>
-          <button class="btn btn-sm btn-link">discover similar stocks</button>
+          <div *ngIf='open || high' class="card-footer">
+            <button class="btn btn-sm btn-link">see more data</button>
+            <button class="btn btn-sm btn-link">discover similar stocks</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   
-  <!-- <div class="clr-row">
-      <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
-          <div class="card">
-              <div class="card-header">
-                  Market News 
-              </div>
-              <div class="card-block">
-                  <div class="card-title">
-                      Block
-                  </div>
-                  <div class="card-text">
-                      ...
-                  </div>
-              </div>
-              <div class="card-footer">
-                  <button class="btn btn-sm btn-link">Footer Action 1</button>
-                  <button class="btn btn-sm btn-link">Footer Action 2</button>
-              </div>
+    <div class="row side1">
+      <div class="col-lg-5 col-md-8 col-sm-12 col-xs-1">
+        <div class="card">
+          <div class="card-header">
+            Market News 
           </div>
+          <div class="card-block">
+            <div class="card-title">
+              Block
+            </div>
+            <div class="card-text">
+              ...
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-sm btn-link">read more</button>
+            <button class="btn btn-sm btn-link">find similar articles</button>
+          </div>
+        </div>
       </div>
-  </div> -->
+    </div>
+
+  </div>
 
   

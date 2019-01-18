@@ -24,7 +24,6 @@
 .options1 {
     position: relative;
     top: 0px;
-
     color: black;
     display: flex;
     justify-content: space-evenly;
@@ -39,7 +38,6 @@
     font-size: medium;
     background-color: transparent;
     border-radius: 2px;
-    //opacity: .5;
 }
 
 .options1 button:hover,
@@ -52,13 +50,15 @@
 .table1 {
     position: relative;
     top: 23%;
-    left: 4%; //max-width: 500px;
+    left: 4%; 
+    //max-width: 500px;
 }
 
 .chart1 {
     position: relative;
     top: 28%;
-    left: 4%; // border: 1px solid black;
+    left: 4%; 
+    // border: 1px solid black;
     // margin: 300px;
     //     height: 40px;
     //   width: 1000px;
@@ -110,12 +110,22 @@
     //size: ;
 }
 
-.side1 {
+.main-side {
     position: absolute;
-    right: -22%;
-    top: 22%;
+    left: 83%;
+    top: 25%;
     width: 40%;
     height: 55%;
+}
+
+.side1 {
+   
+   
+}
+.side2 {
+    
+
+
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
