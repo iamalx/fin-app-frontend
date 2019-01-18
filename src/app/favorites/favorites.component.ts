@@ -31,15 +31,18 @@ export class FavoritesComponent implements OnInit {
 // (side note: the ticker symbol is send in the order they appear in the 'stockArray', but are not received in order(FavoriteList), therefore, it is not easy to link price, symbol and id in the same obj in order)
 
   getIntraPrice(symbolArray: any) {
-    symbolArray.map( index => {
+    symbolArray.map( (index, i) => {
       this._stock.serviceIntraDay(index.symbol)
         .subscribe( response => {         
           let priceKey = Object.keys(response["Time Series (15min)"])[0];
-          let objData = symbolArray.find( each => {
-            return each.symbol == index.symbol
-          });
-          objData.price = response["Time Series (15min)"][priceKey]["4. close"]; 
-          this.favoriteList.push(objData);
+          index.price = response["Time Series (15min)"][priceKey]["4. close"]; 
+          
+          // let objData = symbolArray.find( each => {
+          //   return each.symbol == index.symbol
+          // });
+          //objData.price = response["Time Series (15min)"][priceKey]["4. close"]; 
+          this.favoriteList.push(index);
+          console.log(this.favoriteList)
         })
     })
   }
@@ -50,7 +53,6 @@ export class FavoritesComponent implements OnInit {
       this.getIntraPrice(response);
     })  
   }
-
 //adds a stock to fav by posting list obj, unique id and token of user 
   addFavorite() {
     let list = {
