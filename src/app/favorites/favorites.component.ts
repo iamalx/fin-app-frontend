@@ -18,10 +18,9 @@ export class FavoritesComponent implements OnInit {
               private _home: HomeComponent) { }
 
   ngOnInit() {
+   
     this.getFav();
   };
-  
-  
 
   favoriteList: any = [];
   favoriteData: any = {};
@@ -39,20 +38,26 @@ export class FavoritesComponent implements OnInit {
   }  
 
   getIntraPrice(symbolArray: any) {
-      symbolArray.map( index => {
-        this._stock.serviceIntraDay(index.symbol)
-          .subscribe( response => {
-            console.log(response, "#2")
-            this.favoriteData.symbol = response['Meta Data']['2. Symbol']
-            let priceKey = Object.keys(response["Time Series (15min)"])[0]
-            this.favoriteData.price = response["Time Series (15min)"][priceKey]["4. close"]
-            this.favoriteList.push(this.favoriteData)
-            this.favoriteData = {}
-            console.log(this.favoriteList, "2.2")
-            this.putPriceinStockData();
+    symbolArray.map( index => {
+      this._stock.serviceIntraDay(index.symbol)
+        .subscribe( response => {
+          console.log(response, "#2")
+          this.favoriteData.symbol = response['Meta Data']['2. Symbol']
+          let priceKey = Object.keys(response["Time Series (15min)"])[0]
+          //this.favoriteData.price = response["Time Series (15min)"][priceKey]["4. close"]
+          console.log(index.symbol, '#3')
+          let dog = this.stockArray.find( each => {
+            return each.symbol == index.symbol
           })
-      })
-    }
+          dog.price = response["Time Series (15min)"][priceKey]["4. close"] 
+          console.log(dog, '#4')
+          // this.favoriteList.push(this.favoriteData)
+          // this.favoriteData = {}
+          console.log(this.favoriteList, "2.2")
+          //this.putPriceinStockData();
+        })
+    })
+  }
 // 1st step) Get all favorite stock symbols from backend and place corresponding instance ID and symbol in an obj and push it in array; invoke getIntraPrice to get the price from the API   
   getFav() {
     this._user.getFavoritesData(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
@@ -64,7 +69,6 @@ export class FavoritesComponent implements OnInit {
         this.stockArray.push(this.stockData)
         this.stockData = {}
       })
-
       console.log(this.stockArray, '#3.2')
       this.getIntraPrice(response);
     })  
