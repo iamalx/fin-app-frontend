@@ -96,4 +96,8 @@ export class FavoritesComponent implements OnInit {
   onStockClick(symbol) {
     console.log("clicked")
   }
+
+  searchStock() {
+    console.log('search')
+  }
 }
