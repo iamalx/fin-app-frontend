@@ -12,8 +12,8 @@
                 </thead>
                 <tbody *ngIf='_user.displayLogin'>
                     <tr *ngFor="let item of favoriteList; let i = index">
-                        <td *ngIf='deleteStock == false' class="left"><a (click)='searchStock()'>{{item.symbol}}</a></td>
-                        <td *ngIf='deleteStock == true' class="left"><a (click)="onDeleteStock(item.symbol)" class='red-button'>{{item.symbol}}</a></td>
+                        <td *ngIf='deleteStock == false' class="left"><a (click)='searchStock(item.symbol)'>{{item.symbol}}</a></td>
+                        <td *ngIf='deleteStock == true' class="left"><a (click)="deleteFavorite(item.id)" class='red-button'>{{item.symbol}}</a></td>
                         <td class='left'>{{item.price}}</td>
                         <!--<td  class="">{{returnIntraPrice(item[i])}}</td>-->
                     </tr>
