@@ -4,6 +4,7 @@ import { UserService } from '../user.service';
 import { StockApiService } from '../stock-api.service';
 import { HomeComponent } from '../home/home.component';
 
+declare var carousel;
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
@@ -19,6 +20,8 @@ export class FavoritesComponent implements OnInit {
     this.getFav();
   };
   
+  //carousels = new bulmaCarousel.attach();
+
   favoriteList: any = [];
   favoriteData: any = {};
   stockArray: any = [];

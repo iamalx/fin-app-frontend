@@ -167,7 +167,7 @@ export class HomeComponent implements OnInit {
               response.forEach( each => {
                 this.newsData = {
                 title: each.headline,
-                img: each.image,
+                imgs: each.image,
                 source: each.source,
                 summary: each.summary.slice(0, 75),
                 url: each.url
@@ -177,6 +177,7 @@ export class HomeComponent implements OnInit {
                 this.newsData = {};
 
               })
+              console.log(this.newsArray[1].summary, "#7")
               console.log(this.newsData, this.newsArray)
             })
         });

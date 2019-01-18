@@ -98,16 +98,17 @@
   
     <div class="row side1">
       <div class="col-lg-5 col-md-8 col-sm-12 col-xs-1">
-        <div class="card">
+        <div class="card"  *ngIf='open || high'>
           <div class="card-header">
             Market News 
           </div>
-          <div class="card-block">
+          <div class="card-block" >
             <div class="card-title">
-              Block
+              {{this.newsArray[0].title}}
             </div>
             <div class="card-text">
-              ...
+              <!-- <img src={{newsArray[0].imgs}}>  -->
+              
             </div>
           </div>
           <div class="card-footer">
@@ -117,7 +118,7 @@
         </div>
       </div>
     </div>
-
+   
   </div>
 
   
