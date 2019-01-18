@@ -71,7 +71,18 @@ export class FavoritesComponent implements OnInit {
       })
   };
   
-  deleteAvail() {}
+  deleteStock: boolean = false;
+  deleteMessage: string = 'Delete';
+  makeDeleteVisible() {   
+    if(!this.deleteStock) { 
+      this.deleteStock = true;
+      this.deleteMessage = "Cancel"
+    }
+    else if(this.deleteStock) {
+      this.deleteStock = false;
+      this.deleteMessage = 'Delete'
+    }
+  }
   // delete favorite stock symbol by sending token, and userId to banckend
   deleteFavorite(id) {
     console.log('presed')
@@ -80,5 +91,9 @@ export class FavoritesComponent implements OnInit {
         console.log(response)
         this.getFav();
       })
+  }
+
+  onStockClick(symbol) {
+    console.log("clicked")
   }
 }
