@@ -3,6 +3,7 @@ import { Router ,ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { StockApiService } from '../stock-api.service';
 import { HomeComponent } from '../home/home.component';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 declare var carousel;
 @Component({
@@ -29,19 +30,29 @@ export class FavoritesComponent implements OnInit {
   
 // step 2) for each index send the ticker symbol to obtain an obj with the price and stock symbol (metadata), place those 2 in an obj and then push them in an array.
 // (side note: the ticker symbol is send in the order they appear in the 'stockArray', but are not received in order(FavoriteList), therefore, it is not easy to link price, symbol and id in the same obj in order)
+  putPriceinStockData() {
+    let dog = this.favoriteList.find((element, i) => {
+      console.log(element.symbol, i, this.stockArray[i].symbol )
+      return element.symbol == this.stockArray[i].symbol;
+    });
+    console.log(dog)
+  }  
+
   getIntraPrice(symbolArray: any) {
-    symbolArray.map( index => {
-      this._stock.serviceIntraDay(index.symbol)
-        .subscribe( response => {
-          console.log(response, "#2")
-          this.favoriteData.symbol = response['Meta Data']['2. Symbol']
-          let priceKey = Object.keys(response["Time Series (15min)"])[0]
-          this.favoriteData.price = response["Time Series (15min)"][priceKey]["4. close"]
-          this.favoriteList.push(this.favoriteData)
-          this.favoriteData = {}
-        })
+      symbolArray.map( index => {
+        this._stock.serviceIntraDay(index.symbol)
+          .subscribe( response => {
+            console.log(response, "#2")
+            this.favoriteData.symbol = response['Meta Data']['2. Symbol']
+            let priceKey = Object.keys(response["Time Series (15min)"])[0]
+            this.favoriteData.price = response["Time Series (15min)"][priceKey]["4. close"]
+            this.favoriteList.push(this.favoriteData)
+            this.favoriteData = {}
+            console.log(this.favoriteList, "2.2")
+            this.putPriceinStockData();
+          })
       })
-  }
+    }
 // 1st step) Get all favorite stock symbols from backend and place corresponding instance ID and symbol in an obj and push it in array; invoke getIntraPrice to get the price from the API   
   getFav() {
     this._user.getFavoritesData(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
