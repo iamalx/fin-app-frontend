@@ -9,9 +9,9 @@
 }
 
 #label {
-    margin-top: 0px;
-    margin-left: 6px;
-    width: 380px;
+    margin: 0px;
+    //margin-left: 6px;
+    //width: 380px;
     display: block;
 }
 
@@ -39,5 +39,9 @@
 
 .red-button {
     color: red!important;
+}
+
+#table1{
+    margin: 0px; 
 }
 

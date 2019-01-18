@@ -18,7 +18,6 @@ export class FavoritesComponent implements OnInit {
               private _home: HomeComponent) { }
 
   ngOnInit() {
-   
     this.getFav();
   };
 
@@ -49,7 +48,16 @@ export class FavoritesComponent implements OnInit {
   getFav() {
     this._user.getFavoritesData(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
     .subscribe((response: any) => {
-      this.getIntraPrice(response);
+      console.log(response.length, response, "#4")
+      if(response.length !== 0) {
+        console.log("funct")
+        this.getIntraPrice(response)
+      }
+      else{
+        console.log('return')
+        return
+      }
+      
     })  
   }
 //adds a stock to fav by posting list obj, unique id and token of user 
