@@ -169,7 +169,7 @@ export class HomeComponent implements OnInit {
                 title: each.headline,
                 imgs: each.image,
                 source: each.source,
-                summary: each.summary.slice(0, 75),
+                summary: each.summary,
                 url: each.url
                 };
                 

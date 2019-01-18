@@ -104,11 +104,32 @@
           </div>
           <div class="card-block" >
             <div class="card-title">
-              {{this.newsArray[0].title}}
+              <!-- {{this.newsArray[0].title}} -->
             </div>
             <div class="card-text">
               <!-- <img src={{newsArray[0].imgs}}>  -->
-              
+              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner"  >
+                    <div class="carousel-item active" *ngIf='newsArray[0]'>
+                      {{newsArray[0].title}}
+                    </div>
+                    <div class="carousel-item" *ngIf='newsArray[1]'>
+                        {{newsArray[1].title}}
+                    </div>
+                    <div class="carousel-item" *ngIf='newsArray[2]'>
+                        {{newsArray[2].title}
+                    </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+
             </div>
           </div>
           <div class="card-footer">
@@ -119,6 +140,8 @@
       </div>
     </div>
    
+   
+
   </div>
 
   

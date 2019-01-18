@@ -20,7 +20,7 @@ export class FavoritesComponent implements OnInit {
     this.getFav();
   };
   
-  //carousels = new bulmaCarousel.attach();
+  
 
   favoriteList: any = [];
   favoriteData: any = {};
