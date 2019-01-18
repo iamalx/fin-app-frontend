@@ -19,12 +19,13 @@
 <!--    </clr-dropdown-menu>-->
 <!--</clr-dropdown> <br>-->
 <!--THis is favorites section-->
-<div class='fav'>
-  <p id='userName' *ngIf='user'>
+<p id='userName' *ngIf='user'>
     Welcome! {{user.firstName}}
   </p>
+<div class='fav-side'>
   
   <app-favorites></app-favorites>
+</div>
   
   <div class='search1'>
     <div class='options1'>
@@ -103,8 +104,6 @@
             Market News 
           </div>
           <div class="card-block" >
-            
-            
               <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner"  >
                   <div class="carousel-item active" *ngIf='newsArray[0]'>
@@ -144,19 +143,13 @@
                   <span class="sr-only">Next</span>
                 </a>
               </div>
-
-            
           </div>
           <div class="card-footer">
-           
             <button class="btn btn-sm btn-link">find similar articles</button>
           </div>
         </div>
       </div>
     </div>
-   
-   
-
   </div>
 
   

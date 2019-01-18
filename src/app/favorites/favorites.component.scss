@@ -1,7 +1,8 @@
 .table-wrapper {
     position: relative;
-    left: -11px;
+    
     top: 20px;
+    width: 80%; 
 }
 
 .main-table {
@@ -20,14 +21,24 @@
     top: 15%;
 }
 .favList {
-   
     display: flex;
 }
 .delete {
-   
 }
+
+.stock-column {
+    width: 80%; 
+}
+
 .delete-item {
     padding: 4px;
 }
 
+.delete-button {
+    float: right;
+}
+
+.red-button {
+    color: red;
+}
 
