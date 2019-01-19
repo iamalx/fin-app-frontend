@@ -32,19 +32,23 @@ export class FavoritesComponent implements OnInit {
 // (side note: the ticker symbol is send in the order they appear in the 'stockArray', but are not received in order(FavoriteList), therefore, it is not easy to link price, symbol and id in the same obj in order)
 
   getIntraPrice(symbolArray: any) {
-    this.favoriteList = []
+    let favArray: any[] = []
     symbolArray.map( (index, i) => {
       this._stock.serviceIntraDay(index.symbol)
-        .subscribe( response => {         
+        .subscribe( response => {  
+          console.log(response, "#3")       
           let priceKey = Object.keys(response["Time Series (15min)"])[0];
           index.price = response["Time Series (15min)"][priceKey]["4. close"]; 
           // let objData = symbolArray.find( each => {
           //   return each.symbol == index.symbol
           // });
-          //objData.price = response["Time Series (15min)"][priceKey]["4. close"]; 
-          this.favoriteList.push(index);
+          //objData.price = response["Time Series (15min)"][priceKey]["4. close"];
+          favArray.push(index)
+          
+          // this.favoriteList.push(index);
         })
     })
+    this.favoriteList = favArray
   }
 // 1st step) Get all favorite stock symbols from backend and place corresponding instance ID and symbol in an obj and push it in array; invoke getIntraPrice to get the price from the API   
   getFav() {
@@ -68,6 +72,7 @@ export class FavoritesComponent implements OnInit {
       symbol: ''
     };
     list.symbol = this._stock.stockSymbol;
+    console.log(list.symbol)
     this._user.saveFavorite(list, window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
       .subscribe((response: any) => {
         this.getFav();
