@@ -5,7 +5,6 @@ import { StockApiService } from '../stock-api.service';
 import { HomeComponent } from '../home/home.component';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
-
 declare var carousel;
 @Component({
   selector: 'app-favorites',
@@ -37,7 +36,7 @@ export class FavoritesComponent implements OnInit {
       this._stock.serviceIntraDay(index.symbol)
         .subscribe( response => {         
           let priceKey = Object.keys(response["Time Series (15min)"])[0];
-          index.price = response["Time Series (15min)"][priceKey]["4. close"]; 
+          index.price = response["Time Series (15min)"][priceKey]["4. close"].slice(0,6); 
           favArray.push(index)
           this.favoriteList = favArray
         })
@@ -77,18 +76,28 @@ export class FavoritesComponent implements OnInit {
     }
   }
   // delete favorite stock symbol by sending token, and userId to banckend
-  deleteFavorite(id) {
-    console.log('presed', id)
-    this._user.deleteFavUser(window.sessionStorage.getItem('token'), id , window.sessionStorage.getItem('userId'))
+  deleteFavorite() {
+    console.log('comfirm' )
+    this._user.deleteFavUser(window.sessionStorage.getItem('token'), this.stockToDelete.id , window.sessionStorage.getItem('userId'))
       .subscribe( (response: any) => {
         this.deleteStock = false;   
         this.deleteMessage = 'Delete';     
         this.getFav();
+        this.showDeleteAlert = false;
       })
   }
+  
+  showDeleteAlert: boolean = false;
+  stockToDelete: any = {}
+  onDeleteStock(stock) {
+    console.log(stock, "#1")
+    this.stockToDelete = stock;
+    this.showDeleteAlert = true;
+  }
 
-  onDeleteStock(symbol) {
-    console.log("clicked", symbol)
+  cancelDeleteStock() {
+    console.log("cancel")
+    this.showDeleteAlert = false;
   }
 
   searchStock() {
