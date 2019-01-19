@@ -35,32 +35,23 @@ export class FavoritesComponent implements OnInit {
     let favArray: any[] = []
     symbolArray.map( (index, i) => {
       this._stock.serviceIntraDay(index.symbol)
-        .subscribe( response => {  
-          console.log(response, "#3")       
+        .subscribe( response => {         
           let priceKey = Object.keys(response["Time Series (15min)"])[0];
           index.price = response["Time Series (15min)"][priceKey]["4. close"]; 
-          // let objData = symbolArray.find( each => {
-          //   return each.symbol == index.symbol
-          // });
-          //objData.price = response["Time Series (15min)"][priceKey]["4. close"];
           favArray.push(index)
-          
-          // this.favoriteList.push(index);
+          this.favoriteList = favArray
         })
     })
-    this.favoriteList = favArray
   }
 // 1st step) Get all favorite stock symbols from backend and place corresponding instance ID and symbol in an obj and push it in array; invoke getIntraPrice to get the price from the API   
   getFav() {
     this._user.getFavoritesData(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
     .subscribe((response: any) => {
-      console.log(response.length, response, "#4")
       if(response.length !== 0) {
-        console.log("funct")
         this.getIntraPrice(response)
       }
       else{
-        console.log('return')
+        this.favoriteList = []
         return
       }
       
