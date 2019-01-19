@@ -124,6 +124,7 @@ export class HomeComponent implements OnInit {
       this._apiService.getStockData(symbol)
         .subscribe((response) =>  {
           //this._apiService.stockSymbol = '';
+          console.log(response, '#2')
           this.mainProperty = response[this._apiService.mainPropertyKey];
           for(let property in this.mainProperty) {
             this.finalClosingDataArray.push(parseFloat(this.mainProperty[property]['4. close']));
@@ -142,6 +143,7 @@ export class HomeComponent implements OnInit {
           //-------------------------------------------------------------------------------- side bar info
           //------------------------------------------------------------------------------- graph & table dates 
           this.lineChartLabels = [];
+          console.log(this.mainProperty, Object.keys(this.mainProperty), '#3')
           this.finalMonthChartArray = Object.keys(this.mainProperty);
           this.finalMonthChartArray = this.finalMonthChartArray.reverse().slice(this._apiService.sliceNum1);
           this.lineChartLabels = this.finalMonthChartArray;
