@@ -42,7 +42,6 @@
           </ul>
       </nav>
 
-
     <input id='searchBox' class="..search" type="text" placeholder='  Enter stock symbol...' name="stockName" #stockName>
     <button id='submitButton' class='btn btn-primary' name='submitName' (click)='onApi(stockName.value)'>
       Search
@@ -116,27 +115,27 @@
           <div class="card-block" >
               <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner"  >
-                  <div class="carousel-item active" *ngIf='newsArray[0]'>
+                  <div class="carousel-item active" *ngIf="newsArray[0]">
                     <div class="card-title">
                       {{newsArray[0].title}}
                     </div>
                       <div class="card-text">
-                        {{newsArray[0].summary}}
+                        {{newsArray[0].summary ? newsArray[0].summary: null}}
                       <a href={{newsArray[0].url}}>Read more...</a>
                     </div>
                   </div>
-                  <div class="carousel-item" *ngIf='newsArray[1]'>
+                  <div class="carousel-item" *ngIf="newsArray[1]">
                     <div class="card-title">
                       {{newsArray[1].title}}
                     </div>
                     <div class="card-text">
-                      {{newsArray[1].summary}}
+                      {{newsArray[1].summary ? newsArray[1].summary: null}}
                       <a href={{newsArray[1].url}}>Read more...</a>
                     </div>
                   </div>
-                  <div class="carousel-item" *ngIf='newsArray[2]'>
+                  <div class="carousel-item" *ngIf="newsArray[2]">
                     <div class="card-title">
-                      {{newsArray[2].title}}
+                      {{newsArray[2].summary ? newsArray[2].summary: null}}
                     </div>
                     <div class="card-text">
                       {{newsArray[2].summary}}

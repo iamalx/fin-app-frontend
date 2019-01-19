@@ -177,7 +177,7 @@ export class HomeComponent implements OnInit {
                 this.newsData = {};
 
               })
-              console.log(this.newsArray[1].summary, "#7")
+              //console.log(this.newsArray[1].summary, "#7")
               console.log(this.newsData, this.newsArray)
             })
         });
