@@ -5,6 +5,7 @@ import { StockApiService } from '../stock-api.service';
 import { HomeComponent } from '../home/home.component';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
+
 declare var carousel;
 @Component({
   selector: 'app-favorites',
@@ -15,7 +16,8 @@ export class FavoritesComponent implements OnInit {
 
   constructor( private _user: UserService,
               private _stock: StockApiService, 
-              private _home: HomeComponent) { }
+              private _home: HomeComponent,
+              private router: Router) { }
 
   ngOnInit() {
     this.getFav();

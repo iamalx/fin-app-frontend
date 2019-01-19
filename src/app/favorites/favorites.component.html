@@ -19,6 +19,6 @@
             </table>
             <div class='delete-button'>
                 <button *ngIf='favoriteList && _user.displayLogin' class="btn btn-sm btn-link red-button" (click)="makeDeleteVisible()">{{deleteMessage}}</button>
-                <button *ngIf='!_user.displayLogin' class="btn btn-sm btn-link">Login to add to favorites</button>
+                <button *ngIf='!_user.displayLogin' class="btn btn-sm btn-link" [routerLink]="['/login']">Login to add to favorites</button>
             </div>
 </div>
