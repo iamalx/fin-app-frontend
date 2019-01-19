@@ -28,28 +28,27 @@
       <nav class="subnav options1">
           <ul class="nav nav-wrapper">
               <li class="nav-item">
-                  <a (click)='getIntraDayData(stockName.value)' class=" nav-link nav-text">Hourly</a>
+                  <a (click)='getIntraDayData(stockName.value)' [class.active]="isButtonActive == 'intraDay'" class="nav-link nav-buttom" >Hourly</a>
               </li>
               <li class="nav-item">
-                  <a (click)='getDailyyData(stockName.value)' class="nav-link pressed">Daily</a>
+                  <a (click)='getDailyyData(stockName.value)' [class.active]="isButtonActive == 'daily'" class="nav-link nav-buttom">Daily</a>
               </li>
               <li class="nav-item">
-                  <a (click)='getWeeklyData(stockName.value)' class="nav-link pressed">Weekly</a>
+                  <a (click)='getWeeklyData(stockName.value)' [class.active]="isButtonActive == 'weekly'" class="nav-link nav-buttom">Weekly</a>
               </li>
               <li class="nav-item">
-                  <a (click)='getMonthlyData(stockName.value)' class="nav-link item">Monthly</a>
+                  <a (click)='getMonthlyData(stockName.value)' [class.active]="isButtonActive == 'monthly'" class="nav-link nav-buttom">Monthly</a>
               </li>
           </ul>
       </nav>
+
 
     <input id='searchBox' class="..search" type="text" placeholder='  Enter stock symbol...' name="stockName" #stockName>
     <button id='submitButton' class='btn btn-primary' name='submitName' (click)='onApi(stockName.value)'>
       Search
     </button>
   </div>
-  
-  
- 
+
   <div class='wrapper card'>
      
     <div class="row" *ngIf='finalLineChartArray.length > 0 '>

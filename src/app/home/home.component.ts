@@ -193,23 +193,27 @@ export class HomeComponent implements OnInit {
     this._apiService.stockUrl1= 'TIME_SERIES_DAILY&symbol=';
     this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey= 'Time Series (Daily)';
+    this.isButtonActive = 'daily';
     if(symbol) this.onApi(symbol);
     else return 
    
   };
 
+  isButtonActive: string = 'daily'
   getWeeklyData(symbol) {
     this._apiService.stockUrl1 = 'TIME_SERIES_WEEKLY&symbol=';
-    this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
-    this._apiService.mainPropertyKey= 'Weekly Time Series';
+    this._apiService.stockUrl2 = '&apikey=ARCGC8U9ZSC7IA7V';
+    this._apiService.mainPropertyKey = 'Weekly Time Series';
+    this.isButtonActive = 'weekly';
     if(symbol) this.onApi(symbol);
     else return 
   }; 
   
   getMonthlyData(symbol) {
     this._apiService.stockUrl1 = 'TIME_SERIES_MONTHLY&symbol=';
-    this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
-    this._apiService.mainPropertyKey= 'Monthly Time Series';
+    this._apiService.stockUrl2 = '&apikey=ARCGC8U9ZSC7IA7V';
+    this._apiService.mainPropertyKey = 'Monthly Time Series';
+    this.isButtonActive = 'monthly';
     if(symbol) this.onApi(symbol);
     else return 
   };
@@ -219,7 +223,11 @@ export class HomeComponent implements OnInit {
     this._apiService.stockUrl1 = 'TIME_SERIES_INTRADAY&symbol=';
     this._apiService.stockUrl2= '&interval=30min&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey= 'Time Series (30min)'
+    this.isButtonActive = 'intraDay';
     if(symbol) this.onApi(symbol);
     else return 
-  }  
+  }
+ 
 }
+
+
