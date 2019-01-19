@@ -47,14 +47,8 @@ export class FavoritesComponent implements OnInit {
   getFav() {
     this._user.getFavoritesData(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
     .subscribe((response: any) => {
-      if(response.length !== 0) {
-        this.getIntraPrice(response)
-      }
-      else{
-        this.favoriteList = []
-        return
-      }
-      
+      if(response.length !== 0) this.getIntraPrice(response);
+      else this.favoriteList = [];
     })  
   }
 //adds a stock to fav by posting list obj, unique id and token of user 
