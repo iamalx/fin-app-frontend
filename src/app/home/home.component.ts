@@ -187,33 +187,34 @@ export class HomeComponent implements OnInit {
       //this._apiService.stockSymbol = '';
     };
   //----------------------------------------------------------------------------------------- fav list stock price
-  //different api to request different data 
+
+  //different api-point to request different data 
   getDailyyData(symbol) {
     this._apiService.stockUrl1= 'TIME_SERIES_DAILY&symbol=';
-    //this._apiService.stockUrl2 = '&outputsize=compact&apikey=ARCGC8U9ZSC7IA7V';
-    this._apiService.mainPropertyKey = 'Time Series (Daily)';
+    this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
+    this._apiService.mainPropertyKey= 'Time Series (Daily)';
     this.onApi(symbol);
   };
 
-
   getWeeklyData(symbol) {
-    // this._apiService.stockUrl1 = 'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=';
-    // this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
-    // this._apiService.mainPropertyKey = 'Monthly Time Series';
-    // this.onApi(symbol);
+    this._apiService.stockUrl1 = 'TIME_SERIES_WEEKLY&symbol=';
+    this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
+    this._apiService.mainPropertyKey= 'Weekly Time Series';
+    this.onApi(symbol);
   }; 
   
   getMonthlyData(symbol) {
     this._apiService.stockUrl1 = 'TIME_SERIES_MONTHLY&symbol=';
-    //this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
-    this._apiService.mainPropertyKey = 'Monthly Time Series';
+    this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
+    this._apiService.mainPropertyKey= 'Monthly Time Series';
     this.onApi(symbol);
   };
+
   
-  getYearlyData(symbol) {
-    // this._apiService.stockUrl1 = 'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=';
-    // this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
-    // this._apiService.mainPropertyKey = 'Monthly Time Series';
-    // this.onApi(symbol);
+  getIntraDayData(symbol) {
+    this._apiService.stockUrl1 = 'TIME_SERIES_INTRADAY&symbol=';
+    this._apiService.stockUrl2= '&interval=30min&apikey=ARCGC8U9ZSC7IA7V';
+    this._apiService.mainPropertyKey= 'Time Series (30min)'
+    this.onApi(symbol);
   }  
 }
