@@ -34,7 +34,8 @@ export class FavoritesComponent implements OnInit {
     let favArray: any[] = []
     symbolArray.map( (index, i) => {
       this._stock.serviceIntraDay(index.symbol)
-        .subscribe( response => {         
+        .subscribe( response => {   
+          console.log(response, "#3")      
           let priceKey = Object.keys(response["Time Series (15min)"])[0];
           index.price = response["Time Series (15min)"][priceKey]["4. close"].slice(0,6); 
           favArray.push(index)
