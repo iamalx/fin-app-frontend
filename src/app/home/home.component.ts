@@ -108,14 +108,14 @@ export class HomeComponent implements OnInit {
                 private _newsService: NewsApiService) {}
     //subscribe for mlab & loopback
     ngOnInit() {
-     this._user.getUser(sessionStorage.getItem("userId"), sessionStorage.getItem('token'))
+      this._user.getUser(sessionStorage.getItem("userId"), sessionStorage.getItem('token'))
         .subscribe((response: any) => {
-          console.log('hello')
-          console.log(response, 'ngoit home subs');
+          // console.log('hello')
+          // console.log(response, 'ngoit home subs');
           this.user = response;
         });
-   // this.onApi();
-     };
+    // this.onApi();
+    };
     // subscribe for stock API; turn ng2 data into a single array and = lineChartData
     onApi(symbol) {
       this.tickersymbolSearch = symbol;
@@ -193,21 +193,25 @@ export class HomeComponent implements OnInit {
     this._apiService.stockUrl1= 'TIME_SERIES_DAILY&symbol=';
     this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey= 'Time Series (Daily)';
-    this.onApi(symbol);
+    if(symbol) this.onApi(symbol);
+    else return 
+   
   };
 
   getWeeklyData(symbol) {
     this._apiService.stockUrl1 = 'TIME_SERIES_WEEKLY&symbol=';
     this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey= 'Weekly Time Series';
-    this.onApi(symbol);
+    if(symbol) this.onApi(symbol);
+    else return 
   }; 
   
   getMonthlyData(symbol) {
     this._apiService.stockUrl1 = 'TIME_SERIES_MONTHLY&symbol=';
     this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey= 'Monthly Time Series';
-    this.onApi(symbol);
+    if(symbol) this.onApi(symbol);
+    else return 
   };
 
   
@@ -215,6 +219,7 @@ export class HomeComponent implements OnInit {
     this._apiService.stockUrl1 = 'TIME_SERIES_INTRADAY&symbol=';
     this._apiService.stockUrl2= '&interval=30min&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey= 'Time Series (30min)'
-    this.onApi(symbol);
+    if(symbol) this.onApi(symbol);
+    else return 
   }  
 }
