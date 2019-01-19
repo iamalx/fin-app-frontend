@@ -81,8 +81,8 @@ export class FavoritesComponent implements OnInit {
     console.log('presed', id)
     this._user.deleteFavUser(window.sessionStorage.getItem('token'), id , window.sessionStorage.getItem('userId'))
       .subscribe( (response: any) => {
-       
-        
+        this.deleteStock = false;   
+        this.deleteMessage = 'Delete';     
         this.getFav();
       })
   }
