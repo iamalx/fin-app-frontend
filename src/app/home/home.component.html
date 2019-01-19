@@ -25,12 +25,28 @@
 </div>
   
   <div class='search1'>
-    <div class='options1'>
+      <nav class="subnav options1">
+          <ul class="nav nav-wrapper">
+              <li class="nav-item">
+                  <a (click)='getDailyyData(stockName.value)' class="nav-link pressed">Daily</a>
+              </li>
+              <li class="nav-item">
+                  <a (click)='getWeeklyData(stockName.value)' class="nav-link pressed">Weekly</a>
+              </li>
+              <li class="nav-item">
+                  <a (click)='getMonthlyData(stockName.value)' class="nav-link nav-text">Monthly</a>
+              </li>
+              <li class="nav-item">
+                  <a (click)='getYearlyData(stockName.value)' class=" nav-link nav-text">Yearly</a>
+              </li>
+          </ul>
+      </nav>
+    <!-- <div class='options1'>
       <button (click)='getDailyyData(stockName.value)' class='item'>Daily</button>
       <button (click)='getWeeklyData(stockName.value)' class='item'>Weekly</button>
       <button (click)='getMonthlyData(stockName.value)' class='item'>Monthly</button>
       <button (click)='getYearlyData(stockName.value)' class='item'>Yearly</button>
-    </div>
+    </div> -->
     <input id='searchBox' class="..search" type="text" placeholder='  Enter stock symbol...' name="stockName" #stockName>
     <button id='submitButton' class='btn btn-primary' name='submitName' (click)='onApi(stockName.value)'>
       Search

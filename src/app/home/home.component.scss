@@ -21,31 +21,30 @@
     //padding: 10px;
 }
 
-.options1 {
-    position: relative;
-    top: 0px;
-    color: black;
+.nav-wrapper{
     display: flex;
-    justify-content: space-evenly;
-    font-size: 15px;
-    padding: 0px 0px;
-    margin-bottom: 30px;
+    justify-content: space-between;
+}
+.options1 {
+  margin-bottom: 30px;
 }
 
-.options1 button {
-    padding: 0px 20px;
-    border: none;
-    font-size: medium;
-    background-color: transparent;
-    border-radius: 2px;
-}
 
-.options1 button:hover,
-.options1 button:active {
-    border-bottom: 1px solid blue;
-    color: black;
-    text-decoration: none;
-}
+
+// .options1  {
+//     padding: 0px 20px;
+//     border: none;
+//     font-size: medium;
+//     background-color: transparent;
+//     border-radius: 2px;
+// }
+
+// .options1 button:hover,
+// .options1 button:active {
+//     border-bottom: 1px solid blue;
+//     color: black;
+//     text-decoration: none;
+// }
 
 .table1 {
     position: relative;
@@ -85,7 +84,6 @@
     position: absolute; 
     top: 23.2%;
     width: 250px;
-   
 }
 
 .fav-table {
