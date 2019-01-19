@@ -1,6 +1,6 @@
 .table-wrapper {
     position: relative;
-    top: 20px;
+    top: 15px;
     width: 80%; 
 }
 
@@ -8,11 +8,12 @@
     margin-top: 0px;
 }
 
-#label {
-    margin: 0px;
+#label1 {
+    margin: 5px 0px 0px 0px;
     //margin-left: 6px;
     //width: 380px;
-    display: block;
+   // display: block;
+   
 }
 
 .fav-wrapper {
@@ -43,5 +44,16 @@
 
 #table1{
     margin: 0px; 
+}
+
+.table-header{
+    display: -webkit-box;
+ //   width: 80%; 
+    margin: 0px!important;
+    justify-content: space-between;
+}
+
+#add-button{
+    margin: 0px 0px 5px 0px;
 }
 

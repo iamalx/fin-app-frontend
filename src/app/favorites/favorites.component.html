@@ -1,24 +1,27 @@
-<div class='.table-wrapper'>
- 
-        <label id='label'>Favorite Stocks</label>
-            <table class="table" id='table1'>
-                <thead>
-                    <tr>
-                        <th class="left">Stock</th>
-                        <th class="left">Price</th>
-                    </tr>
-                </thead>
-                <tbody *ngIf='_user.displayLogin'>
-                    <tr *ngFor="let item of favoriteList; let i = index">
-                        <td *ngIf='deleteStock == false' class="left"><a (click)='searchStock(item.symbol)'>{{item.symbol}}</a></td>
-                        <td *ngIf='deleteStock == true' class="left"><a (click)="deleteFavorite(item.id)" class='red-button'>{{item.symbol}}</a></td>
-                        <td class='left'>{{item.price}}</td>
-                        <!--<td  class="">{{returnIntraPrice(item[i])}}</td>-->
-                    </tr>
-                </tbody>
-            </table>
-            <div class='delete-button'>
-                <button *ngIf='favoriteList && _user.displayLogin' class="btn btn-sm btn-link red-button" (click)="makeDeleteVisible()">{{deleteMessage}}</button>
-                <button *ngIf='!_user.displayLogin' class="btn btn-sm btn-link" [routerLink]="['/login']">Login to add to favorites</button>
-            </div>
+
+<div class='.table-wrapper'>   
+    <div class='table-header'>    
+        <h4 id='label1'>Favorite Stocks</h4> 
+        <button class='btn btn-primary' id='add-button'>add stock</button>
+    </div>    
+    <table class="table" id='table1'>
+        <thead>
+            <tr>
+                <th class="left">Stock</th>
+                <th class="left">Price</th>
+            </tr>
+        </thead>
+        <tbody *ngIf='_user.displayLogin'>
+            <tr *ngFor="let item of favoriteList; let i = index">
+                <td *ngIf='deleteStock == false' class="left"><a (click)='searchStock(item.symbol)'>{{item.symbol}}</a></td>
+                <td *ngIf='deleteStock == true' class="left"><a (click)="deleteFavorite(item.id)" class='red-button'>{{item.symbol}}</a></td>
+                <td class='left'>{{item.price}}</td>
+                <!--<td  class="">{{returnIntraPrice(item[i])}}</td>-->
+            </tr>
+        </tbody>
+    </table>
+    <div class='delete-button'>
+        <button *ngIf='favoriteList && _user.displayLogin' class="btn btn-sm btn-link red-button" (click)="makeDeleteVisible()">{{deleteMessage}}</button>
+        <button *ngIf='!_user.displayLogin' class="btn btn-sm btn-link" [routerLink]="['/login']">Login to add to favorites</button>
+    </div>
 </div>
