@@ -189,24 +189,31 @@ export class HomeComponent implements OnInit {
   //----------------------------------------------------------------------------------------- fav list stock price
   //different api to request different data 
   getDailyyData(symbol) {
-    this._apiService.stockUrl= 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=';
-    this._apiService.stockUrl2 = '&outputsize=compact&apikey=ARCGC8U9ZSC7IA7V';
+    this._apiService.stockUrl1= 'TIME_SERIES_DAILY&symbol=';
+    //this._apiService.stockUrl2 = '&outputsize=compact&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey = 'Time Series (Daily)';
     this.onApi(symbol);
   };
 
 
   getWeeklyData(symbol) {
-    //test commit to remote ==> sencond test
+    // this._apiService.stockUrl1 = 'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=';
+    // this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
+    // this._apiService.mainPropertyKey = 'Monthly Time Series';
+    // this.onApi(symbol);
   }; 
   
   getMonthlyData(symbol) {
-    this._apiService.stockUrl = 'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=';
-    this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
+    this._apiService.stockUrl1 = 'TIME_SERIES_MONTHLY&symbol=';
+    //this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey = 'Monthly Time Series';
     this.onApi(symbol);
   };
   
   getYearlyData(symbol) {
+    // this._apiService.stockUrl1 = 'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=';
+    // this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
+    // this._apiService.mainPropertyKey = 'Monthly Time Series';
+    // this.onApi(symbol);
   }  
 }

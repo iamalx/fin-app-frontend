@@ -12,7 +12,7 @@ sliceNum1: number= -12;
 baseUrl: string = 'https://www.alphavantage.co/query?function=';
 stockUrl1: string = 'TIME_SERIES_DAILY&symbol=';
 stockSymbol: string = '';
-stockUrl2: string = '&outputsize=compact&apikey=ARCGC8U9ZSC7IA7V';
+stockUrl2: string = '&apikey=ARCGC8U9ZSC7IA7V';
 completeURL: string =  `${this.baseUrl}${this.stockUrl1}${this.stockSymbol}${this.stockUrl2}`;
 //https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&outputsize=full&apikey=demo
 
@@ -29,7 +29,6 @@ getStockData( symbol: string) {
     
 //Api for Favorites price
 serviceIntraDay(symbol: string) {
-    console.log("serviceIntraDay()", symbol )
     return this._http.get(`${this.baseUrl}TIME_SERIES_INTRADAY&symbol=${symbol}&interval=15min${this.stockUrl2}`)
 }
     ///https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=15min&outputsize=full&apikey=demo
