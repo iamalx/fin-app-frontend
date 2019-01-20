@@ -64,7 +64,7 @@ export class FavoritesComponent implements OnInit {
           this.getFav();
       })
     }  else{
-      console.log("already exist")// do alert
+      alert(`Sorry ${this._stock.stockSymbol} is already in your Favorite list`);
     }
   };
   
