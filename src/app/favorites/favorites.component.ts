@@ -22,7 +22,7 @@ export class FavoritesComponent implements OnInit {
     this.getFav();
   };
 
-  favoriteList: any[] = [];
+  favoriteList: any = [];
   favoriteData: any = {};
   stockArray: any[] = [];
   stockData: any = {};
@@ -32,10 +32,9 @@ export class FavoritesComponent implements OnInit {
 
   getIntraPrice(symbolArray: any) {
     let favArray: any[] = []
-    symbolArray.map( (index, i) => {
+    symbolArray.map((index: any) => {
       this._stock.serviceIntraDay(index.symbol)
-        .subscribe( response => {   
-          console.log(response, "#3")      
+        .subscribe( response => {       
           let priceKey = Object.keys(response["Time Series (15min)"])[0];
           index.price = response["Time Series (15min)"][priceKey]["4. close"].slice(0,6); 
           favArray.push(index)
@@ -53,17 +52,45 @@ export class FavoritesComponent implements OnInit {
   }
 //adds a stock to fav by posting list obj, unique id and token of user 
   addFavorite() {
-    let list = {
-      symbol: ''
-    };
-    list.symbol = this._stock.stockSymbol;
-    console.log(list.symbol)
-    this._user.saveFavorite(list, window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
-      .subscribe((response: any) => {
-        this.getFav();
+    let isStockRepeat: boolean;
+    isStockRepeat = this.favoriteList.some( (each) => {
+      return each.symbol ==  this._stock.stockSymbol
+    })
+    if(!isStockRepeat){
+      let list: any = {};
+      list.symbol = this._stock.stockSymbol;
+      this._user.saveFavorite(list, window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
+        .subscribe((response: any) => {
+          this.getFav();
       })
+    }  else{
+      console.log("already exist")// do alert
+    }
   };
   
+  // delete favorite stock symbol by sending token, and userId to banckend
+  deleteFavorite() {
+    console.log('comfirm' )
+    this._user.deleteFavUser(window.sessionStorage.getItem('token'), this.stockToDelete.id , window.sessionStorage.getItem('userId'))
+      .subscribe( _ => {
+        this.deleteStock = false;   
+        this.deleteMessage = 'Delete';     
+        this.getFav();
+        this.cancelDeleteStock();
+      })
+  }
+  
+  showDeleteAlert: boolean = false;
+  stockToDelete: any = {}
+  onDeleteStock(stock) {
+    this.showDeleteAlert = true;
+    this.stockToDelete = stock;
+  }
+
+  cancelDeleteStock() {
+    this.showDeleteAlert = false;
+  }
+
   deleteStock: boolean = false;
   deleteMessage: string = 'Delete';
   makeDeleteVisible() {   
@@ -75,30 +102,6 @@ export class FavoritesComponent implements OnInit {
       this.deleteStock = false;
       this.deleteMessage = 'Delete'
     }
-  }
-  // delete favorite stock symbol by sending token, and userId to banckend
-  deleteFavorite() {
-    console.log('comfirm' )
-    this._user.deleteFavUser(window.sessionStorage.getItem('token'), this.stockToDelete.id , window.sessionStorage.getItem('userId'))
-      .subscribe( (response: any) => {
-        this.deleteStock = false;   
-        this.deleteMessage = 'Delete';     
-        this.getFav();
-        this.showDeleteAlert = false;
-      })
-  }
-  
-  showDeleteAlert: boolean = false;
-  stockToDelete: any = {}
-  onDeleteStock(stock) {
-    console.log(stock, "#1")
-    this.stockToDelete = stock;
-    this.showDeleteAlert = true;
-  }
-
-  cancelDeleteStock() {
-    console.log("cancel")
-    this.showDeleteAlert = false;
   }
 
   searchStock() {
