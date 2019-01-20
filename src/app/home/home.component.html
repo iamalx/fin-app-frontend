@@ -3,22 +3,6 @@
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
-<!--<clr-dropdown>-->
-<!--    <button clrDropdownTrigger class="btn">-->
-<!--        Dropdown-->
-<!--        <clr-icon shape="caret down"></clr-icon>-->
-<!--    </button>-->
-<!--    <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">-->
-<!--        <a clrDropdownItem href="javascript://">Action 1</a>-->
-<!--        <a clrDropdownItem href="javascript://">Action 2</a>-->
-<!--        <div class="dropdown-divider">-->
-
-<!--        </div>-->
-<!--        <a clrDropdownItem href="javascript://">Link 1</a>-->
-<!--        <a clrDropdownItem href="javascript://">Link 2</a>-->
-<!--    </clr-dropdown-menu>-->
-<!--</clr-dropdown> <br>-->
-<!--THis is favorites section-->
 
 <div class='fav-side'>
   <app-favorites></app-favorites>
@@ -42,8 +26,8 @@
           </ul>
       </nav>
 
-    <input id='searchBox' class="..search" type="text" placeholder='  Enter stock symbol...' name="stockName" #stockName>
-    <button id='submitButton' class='btn btn-primary' name='submitName' (click)='onApi(stockName.value)'>
+    <input id='searchBox' class="..search" type="text" placeholder='  Enter stock symbol...' name="stockName" #stockName (keyup.enter)="onApi(stockName.value)">
+    <button id='submitButton' class='btn btn-primary' name='submitName' (click)='onApi(stockName.value)' >
       Search
     </button>
   </div>
