@@ -1,7 +1,7 @@
 .table-wrapper {
     position: relative;
     top: 20px;
-    width: 80%; 
+    width: 50%; 
 }
 
 .main-table {
@@ -9,7 +9,7 @@
 }
 
 #label1 {
-    margin: 5px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
     //margin-left: 6px;
     //width: 380px;
    // display: block;
@@ -39,7 +39,8 @@
 }
 
 .red-button {
-    color: red!important;
+    color: rgb(171, 73, 73)!important;
+    margin: 0px!important;
 }
 
 #table1{
@@ -69,4 +70,5 @@
 .modal-header {
     display: inline;
 }
+
 

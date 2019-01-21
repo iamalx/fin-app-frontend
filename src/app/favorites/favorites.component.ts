@@ -63,7 +63,7 @@ export class FavoritesComponent implements OnInit {
         .subscribe((response: any) => {
           this.getFav();
       })
-    }  else{
+    } else{
       alert(`Sorry ${this._stock.stockSymbol} is already in your Favorite list`);
     }
   };

@@ -1,42 +1,29 @@
 
-<div class='.table-wrapper'>   
-    <div class='table-header'>    
-        <h4 id='label1'>Favorite Stocks</h4> 
-        <button class='btn btn-outline' id='add-button' (click)='addFavorite()'>add stock</button>
-    </div>    
-    <table class="table" id='table1'>
-        <thead>
-            <tr>
-                <th class="left">Stock</th>
-                <th class="left">Price</th>
-            </tr>
-        </thead>
-        <tbody *ngIf='_user.displayLogin'>
-            <tr *ngFor="let item of favoriteList; let i = index">
-                <td *ngIf='deleteStock == false' class="left"><a >{{item.symbol}}</a></td>
-                <td *ngIf='deleteStock == true' class="left"><a class='on-click red-button'(click)="onDeleteStock(item)" >{{item.symbol}}</a></td>
-                <td class='left'>{{item.price}}</td>
-                <!--<td  class="">{{returnIntraPrice(item[i])}}</td>-->
-            </tr>
-        </tbody>
-    </table>
-    <div class='delete-button'>
-        <button *ngIf='favoriteList && _user.displayLogin' class="btn btn-sm btn-link red-button" (click)="makeDeleteVisible()">{{deleteMessage}}</button>
-        <button *ngIf='!_user.displayLogin' class="btn btn-sm btn-link" [routerLink]="['/login']">Login to add to favorites</button>
+    <div class='col-lg-5 col-md-8 col-sm-12 col-xs-12'>   
+        <div class='table-header'>    
+            <h4 id='label1'>Favorite Stocks</h4> 
+            <button class='btn btn-outline' id="add-button" (click)='addFavorite()'>add stock</button>
+        </div>    
+        <table class="table" id='table1'>
+            <thead>
+                <tr>
+                    <th class="left">Stock</th>
+                    <th class="left">Price</th>
+                </tr>
+            </thead>
+            <tbody *ngIf='_user.displayLogin'>
+                <tr *ngFor="let item of favoriteList; let i = index">
+                    <td *ngIf='deleteStock == false'><a >{{item.symbol}}</a></td>
+                    <td *ngIf='deleteStock == true' ><a class='on-click red-button'(click)="onDeleteStock(item)" >{{item.symbol}}</a></td>
+                    <td class='left'>{{item.price}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class='delete-button'>
+            <button *ngIf='favoriteList && _user.displayLogin' class="btn btn-sm btn-link red-button" (click)="makeDeleteVisible()">{{deleteMessage}}</button>
+            <button *ngIf='!_user.displayLogin' class="btn btn-sm btn-link" [routerLink]="['/login']">Login to add to favorites</button>
+        </div>
     </div>
-</div>
-
-<!-- <button class="btn btn-primary" (click)="open = true">Show modal</button>
-<clr-modal [(clrModalOpen)]="open">
-    <h3 class="modal-title">Delete <strong>appl</strong> from the databse</h3>
-    <div class="modal-body">
-        <p>Are you sure you want to delete <strong>appl?</strong> This action is permenant and cannot be recovered.</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline" (click)="open = false">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="open = false">Ok</button>
-    </div>
-</clr-modal> -->
 
 <div *ngIf="showDeleteAlert" class="modal">
         <div class="modal-dialog" role="dialog" aria-hidden="true">
