@@ -34,7 +34,8 @@ export class FavoritesComponent implements OnInit {
     let favArray: any[] = [];
     symbolArray.map((index: any) => {
       this._stock.serviceIntraDay(index.symbol)
-        .subscribe( response => {       
+        .subscribe( response => {   
+          console.log(response, "#5")    
           let priceKey = Object.keys(response["Time Series (15min)"])[0];
           index.price = response["Time Series (15min)"][priceKey]["4. close"].slice(0,6); 
           favArray.push(index)
@@ -64,7 +65,7 @@ export class FavoritesComponent implements OnInit {
           this.getFav();
       })
     } else {
-      alert(`Sorry ${this._stock.stockSymbol} is already in your Favorite list`);
+        alert(`Sorry "${this._stock.stockSymbol}" is already in your Favorite list`);
     }
   };
   
