@@ -18,7 +18,17 @@ import { NewsApiService } from '../news-api.service';
     templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-  
+
+  constructor(  private _user: UserService,
+                private _apiService: StockApiService,
+                private _newsService: NewsApiService ) {}
+
+  ngOnInit() {
+  this._user.getUser(sessionStorage.getItem("userId"), sessionStorage.getItem('token'))
+    .subscribe((response: any) => {
+      this.user = response;
+    });
+  };
   //logic for the the chart from ng2Charts ==================================
   // linechartData is the main array that displays the graph
   public lineChartData: Array<any> = [
@@ -27,11 +37,11 @@ export class HomeComponent implements OnInit {
     {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
   ];
 //  lineChartLabels is the main array to display the dates
-  public lineChartLabels:Array<any> = ['Jun','Jul',"Aug",'Sep','Oct','Nov',"Dec",'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
-  public lineChartOptions:any = {
+  public lineChartLabels: Array<any> = ['Jun','Jul',"Aug",'Sep','Oct','Nov',"Dec",'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+  public lineChartOptions: any = {
     responsive: true
   };
-  public lineChartColors:Array<any> = [
+  public lineChartColors: Array<any> = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
       borderColor: 'rgb(66, 134, 244)',
@@ -59,72 +69,47 @@ export class HomeComponent implements OnInit {
   ];
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
-
-  // public randomize():void {
-  //   let _lineChartData:Array<any> = new Array(this.lineChartData.length);
-  //   for (let i = 0; i < this.lineChartData.length; i++) {
-  //     _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
-  //     for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-  //       _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-  //     }
-  //   }
-  //   this.lineChartData = _lineChartData;
-  // }
   // events
   public chartClicked(e:any):void {
     console.log(e);
   }
- 
+
   public chartHovered(e:any):void {
     console.log(e);
   }
- //-----------------------------------------------------------------------------------------------------------------   
-    user: any;
-    finalClosingDataArray: any [] = [];
-    finalLineChartArray: any [] = [];
-    
-    arrayWithDates: any[] = [];    
-    finalMonthChartArray: any [] = [];
-    finalMonthTableArray: any [] = [];
-    mainProperty: any;
-    //------------------------------
-    dailyProp: any;
-    tickersymbolSearch: string ='';
-    arrayOfDailyDates: any[] = []
-    objofDailyData: any = {}
-    date: string = ''
-    open: string =''
-    high: string =''
-    low: string =''
-    close: string =''
-    volume: string =''
-   //---------------------------
-
-   newsData: any;
-   newsArray: any[] = []
-    
-    constructor(private _user:UserService,
-                private _apiService: StockApiService,
-                private _newsService: NewsApiService) {}
-    //subscribe for mlab & loopback
-    ngOnInit() {
-      this._user.getUser(sessionStorage.getItem("userId"), sessionStorage.getItem('token'))
-        .subscribe((response: any) => {
-          // console.log('hello')
-          // console.log(response, 'ngoit home subs');
-          this.user = response;
-        });
-    // this.onApi();
-    };
-    // subscribe for stock API; turn ng2 data into a single array and = lineChartData
-    onApi(symbol) {
-      this.tickersymbolSearch = symbol;
-      //this.lineChartData = [];
-      //this._apiService.stockSymbol = '';
-      this._apiService.getStockData(symbol)
-        .subscribe((response) =>  {
-          //this._apiService.stockSymbol = '';
-          console.log(response, '#2')
+//-----------------------------------------------------------------------------------------------------------------   
+  user: any;
+  finalClosingDataArray: any [] = [];
+  finalLineChartArray: any [] = [];
+  
+  arrayWithDates: any[] = [];    
+  finalMonthChartArray: any [] = [];
+  finalMonthTableArray: any [] = [];
+  mainProperty: any;
+  //------------------------------
+  dailyProp: any;
+  arrayOfDailyDates: any[] = [];
+  objofDailyData: any = {};
+  date: string = '';
+  open: string = '';
+  high: string = '';
+  low: string = '';
+  close: string = '';
+  volume: string = '';
+  //---------------------------
+  newsData: any;
+  newsArray: any[] = [];
+  // subscribe for stock API; turn ng2 data into a single array and = lineChartData
+  onApi(symbol) {
+    //this.tickersymbolSearch = '';
+    //this.lineChartData = [];
+    //this._apiService.stockSymbol = '';
+    this._apiService.getStockData(symbol)
+      .subscribe((response) =>  {
+        //this._apiService.stockSymbol = '';
+        //console.log(response, '#2')
+        if( Object.keys(response)[0] == "Meta Data" ) {
+          this._apiService.stockSymbol = symbol;
           this.mainProperty = response[this._apiService.mainPropertyKey];
           for(let property in this.mainProperty) {
             this.finalClosingDataArray.push(parseFloat(this.mainProperty[property]['4. close']));
@@ -163,7 +148,7 @@ export class HomeComponent implements OnInit {
           this.low = this.objofDailyData["3. low"].slice(0,6); 
           this.close = this.objofDailyData["4. close"].slice(0,6); 
 
-          this._newsService.stockNewsCall(this.tickersymbolSearch)
+          this._newsService.stockNewsCall(this._apiService.stockSymbol)
             .subscribe( (response: any) => {
               console.log(response, "inSubscribe#") 
               response.forEach( each => {
@@ -182,12 +167,17 @@ export class HomeComponent implements OnInit {
               //console.log(this.newsArray[1].summary, "#7")
               console.log(this.newsData, this.newsArray)
             })
-        });
-      // un-comment if you want to show all of ur searches (bellow)
-      //this.lineChartData = [];
-      this.finalClosingDataArray =[];
-      //this._apiService.stockSymbol = '';
-    };
+        } else {
+          this._apiService.stockSymbol = '';
+          alert(`Sorry "${symbol}" could not be found \nPlease try a different stock`)
+        }
+        console.log(this._apiService.stockSymbol)
+      });
+    // un-comment if you want to show all of ur searches (bellow)
+    //this.lineChartData = [];
+    this.finalClosingDataArray = [];
+    //this._apiService.stockSymbol = '';
+  };
   //----------------------------------------------------------------------------------------- fav list stock price
 
   //different api-point to request different data 

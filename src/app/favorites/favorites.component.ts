@@ -56,7 +56,7 @@ export class FavoritesComponent implements OnInit {
     isStockRepeat = this.favoriteList.some( each => {
       return each.symbol ==  this._stock.stockSymbol
     })
-    if(!isStockRepeat){
+    if(!isStockRepeat && this._stock.stockSymbol ){
       let list: any = {};
       list.symbol = this._stock.stockSymbol;
       this._user.saveFavorite(list, window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
