@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit {
   arrayWithDates: any[] = [];    
   finalMonthChartArray: any [] = [];
   finalMonthTableArray: any [] = [];
-  mainProperty: any;
+  stockPricesObj: any;
   //------------------------------
   dailyProp: any;
   arrayOfDailyDates: any[] = [];
@@ -101,47 +101,37 @@ export class HomeComponent implements OnInit {
   newsArray: any[] = [];
   // subscribe for stock API; turn ng2 data into a single array and = lineChartData
   onApi(symbol) {
-    //this.tickersymbolSearch = '';
-    //this.lineChartData = [];
-    //this._apiService.stockSymbol = '';
     this._apiService.getStockData(symbol)
       .subscribe((response) =>  {
-        //this._apiService.stockSymbol = '';
-        //console.log(response, '#2')
         if( Object.keys(response)[0] == "Meta Data" ) {
           this._apiService.stockSymbol = symbol;
-          this.mainProperty = response[this._apiService.mainPropertyKey];
-          for(let property in this.mainProperty) {
-            this.finalClosingDataArray.push(parseFloat(this.mainProperty[property]['4. close']));
+          this.stockPricesObj = response[this._apiService.mainPropertyKey];
+          for(let property in this.stockPricesObj) {
+            this.finalClosingDataArray.push(parseFloat(this.stockPricesObj[property]['4. close']));
           };
-          this.finalClosingDataArray = this.finalClosingDataArray.reverse()
-            .slice(this._apiService.sliceNum1);
-          //this.finalMonthChartArray.push(Object.keys(response['Time Series (Daily)']));
-          //console.log(this.finalMonthChartArray, "finalMonth");
           this.finalLineChartArray = [ 
             {
-              data: (this.finalClosingDataArray),
+              data: (this.finalClosingDataArray.reverse().slice(this._apiService.sliceNum1)),
               label: 'Series A'
             }
           ];
           this.lineChartData =  this.finalLineChartArray;
-          //-------------------------------------------------------------------------------- side bar info
           //------------------------------------------------------------------------------- graph & table dates 
           this.lineChartLabels = [];
-          console.log(this.mainProperty, Object.keys(this.mainProperty), '#3')
-          this.finalMonthChartArray = Object.keys(this.mainProperty);
-          this.finalMonthChartArray = this.finalMonthChartArray.reverse().slice(this._apiService.sliceNum1);
-          this.lineChartLabels = this.finalMonthChartArray;
-          //this.finalMonthTableArray = this.lineChartLabels.slice(88,102);
-          //this.finalMonthChartArray[0].forEach(item => console.log(item));
-          // for(let i = 0; i < this.finalMonthChartArray.length ; i++) {
-          // };
+          this.lineChartLabels = Object.keys(this.stockPricesObj)
+            .reverse().slice(this._apiService.sliceNum1);
           //------------------------------------------------------------------------------- set stock prices to global property 
-          this.dailyProp = response["Time Series (Daily)"];
+          this.dailyProp = response[Object.keys(response)[1]];
+          console.log(Object.keys(response)[1], "#4.7")
+          console.log(this.dailyProp, "#4.8")
+          this.arrayOfDailyDates = []
           for(let prop in this.dailyProp) {
             this.arrayOfDailyDates.push(this.dailyProp[prop]); 
           };
+          console.log(this.arrayOfDailyDates, "#4.9")
+         
           this.objofDailyData = this.arrayOfDailyDates[0];
+          console.log(this.objofDailyData, '#5.0')
           this.date = Object.keys(this.dailyProp)[0];
           this.open = this.objofDailyData["1. open"].slice(0,6);
           this.high = this.objofDailyData["2. high"].slice(0,6);
@@ -150,33 +140,27 @@ export class HomeComponent implements OnInit {
 
           this._newsService.stockNewsCall(this._apiService.stockSymbol)
             .subscribe( (response: any) => {
-              console.log(response, "inSubscribe#") 
               response.forEach( each => {
                 this.newsData = {
-                title: each.headline,
-                imgs: each.image,
-                source: each.source,
-                summary: `${each.summary.slice(0,148)}...` ,
-                url: each.url
+                  title: each.headline,
+                  imgs: each.image,
+                  source: each.source,
+                  summary: `${each.summary.slice(0,148)}...` ,
+                  url: each.url
                 };
-                
                 this.newsArray.push(this.newsData)
                 this.newsData = {};
 
               })
-              //console.log(this.newsArray[1].summary, "#7")
-              console.log(this.newsData, this.newsArray)
             })
         } else {
           this._apiService.stockSymbol = '';
           alert(`Sorry "${symbol}" could not be found \nPlease try a different stock`)
         }
-        console.log(this._apiService.stockSymbol)
       });
     // un-comment if you want to show all of ur searches (bellow)
     //this.lineChartData = [];
     this.finalClosingDataArray = [];
-    //this._apiService.stockSymbol = '';
   };
   //----------------------------------------------------------------------------------------- fav list stock price
 
@@ -188,7 +172,7 @@ export class HomeComponent implements OnInit {
     this.isButtonActive = 'daily';
     if(symbol) this.onApi(symbol);
     else return 
-   
+
   };
 
   isButtonActive: string = 'daily'
@@ -209,7 +193,6 @@ export class HomeComponent implements OnInit {
     if(symbol) this.onApi(symbol);
     else return 
   };
-
   
   getIntraDayData(symbol) {
     this._apiService.stockUrl1 = 'TIME_SERIES_INTRADAY&symbol=';
@@ -219,7 +202,7 @@ export class HomeComponent implements OnInit {
     if(symbol) this.onApi(symbol);
     else return 
   }
- 
+
 }
 
 
