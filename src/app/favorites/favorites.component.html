@@ -13,8 +13,8 @@
             </thead>
             <tbody *ngIf='_user.displayLogin'>
                 <tr *ngFor="let item of favoriteList; let i = index">
-                    <td *ngIf='deleteStock == false'><a >{{item.symbol}}</a></td>
-                    <td *ngIf='deleteStock == true' ><a class='on-click red-button'(click)="onDeleteStock(item)" >{{item.symbol}}</a></td>
+                    <td *ngIf='deleteStock == false' class='left'><a >{{item.symbol}}</a></td>
+                    <td *ngIf='deleteStock == true' class='left' ><a class='on-click red-button'(click)="onDeleteStock(item)" >{{item.symbol}}</a></td>
                     <td class='left'>{{item.price}}</td>
                 </tr>
             </tbody>
