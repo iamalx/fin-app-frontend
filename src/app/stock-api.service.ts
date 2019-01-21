@@ -8,23 +8,18 @@ constructor( private _http: HttpClient) { }
 
     mainPropertyKey: string = 'Time Series (Daily)';
     sliceNum1: number= -12;
-    // sliceNum2: number= 0;   
     baseUrl: string = 'https://www.alphavantage.co/query?function=';
     stockUrl1: string = 'TIME_SERIES_DAILY&symbol=';
     stockSymbol: string = '';
     stockUrl2: string = '&apikey=ARCGC8U9ZSC7IA7V';
-    completeURL: string =  `${this.baseUrl}${this.stockUrl1}${this.stockSymbol}${this.stockUrl2}`;
+    completeURL: string =  '';
 
     //gets stock data by search
     getStockData( symbol: string) {
-        // console.log(this.stockUrl2, this.mainPropertyKey, "onservice");
-        // console.log(this.stockUrl1, "onservice2");
-        this.stockSymbol = symbol;
-        //console.log(this.stockSymbol, "#1");
+        this.stockSymbol = symbol;;
         this.completeURL= `${this.baseUrl}${this.stockUrl1}${symbol}${this.stockUrl2}`;
-        // this.mainPropertyKey = 'Time Series (Daily)'
         return this._http.get(this.completeURL) 
-        };
+    };
         
     //Api for Favorites price
     serviceIntraDay(symbol: string) {

@@ -15,16 +15,11 @@ export class AppComponent implements OnInit{
     }
     
     ngOnInit() {
-     this._user.showUserNav(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'));
-  }
+        this._user.showUserNav(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'));
+    }
     
     isdisable: boolean= true;
     signUp() {
-       // console.log(this.isdisable)
-    this.isdisable = false;
-    }
-    
-    onClick() {
-        console.log("YEAH")
+        this.isdisable = false;
     }
 }
