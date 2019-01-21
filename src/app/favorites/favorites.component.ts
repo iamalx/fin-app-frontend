@@ -13,16 +13,16 @@ declare var carousel;
 })
 export class FavoritesComponent implements OnInit {
 
-  constructor( private _user: UserService,
-              private _stock: StockApiService, 
-              private _home: HomeComponent,
-              private router: Router) { }
+  constructor(  private _user: UserService,
+                private _stock: StockApiService, 
+                private _home: HomeComponent,
+                private router: Router) { }
 
   ngOnInit() {
     this.getFav();
   };
 
-  favoriteList: any = [];
+  favoriteList: any[] = [];
   favoriteData: any = {};
   stockArray: any[] = [];
   stockData: any = {};
@@ -31,7 +31,7 @@ export class FavoritesComponent implements OnInit {
 // (side note: the ticker symbol is send in the order they appear in the 'stockArray', but are not received in order(FavoriteList), therefore, it is not easy to link price, symbol and id in the same obj in order)
 
   getIntraPrice(symbolArray: any) {
-    let favArray: any[] = []
+    let favArray: any[] = [];
     symbolArray.map((index: any) => {
       this._stock.serviceIntraDay(index.symbol)
         .subscribe( response => {       
@@ -53,24 +53,23 @@ export class FavoritesComponent implements OnInit {
 //adds a stock to fav by posting list obj, unique id and token of user 
   addFavorite() {
     let isStockRepeat: boolean;
-    isStockRepeat = this.favoriteList.some( (each) => {
+    isStockRepeat = this.favoriteList.some( each => {
       return each.symbol ==  this._stock.stockSymbol
     })
     if(!isStockRepeat){
       let list: any = {};
       list.symbol = this._stock.stockSymbol;
       this._user.saveFavorite(list, window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'))
-        .subscribe((response: any) => {
+        .subscribe( _ => {
           this.getFav();
       })
-    } else{
+    } else {
       alert(`Sorry ${this._stock.stockSymbol} is already in your Favorite list`);
     }
   };
   
   // delete favorite stock symbol by sending token, and userId to banckend
   deleteFavorite() {
-    console.log('comfirm' )
     this._user.deleteFavUser(window.sessionStorage.getItem('token'), this.stockToDelete.id , window.sessionStorage.getItem('userId'))
       .subscribe( _ => {
         this.deleteStock = false;   

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class StockApiService {
 
-constructor( private _http: HttpClient) { }
+constructor( private _http: HttpClient ) { }
 
     mainPropertyKey: string = 'Time Series (Daily)';
     sliceNum1: number= -12;
@@ -15,7 +15,7 @@ constructor( private _http: HttpClient) { }
     completeURL: string =  '';
 
     //gets stock data by search
-    getStockData( symbol: string) {
+    getStockData(symbol: string) {
         this.stockSymbol = symbol;;
         this.completeURL= `${this.baseUrl}${this.stockUrl1}${symbol}${this.stockUrl2}`;
         return this._http.get(this.completeURL) 

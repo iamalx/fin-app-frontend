@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class NewsApiService {
 
-  constructor(public _http: HttpClient) { }
+  constructor( public _http: HttpClient ) { }
   
   newsAPI1: string = 'https://api.iextrading.com/1.0/stock/';
   newsAPI2: string = '/news/last/5';

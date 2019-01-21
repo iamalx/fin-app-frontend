@@ -16,9 +16,8 @@ export class LogoutComponent implements OnInit {
   //logs out by calling logOut in user.service and sending token
   onLogout() {
     this._user.displayLogin = false;
-    this._user.logOut(window.sessionStorage.getItem('token'));
+    this._user.onLogOut(window.sessionStorage.getItem('token'));
     window.sessionStorage.clear();
     this._router.navigateByUrl('/login');
-    this._user.loginFavorite = 'Login to add to favorites';
   }
 }

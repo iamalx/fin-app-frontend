@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { UserService } from './user.service';
 import { OnInit } from '@angular/core';
 
@@ -10,8 +9,7 @@ import { OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
     
-    constructor(private router: Router,
-                private _user: UserService) {
+    constructor( private _user: UserService ) {
     }
     
     ngOnInit() {
@@ -22,4 +20,5 @@ export class AppComponent implements OnInit{
     signUp() {
         this.isdisable = false;
     }
+    // change logic above 'onSigUp'
 }

@@ -9,7 +9,7 @@ import { UserService } from '../user.service';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private _router: Router,
+  constructor( private _router: Router,
               private _user: UserService) { }
 
   ngOnInit() {
@@ -18,7 +18,7 @@ export class RegistrationComponent implements OnInit {
   img1: string = "../images/russiapic.jpg";
   passwordError: string = '';
   fillmessage: string ='';
-  newUser = {
+  newUser: any = {
     firstName: '',
     lastName: '',
     email:'',
@@ -64,7 +64,6 @@ export class RegistrationComponent implements OnInit {
     this.fillmessage = 'Please fill in all spaces'
     }
   };
-  
   
   logFunct() {
     this._router.navigate([`/login`])

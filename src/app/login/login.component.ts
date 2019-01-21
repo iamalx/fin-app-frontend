@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 //subscribes a user and gives a token 
 
     subscribeFunt() {
-        this._user.getLogin(this.userData)
+        this._user.onLogin(this.userData)
             .subscribe((response: any) => {
                 window.sessionStorage.setItem('token', response.token);
                 window.sessionStorage.setItem('userId', response.userId);
