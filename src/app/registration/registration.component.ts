@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 
 @Component({
@@ -14,10 +14,11 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
   }
-  img1: string="../images/russiapic.jpg";
+
+  img1: string = "../images/russiapic.jpg";
   passwordError: string = '';
   fillmessage: string ='';
-  newUser: any = {
+  newUser = {
     firstName: '',
     lastName: '',
     email:'',
@@ -31,23 +32,23 @@ export class RegistrationComponent implements OnInit {
     this.newUser.password = pass; 
   };
   
-   alertFunct() {
-     alert(`Account succesfully created
+  alertFunct() {
+    alert(`Account succesfully created
     First Name: ${this.newUser.firstName}
     Last Name: ${this.newUser.lastName}
     Email: ${this.newUser.email}`);
   };
   
   putFunct() {
-   this._user.postSign(this.newUser)
-    .subscribe((response: any) => {
-      window.sessionStorage.setItem('token', response.token);
-      window.sessionStorage.setItem('userId', response.userId);
-      this.alertFunct();
-      this._router.navigate([`/login`])
-    })
+    this._user.postSign(this.newUser)
+      .subscribe((response: any) => {
+        window.sessionStorage.setItem('token', response.token);
+        window.sessionStorage.setItem('userId', response.userId);
+        this.alertFunct();
+        this._router.navigate([`/login`])
+      })
   };
-   
+
   signFunct(first:string, last:string, email:string, pass:string, repassword: string) {
     if (first != '' && last !='' && email!= '' && pass != '' && repassword !='' ) {
       this.fillmessage = '';

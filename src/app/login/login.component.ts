@@ -1,32 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
     constructor( private _user: UserService, 
-               private _router: Router) { }
-  
+                private _router: Router) { }
+
     ngOnInit() {}
-  
+    
     noMatchMessage: string = '';
     noFillMessage: string = '';
-    userData: any = {
-      email: '',
-      password: ''
+    userData = {
+        email: '',
+        password: ''
     }
 
-// getdataberification() {
-//   return this._user.getLogin()
-//   .subscribe(
-//     data => { this.userData = data}
-//     )
-// };
+    // getdataberification() {
+    //     this._user.getLogin()
+    //     .subscribe(
+    //         data => { this.userData = data}
+    //         )
+    // };
 //subscribes a user and gives a token 
 
     subscribeFunt() {
@@ -48,6 +48,6 @@ export class LoginComponent implements OnInit {
             this.subscribeFunt();
         } else {
             this.noFillMessage ='Please fill in all spaces'
-         }
+        }
     };
 }
