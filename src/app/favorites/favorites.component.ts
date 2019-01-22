@@ -54,6 +54,7 @@ export class FavoritesComponent implements OnInit {
 //adds a stock to fav by posting list obj, unique id and token of user 
   addFavorite() {
     let isStockRepeat: boolean;
+    console.log(this._stock.stockSymbol, "symbol")
     isStockRepeat = this.favoriteList.some( each => {
       return each.symbol ==  this._stock.stockSymbol
     })

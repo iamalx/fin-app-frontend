@@ -38,9 +38,9 @@ export class HomeComponent implements OnInit {
   //  lineChartLabels is the main array to display the dates
   public lineChartLabels: Array<any> = [];
   public lineChartOptions: any = {
-    responsive: true
+    responsive: false
   };
-  public data: number[] = [12];
+  public data: number[] = [6];
   public lineChartColors: Array<any> = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
@@ -94,7 +94,6 @@ export class HomeComponent implements OnInit {
   onApi(symbol) {
     this._apiService.getStockData(symbol)
       .subscribe((response) =>  {
-        console.log(response, "0")
         if( Object.keys(response)[0] == "Meta Data" ) {
           this._apiService.stockSymbol = symbol;
           this.stockPricesObj = response[this._apiService.mainPropertyKey];
@@ -108,20 +107,8 @@ export class HomeComponent implements OnInit {
             }
           ];
           this.lineChartData =  this.finalLineChartArray;
-          //------------------------------------------------------------------------------- graph & table dates 
           this.setLineChartLabels()
-          //------------------------------------------------------------------------------- set stock prices to global property 
-          this.dailyProp = response[Object.keys(response)[1]];
-          this.arrayOfDailyDates = []
-          for(let prop in this.dailyProp) {
-            this.arrayOfDailyDates.push(this.dailyProp[prop]); 
-          };
-          this.objofDailyData = this.arrayOfDailyDates[0];
-          this.sideStockData.date = Object.keys(this.dailyProp)[0];
-          this.sideStockData.open = this.objofDailyData["1. open"].slice(0,6);
-          this.sideStockData.high = this.objofDailyData["2. high"].slice(0,6);
-          this.sideStockData.low = this.objofDailyData["3. low"].slice(0,6); 
-          this.sideStockData.close = this.objofDailyData["4. close"].slice(0,6); 
+          this.setCurrentData(response)
           this.getNews()
         } else {
           this._apiService.stockSymbol = '';
@@ -147,9 +134,22 @@ export class HomeComponent implements OnInit {
       this.lineChartLabels = this.dateLabelsArray
     }
   }
+
+  setCurrentData(response: any) {
+    this.dailyProp = response[Object.keys(response)[1]];
+      this.arrayOfDailyDates = []
+      for(let prop in this.dailyProp) {
+        this.arrayOfDailyDates.push(this.dailyProp[prop]); 
+      };
+      this.objofDailyData = this.arrayOfDailyDates[0];
+      this.sideStockData.date = Object.keys(this.dailyProp)[0];
+      this.sideStockData.open = this.objofDailyData["1. open"].slice(0,6);
+      this.sideStockData.high = this.objofDailyData["2. high"].slice(0,6);
+      this.sideStockData.low = this.objofDailyData["3. low"].slice(0,6); 
+      this.sideStockData.close = this.objofDailyData["4. close"].slice(0,6);
+  }
   
   getNews() {
-    
     this._newsService.stockNewsCall(this._apiService.stockSymbol)
       .subscribe( (response: any) => {
         this.newsArray = [];
