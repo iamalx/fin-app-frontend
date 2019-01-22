@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
   //  lineChartLabels is the main array to display the dates
   public lineChartLabels: Array<any> = [];
   public lineChartOptions: any = {
-    responsive: false
+    responsive: true
   };
   public data: number[] = [6];
   public lineChartColors: Array<any> = [
