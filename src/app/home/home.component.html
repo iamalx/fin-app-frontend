@@ -33,7 +33,7 @@
   </div>
 
   <div class='wrapper card'>
-     
+    
     <div class="row" *ngIf='finalLineChartArray.length > 0 '>
       <div class="table1" style="margin-bottom: 10px">
         <table class="dates1 table table-responsive table-condensed">
@@ -48,6 +48,7 @@
       <div class=" chart1">
         <div>
           <canvas baseChart width="1090%" height="500%" id='canvas' 
+          [data]="data"
           [datasets]="lineChartData" 
           [labels]="lineChartLabels" 
           [colors]="lineChartColors"
@@ -59,6 +60,7 @@
         </div>
       </div>
     </div>
+    
   </div>
 
   <div class= 'main-side'>
@@ -67,22 +69,22 @@
       <div class="col-lg-5 col-md-8 col-sm-12">
         <div class="card">
           <div class="card-header">
-          Daily Price: {{ tickersymbolSearch || uppercase}}
+          Most Current Data: {{ _apiService.stockSymbol || uppercase}}
           </div>
           <div class="card-block">
             <div class="card-title">
               <ol>
-                <li>Open: {{open}}
-                <li>Close: {{close}}
-                <li>High: {{high}}
-                <li>Low: {{low}}
+                <li>Open: {{sideStockData.open}}
+                <li>Close: {{sideStockData.close}}
+                <li>High: {{sideStockData.high}}
+                <li>Low: {{sideStockData.low}}
               </ol>
             </div>
             <div class="card-text">
-              {{date}}
+              {{sideStockData.date}}
             </div>
           </div>
-          <div *ngIf='open || high' class="card-footer">
+          <div *ngIf='sideStockData.open || sideStockData.high' class="card-footer">
             <button class="btn btn-sm btn-link">see more data</button>
             <button class="btn btn-sm btn-link">discover similar stocks</button>
           </div>
@@ -92,7 +94,7 @@
   
     <div class="row">
       <div class="col-lg-5 col-md-8 col-sm-12 col-xs-1">
-        <div class="card"  *ngIf='open || high'>
+        <div class="card"  *ngIf='sideStockData.open || sideStockData.high'>
           <div class="card-header">
             Market News 
           </div>
@@ -119,7 +121,7 @@
                   </div>
                   <div class="carousel-item" *ngIf="newsArray[2]">
                     <div class="card-title">
-                      {{newsArray[2].summary ? newsArray[2].summary: null}}
+                      {{newsArray[2].title ? newsArray[2].title: null}}
                     </div>
                     <div class="card-text">
                       {{newsArray[2].summary}}

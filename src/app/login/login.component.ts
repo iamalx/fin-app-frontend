@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
         email: '',
         password: ''
     }
-
     // getdataberification() {
     //     this._user.getLogin()
     //     .subscribe(

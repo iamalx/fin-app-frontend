@@ -6,7 +6,7 @@ export class UserService {
 
   constructor(public _http: HttpClient) { }
   
-  url: string=  "https://summer-2018-alex-phortonssf.c9users.io:8080/api/finUsers";
+  url: string=  "http://localhost:3000/api/finUsers";
   displayLogin: boolean = false;
   loginFavorite: string = 'Login to add to favorites';
   // call function when user creates an account / post used info to mongodb

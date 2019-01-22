@@ -11,6 +11,7 @@ import { UserService } from '../user.service';
 import { Component, OnInit } from '@angular/core';
 import { StockApiService } from '../stock-api.service';
 import { NewsApiService } from '../news-api.service';
+import { resolve } from 'path';
 
 
 @Component({
@@ -32,15 +33,14 @@ export class HomeComponent implements OnInit {
   //logic for the the chart from ng2Charts ==================================
   // linechartData is the main array that displays the graph
   public lineChartData: Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
+    {},
   ];
-//  lineChartLabels is the main array to display the dates
-  public lineChartLabels: Array<any> = ['Jun','Jul',"Aug",'Sep','Oct','Nov',"Dec",'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+  //  lineChartLabels is the main array to display the dates
+  public lineChartLabels: Array<any> = [];
   public lineChartOptions: any = {
     responsive: true
   };
+  public data: number[] = [12];
   public lineChartColors: Array<any> = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
@@ -71,31 +71,22 @@ export class HomeComponent implements OnInit {
   public lineChartType:string = 'line';
   // events
   public chartClicked(e:any):void {
-    console.log(e);
   }
 
   public chartHovered(e:any):void {
-    console.log(e);
   }
-//-----------------------------------------------------------------------------------------------------------------   
+  //-----------------------------------------------------------------------------------------------------------------   
   user: any;
   finalClosingDataArray: any [] = [];
-  finalLineChartArray: any [] = [];
-  
-  arrayWithDates: any[] = [];    
-  finalMonthChartArray: any [] = [];
-  finalMonthTableArray: any [] = [];
+  finalLineChartArray: any [] = [];    
   stockPricesObj: any;
+  //------------------------------
+  dateLabelsArray: any = [];
   //------------------------------
   dailyProp: any;
   arrayOfDailyDates: any[] = [];
   objofDailyData: any = {};
-  date: string = '';
-  open: string = '';
-  high: string = '';
-  low: string = '';
-  close: string = '';
-  volume: string = '';
+  sideStockData: any = {};
   //---------------------------
   newsData: any;
   newsArray: any[] = [];
@@ -103,6 +94,7 @@ export class HomeComponent implements OnInit {
   onApi(symbol) {
     this._apiService.getStockData(symbol)
       .subscribe((response) =>  {
+        console.log(response, "0")
         if( Object.keys(response)[0] == "Meta Data" ) {
           this._apiService.stockSymbol = symbol;
           this.stockPricesObj = response[this._apiService.mainPropertyKey];
@@ -117,42 +109,20 @@ export class HomeComponent implements OnInit {
           ];
           this.lineChartData =  this.finalLineChartArray;
           //------------------------------------------------------------------------------- graph & table dates 
-          this.lineChartLabels = [];
-          this.lineChartLabels = Object.keys(this.stockPricesObj)
-            .reverse().slice(this._apiService.sliceNum1);
+          this.setLineChartLabels()
           //------------------------------------------------------------------------------- set stock prices to global property 
           this.dailyProp = response[Object.keys(response)[1]];
-          console.log(Object.keys(response)[1], "#4.7")
-          console.log(this.dailyProp, "#4.8")
           this.arrayOfDailyDates = []
           for(let prop in this.dailyProp) {
             this.arrayOfDailyDates.push(this.dailyProp[prop]); 
           };
-          console.log(this.arrayOfDailyDates, "#4.9")
-         
           this.objofDailyData = this.arrayOfDailyDates[0];
-          console.log(this.objofDailyData, '#5.0')
-          this.date = Object.keys(this.dailyProp)[0];
-          this.open = this.objofDailyData["1. open"].slice(0,6);
-          this.high = this.objofDailyData["2. high"].slice(0,6);
-          this.low = this.objofDailyData["3. low"].slice(0,6); 
-          this.close = this.objofDailyData["4. close"].slice(0,6); 
-
-          this._newsService.stockNewsCall(this._apiService.stockSymbol)
-            .subscribe( (response: any) => {
-              response.forEach( each => {
-                this.newsData = {
-                  title: each.headline,
-                  imgs: each.image,
-                  source: each.source,
-                  summary: `${each.summary.slice(0,148)}...` ,
-                  url: each.url
-                };
-                this.newsArray.push(this.newsData)
-                this.newsData = {};
-
-              })
-            })
+          this.sideStockData.date = Object.keys(this.dailyProp)[0];
+          this.sideStockData.open = this.objofDailyData["1. open"].slice(0,6);
+          this.sideStockData.high = this.objofDailyData["2. high"].slice(0,6);
+          this.sideStockData.low = this.objofDailyData["3. low"].slice(0,6); 
+          this.sideStockData.close = this.objofDailyData["4. close"].slice(0,6); 
+          this.getNews()
         } else {
           this._apiService.stockSymbol = '';
           alert(`Sorry "${symbol}" could not be found \nPlease try a different stock`)
@@ -163,7 +133,40 @@ export class HomeComponent implements OnInit {
     this.finalClosingDataArray = [];
   };
   //----------------------------------------------------------------------------------------- fav list stock price
+  setLineChartLabels() {
+    this.dateLabelsArray = [];
+    this.dateLabelsArray = Object.keys(this.stockPricesObj)
+      .reverse().slice(this._apiService.sliceNum1);
+    if(this._apiService.stockUrl1 == 'TIME_SERIES_INTRADAY&symbol=') {
+      this.dateLabelsArray = this.dateLabelsArray.map( elem => {
+        return elem.split(' ')[1]
+      })
+      this.lineChartLabels = this.dateLabelsArray;
+    } 
+    else {
+      this.lineChartLabels = this.dateLabelsArray
+    }
+  }
+  
+  getNews() {
+    
+    this._newsService.stockNewsCall(this._apiService.stockSymbol)
+      .subscribe( (response: any) => {
+        this.newsArray = [];
+        response.forEach( each => {
+          this.newsData = {
+            title: `${each.headline.slice(0,70)}...`,
+            imgs: each.image,
+            source: each.source,
+            summary: `${each.summary.slice(0,148)}...` ,
+            url: each.url
+          };
+          this.newsArray.push(this.newsData)
+          this.newsData = {};
 
+        })
+      })
+  }
   //different api-point to request different data 
   getDailyyData(symbol) {
     this._apiService.stockUrl1= 'TIME_SERIES_DAILY&symbol=';
@@ -172,7 +175,6 @@ export class HomeComponent implements OnInit {
     this.isButtonActive = 'daily';
     if(symbol) this.onApi(symbol);
     else return 
-
   };
 
   isButtonActive: string = 'daily'
@@ -201,7 +203,7 @@ export class HomeComponent implements OnInit {
     this.isButtonActive = 'intraDay';
     if(symbol) this.onApi(symbol);
     else return 
-  }
+  };
 
 }
 
