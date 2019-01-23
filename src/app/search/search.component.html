@@ -12,10 +12,11 @@
       <li class="nav-item">
           <a (click)='getMonthlyData(stockName.value)' [class.active]="isButtonActive == 'monthly'" class="nav-link nav-buttom">Monthly</a>
       </li>
+      <!-- <li>{{this._chart.lineChartLabels}}</li> -->
   </ul>
 </nav>
-
-<input id='searchBox' class="..search" type="text" placeholder='  Enter stock symbol...' name="stockName" #stockName (keyup.enter)="_chart.onApi(stockName.value)">
-<button id='submit-button' class='btn btn-primary' name='submitName' (click)='_chart.onApi(stockName.value)' >
+<!-- 
+<input id='searchBox' class="..search" type="text" placeholder='  Enter stock symbol...' name="stockName" #stockName (keyup.enter)="onApi(stockName.value)">
+<button id='submit-button' class='btn btn-primary' name='submitName' (click)='onApi(stockName.value)' >
 Search
-</button>
+</button> -->

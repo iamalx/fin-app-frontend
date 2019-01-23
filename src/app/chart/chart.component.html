@@ -1,4 +1,4 @@
-<div class="row" *ngIf='dog'>
+<div class="row" *ngIf='true'>
     <div class="table1" style="margin-bottom: 10px">
       <table class="dates1 table table-responsive table-condensed">
         <tr>
@@ -21,6 +21,7 @@
         (chartHover)="chartHovered($event)"
         (chartClick)="chartClicked($event)"></canvas>
       </div>
+      <p>{{dog}}</p>
     </div>
-    <p>{{dog}}</p>
+    
   </div>

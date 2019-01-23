@@ -7,9 +7,7 @@
 import { Router ,ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { Component, OnInit } from '@angular/core';
-import { SideBarComponent } from '../side-bar/side-bar.component';
-import { ChartComponent } from '../chart/chart.component';
-import { SearchComponent } from '../search/search.component';
+
 
 @Component({
     styleUrls: ['./home.component.scss'],

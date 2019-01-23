@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StockApiService } from '../stock-api.service';
-import { SideBarComponent } from '../side-bar/side-bar.component';
+// import { SideBarComponent } from '../side-bar/side-bar.component';
 import { UserService } from '../user.service';
 import { ChartsModule } from 'ng2-charts';
 
@@ -12,7 +12,7 @@ import { ChartsModule } from 'ng2-charts';
 export class ChartComponent implements OnInit {
 
   constructor(  private _stock: StockApiService, 
-                private _sidebar: SideBarComponent,
+                // private _sidebar: SideBarComponent,
                 private _user: UserService ) {}
 
   ngOnInit() {
@@ -118,6 +118,7 @@ export class ChartComponent implements OnInit {
             this.finalClosingDataArray.push(parseFloat(this.stockPricesObj[property]['4. close']));
           };
           console.log(this.finalClosingDataArray,  "#4.4")
+         
           this.finalLineChartArray = [ 
             {
               data: (this.finalClosingDataArray.reverse().slice(this._stock.sliceNum1)),
@@ -128,8 +129,8 @@ export class ChartComponent implements OnInit {
           this.lineChartData =  this.finalLineChartArray;
           console.log(this.lineChartData,  "#4.5")
           this.setLineChartLabels()
-          this._sidebar.setCurrentData(response)
-          this._sidebar.getNews()
+          // this._sidebar.setCurrentData(response)
+          // this._sidebar.getNews()
         } else {
           this._stock.stockSymbol = '';
           alert(`Sorry "${symbol}" could not be found \nPlease try a different stock`)

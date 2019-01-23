@@ -4,6 +4,8 @@ import { NewsApiService } from '../news-api.service';
 import { UserService } from '../user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
@@ -13,7 +15,8 @@ export class SideBarComponent implements OnInit {
 
   constructor(  private _user: UserService,
     private _stock: StockApiService,
-    private _newsService: NewsApiService ) {}
+    private _newsService: NewsApiService,
+  ) {}
 
   ngOnInit() {
   }
@@ -41,7 +44,7 @@ export class SideBarComponent implements OnInit {
         this.sideStockData.low = this.objofDailyData["3. low"].slice(0,6); 
         this.sideStockData.close = this.objofDailyData["4. close"].slice(0,6);
         console.log(this.sideStockData, "#3.2")
-    }, 50 )
+    }, 300 )
  
   }
   

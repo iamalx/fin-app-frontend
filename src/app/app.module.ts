@@ -49,9 +49,7 @@ import { ChartsModule } from 'ng2-charts';
     providers: [
         UserService,
         StockApiService,
-        NewsApiService,
-        SideBarComponent,
-        ChartComponent
+        NewsApiService
     ],
     bootstrap: [AppComponent]
 })

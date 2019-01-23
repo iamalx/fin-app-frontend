@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router , ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { StockApiService } from '../stock-api.service';
-import { SideBarComponent } from '../side-bar/side-bar.component';
+// import { SideBarComponent } from '../side-bar/side-bar.component';
 
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
@@ -16,7 +16,8 @@ export class FavoritesComponent implements OnInit {
 
   constructor(  private _user: UserService,
                 private _stock: StockApiService,
-                private _side: SideBarComponent) { }
+                // private _side: 
+              ) { }
 
   ngOnInit() {
     this.getFav();
@@ -96,7 +97,6 @@ export class FavoritesComponent implements OnInit {
   deleteStock: boolean = false;
   deleteMessage: string = 'Delete';
   makeDeleteVisible() {  
-    this._side.getNews() 
     if(!this.deleteStock) { 
       this.deleteStock = true;
       this.deleteMessage = "Cancel"
