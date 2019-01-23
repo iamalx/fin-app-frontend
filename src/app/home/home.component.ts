@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 import { StockApiService } from '../stock-api.service';
 import { NewsApiService } from '../news-api.service';
 import { resolve } from 'path';
+import { ChartsModule } from 'ng2-charts';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class HomeComponent implements OnInit {
 
   constructor(  private _user: UserService,
                 private _apiService: StockApiService,
-                private _newsService: NewsApiService ) {}
+                private _newsService: NewsApiService, 
+                private _chart: ChartsModule ) {}
 
   ngOnInit() {
   this._user.getUser(sessionStorage.getItem("userId"), sessionStorage.getItem('token'))
@@ -38,9 +40,23 @@ export class HomeComponent implements OnInit {
   //  lineChartLabels is the main array to display the dates
   public lineChartLabels: Array<any> = [];
   public lineChartOptions: any = {
-    responsive: true
+    responsive: true,
+    legend: {
+      display: true,
+      labels: {
+    }, 
+    title: {
+      display: true,
+      position: "top", 
+      text: "Up-to-date prices"
+    },
+    scaleLabel: {
+      display: false,
+      labelString: "Date"
+    }
+  }
   };
-  public data: number[] = [6];
+  //public data: number[] = [6];
   public lineChartColors: Array<any> = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
@@ -91,48 +107,17 @@ export class HomeComponent implements OnInit {
   newsData: any;
   newsArray: any[] = [];
   // subscribe for stock API; turn ng2 data into a single array and = lineChartData
-  onApi(symbol) {
-    this._apiService.getStockData(symbol)
-      .subscribe((response) =>  {
-        if( Object.keys(response)[0] == "Meta Data" ) {
-          this._apiService.stockSymbol = symbol;
-          this.stockPricesObj = response[this._apiService.mainPropertyKey];
-          for(let property in this.stockPricesObj) {
-            this.finalClosingDataArray.push(parseFloat(this.stockPricesObj[property]['4. close']));
-          };
-          this.finalLineChartArray = [ 
-            {
-              data: (this.finalClosingDataArray.reverse().slice(this._apiService.sliceNum1)),
-              label: 'Series A'
-            }
-          ];
-          this.lineChartData =  this.finalLineChartArray;
-          this.setLineChartLabels()
-          this.setCurrentData(response)
-          this.getNews()
-        } else {
-          this._apiService.stockSymbol = '';
-          alert(`Sorry "${symbol}" could not be found \nPlease try a different stock`)
-        }
-      });
-    // un-comment if you want to show all of ur searches (bellow)
-    //this.lineChartData = [];
-    this.finalClosingDataArray = [];
-  };
+  
   //----------------------------------------------------------------------------------------- fav list stock price
   setLineChartLabels() {
-    this.dateLabelsArray = [];
     this.dateLabelsArray = Object.keys(this.stockPricesObj)
       .reverse().slice(this._apiService.sliceNum1);
     if(this._apiService.stockUrl1 == 'TIME_SERIES_INTRADAY&symbol=') {
       this.dateLabelsArray = this.dateLabelsArray.map( elem => {
         return elem.split(' ')[1]
       })
-      this.lineChartLabels = this.dateLabelsArray;
-    } 
-    else {
-      this.lineChartLabels = this.dateLabelsArray
     }
+    this.lineChartLabels = this.dateLabelsArray
   }
 
   setCurrentData(response: any) {
@@ -163,17 +148,50 @@ export class HomeComponent implements OnInit {
           };
           this.newsArray.push(this.newsData)
           this.newsData = {};
-
         })
       })
   }
+
+  onApi(symbol) {
+    this._apiService.getStockData(symbol)
+      .subscribe((response) =>  {
+        if( Object.keys(response)[0] == "Meta Data" ) {
+          this._apiService.stockSymbol = symbol;
+          this.stockPricesObj = response[this._apiService.mainPropertyKey];
+          this.lineChartLabels = [];
+          
+          for(let property in this.stockPricesObj) {
+            this.finalClosingDataArray.push(parseFloat(this.stockPricesObj[property]['4. close']));
+          };
+          this.finalLineChartArray = [ 
+            {
+              data: (this.finalClosingDataArray.reverse().slice(this._apiService.sliceNum1)),
+              label: 'Stock Price'
+            }
+          ];
+          this.lineChartData =  this.finalLineChartArray;
+          this.setLineChartLabels()
+          this.setCurrentData(response)
+          this.getNews()
+        } else {
+          this._apiService.stockSymbol = '';
+          alert(`Sorry "${symbol}" could not be found \nPlease try a different stock`)
+        }
+      });
+    // un-comment if you want to show all of ur searches (bellow)
+    //this.lineChartData = [];
+    this.finalLineChartArray = [];
+    
+  };
   //different api-point to request different data 
   getDailyyData(symbol) {
     this._apiService.stockUrl1= 'TIME_SERIES_DAILY&symbol=';
     this._apiService.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey= 'Time Series (Daily)';
     this.isButtonActive = 'daily';
-    if(symbol) this.onApi(symbol);
+    if(symbol) {
+      this.onApi(symbol)
+    }
     else return 
   };
 
@@ -183,7 +201,9 @@ export class HomeComponent implements OnInit {
     this._apiService.stockUrl2 = '&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey = 'Weekly Time Series';
     this.isButtonActive = 'weekly';
-    if(symbol) this.onApi(symbol);
+    if(symbol) {
+      this.onApi(symbol)
+    }
     else return 
   }; 
   
@@ -192,7 +212,9 @@ export class HomeComponent implements OnInit {
     this._apiService.stockUrl2 = '&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey = 'Monthly Time Series';
     this.isButtonActive = 'monthly';
-    if(symbol) this.onApi(symbol);
+    if(symbol) {
+      this.onApi(symbol)
+    }
     else return 
   };
   
@@ -201,7 +223,9 @@ export class HomeComponent implements OnInit {
     this._apiService.stockUrl2= '&interval=30min&apikey=ARCGC8U9ZSC7IA7V';
     this._apiService.mainPropertyKey= 'Time Series (30min)'
     this.isButtonActive = 'intraDay';
-    if(symbol) this.onApi(symbol);
+    if(symbol) {
+      this.onApi(symbol)
+    }
     else return 
   };
 

@@ -20,7 +20,6 @@ import { UserService } from './user.service';
 
 import { ChartsModule } from 'ng2-charts';
 
-
 @NgModule({
     declarations: [
         AppComponent,

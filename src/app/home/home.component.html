@@ -35,7 +35,7 @@
   <div class='wrapper card '>
     
     <div class="row" *ngIf='finalLineChartArray.length > 0 '>
-      <!-- <div class="table1" style="margin-bottom: 10px">
+      <div class="table1" style="margin-bottom: 10px">
         <table class="dates1 table table-responsive table-condensed">
           <tr>
             <th *ngFor="let label of lineChartLabels">{{label}}</th>
@@ -44,11 +44,10 @@
             <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
           </tr>
         </table>
-      </div> -->
+      </div>
       <div class="">
         <div class = 'canvas-wrapper' >
           <canvas baseChart id='canvas' 
-          [data]="data"
           [datasets]="lineChartData" 
           [labels]="lineChartLabels" 
           [colors]="lineChartColors"
