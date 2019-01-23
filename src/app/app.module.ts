@@ -13,12 +13,16 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { SearchComponent } from './search/search.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
+import { ChartComponent } from './chart/chart.component';
 
 import { StockApiService } from './stock-api.service'
 import { NewsApiService } from './news-api.service';
 import { UserService } from './user.service';
 
 import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
     declarations: [
@@ -28,7 +32,10 @@ import { ChartsModule } from 'ng2-charts';
         RegistrationComponent,
         LoginComponent,
         LogoutComponent,
-        FavoritesComponent
+        FavoritesComponent,
+        SearchComponent,
+        SideBarComponent,
+        ChartComponent
     ],
     imports: [
         BrowserAnimationsModule,
@@ -42,7 +49,9 @@ import { ChartsModule } from 'ng2-charts';
     providers: [
         UserService,
         StockApiService,
-        NewsApiService
+        NewsApiService,
+        SideBarComponent,
+        ChartComponent
     ],
     bootstrap: [AppComponent]
 })

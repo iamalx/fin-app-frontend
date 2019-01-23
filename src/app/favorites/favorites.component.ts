@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router ,ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { StockApiService } from '../stock-api.service';
-import { HomeComponent } from '../home/home.component';
+
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 declare var carousel;
@@ -14,9 +14,7 @@ declare var carousel;
 export class FavoritesComponent implements OnInit {
 
   constructor(  private _user: UserService,
-                private _stock: StockApiService, 
-                private _home: HomeComponent,
-                private router: Router) { }
+                private _stock: StockApiService ) { }
 
   ngOnInit() {
     this.getFav();
