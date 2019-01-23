@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router ,ActivatedRoute } from '@angular/router';
+import { Router , ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { StockApiService } from '../stock-api.service';
+import { SideBarComponent } from '../side-bar/side-bar.component';
 
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
@@ -14,7 +15,8 @@ declare var carousel;
 export class FavoritesComponent implements OnInit {
 
   constructor(  private _user: UserService,
-                private _stock: StockApiService ) { }
+                private _stock: StockApiService,
+                private _side: SideBarComponent) { }
 
   ngOnInit() {
     this.getFav();
@@ -27,6 +29,7 @@ export class FavoritesComponent implements OnInit {
   
 // step 2) for each index send the ticker symbol to obtain an obj with the price and stock symbol (metadata), place those 2 in an obj and then push them in an array.
 // (side note: the ticker symbol is send in the order they appear in the 'stockArray', but are not received in order(FavoriteList), therefore, it is not easy to link price, symbol and id in the same obj in order)
+ 
 
   getIntraPrice(symbolArray: any) {
     let favArray: any[] = [];
@@ -92,7 +95,8 @@ export class FavoritesComponent implements OnInit {
 
   deleteStock: boolean = false;
   deleteMessage: string = 'Delete';
-  makeDeleteVisible() {   
+  makeDeleteVisible() {  
+    this._side.getNews() 
     if(!this.deleteStock) { 
       this.deleteStock = true;
       this.deleteMessage = "Cancel"

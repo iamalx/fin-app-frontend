@@ -1,0 +1,82 @@
+<div class="row ">
+    <div class="col-lg-5 col-md-8 col-sm-12">
+      <div class="card">
+        <div class="card-header">
+        Most Current Data: {{ _stock.stockSymbol || uppercase}}
+        </div>
+        <div class="card-block">
+          <div class="card-title">
+            <ol>
+              <li>Open: {{sideStockData.open}}
+              <li>Close: {{sideStockData.close}}
+              <li>High: {{sideStockData.high}}
+              <li>Low: {{sideStockData.low}}
+            </ol>
+          </div>
+          <div class="card-text">
+            {{sideStockData.date}}
+          </div>
+        </div>
+        <div *ngIf='sideStockData.open || sideStockData.high' class="card-footer">
+          <button class="btn btn-sm btn-link">see more data</button>
+          <button class="btn btn-sm btn-link">discover similar stocks</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-5 col-md-8 col-sm-12 col-xs-1">
+      <div class="card"  *ngIf = "true">
+       <!-- *ngIf='sideStockData.open || sideStockData.high' -->
+      
+        <div class="card-header">
+          Market News 
+        </div>
+        <div class="card-block" >
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner"  >
+                <div class="carousel-item active" *ngIf="newsArray[0]">
+                  <div class="card-title">
+                    {{newsArray[0].title}}
+                  </div>
+                    <div class="card-text">
+                      {{newsArray[0].summary ? newsArray[0].summary: null}}
+                    <a href={{newsArray[0].url}}>Read more...</a>
+                  </div>
+                </div>
+                <div class="carousel-item" *ngIf="newsArray[1]">
+                  <div class="card-title">
+                    {{newsArray[1].title}}
+                  </div>
+                  <div class="card-text">
+                    {{newsArray[1].summary ? newsArray[1].summary: null}}
+                    <a href={{newsArray[1].url}}>Read more...</a>
+                  </div>
+                </div>
+                <div class="carousel-item" *ngIf="newsArray[2]">
+                  <div class="card-title">
+                    {{newsArray[2].title ? newsArray[2].title: null}}
+                  </div>
+                  <div class="card-text">
+                    {{newsArray[2].summary}}
+                    <a href={{newsArray[2].url}}>Read more...</a>
+                  </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-sm btn-link">find similar articles</button>
+        </div>
+      </div>
+    </div>
+  </div>

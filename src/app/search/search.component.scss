@@ -1,0 +1,28 @@
+.options1 {
+    margin-bottom: 30px;
+}
+.nav-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.nav-buttom {
+    cursor: pointer;
+}
+#searchBox {
+    border-bottom-width: thick;
+    width: 400px;
+    margin: 0px;
+}
+
+#submit-button {
+    position: relative;
+    right: -410px;
+    top: -46px; //margin: 10px;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: black ;
+    font-size: 20px;
+  //   padding-bottom: 15px;
+  //   margin-bottom: 10px;
+  }
