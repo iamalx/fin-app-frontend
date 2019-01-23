@@ -20,6 +20,7 @@ import { ChartComponent } from './chart/chart.component';
 import { StockApiService } from './stock-api.service'
 import { NewsApiService } from './news-api.service';
 import { UserService } from './user.service';
+import { DataService } from './data.service';
 
 import { ChartsModule } from 'ng2-charts';
 
@@ -49,7 +50,9 @@ import { ChartsModule } from 'ng2-charts';
     providers: [
         UserService,
         StockApiService,
-        NewsApiService
+        NewsApiService,
+        DataService
+        
     ],
     bootstrap: [AppComponent]
 })

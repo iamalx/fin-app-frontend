@@ -1,27 +1,26 @@
-<div class="row" *ngIf='true'>
+<div class="row" *ngIf="_data.finalLineChartArray.length  > 0 ">
     <div class="table1" style="margin-bottom: 10px">
       <table class="dates1 table table-responsive table-condensed">
         <tr>
-          <th *ngFor="let label of lineChartLabels">{{label}}</th>
+          <th *ngFor="let label of _data.lineChartLabels">{{label}}</th>
         </tr>
-        <tr *ngFor="let d of lineChartData">
-          <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+        <tr *ngFor="let d of _data.lineChartData">
+          <td *ngFor="let label of _data.lineChartLabels; let j=index">{{d && d.data[j]}}</td>
         </tr>
       </table>
     </div>
     <div class="">
       <div class = 'canvas-wrapper'>
         <canvas baseChart id='canvas' 
-        [datasets]="lineChartData" 
-        [labels]="lineChartLabels" 
-        [colors]="lineChartColors"
-        [options]="lineChartOptions" 
-        [legend]="lineChartLegend" 
-        [chartType]="lineChartType"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)"></canvas>
+        [datasets]="_data.lineChartData" 
+        [labels]="_data.lineChartLabels" 
+        [colors]="_data.lineChartColors"
+        [options]="_data.lineChartOptions" 
+        [legend]="_data.lineChartLegend" 
+        [chartType]="_data.lineChartType"
+        (chartHover)="_data.chartHovered($event)"
+        (chartClick)="_data.chartClicked($event)"></canvas>
       </div>
-      <p>{{dog}}</p>
     </div>
     
   </div>

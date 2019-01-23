@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StockApiService } from '../stock-api.service';
+import { DataService } from '../data.service';
+
 // import { ChartComponent } from '../chart/chart.component';
 
 @Component({
@@ -11,6 +13,7 @@ import { StockApiService } from '../stock-api.service';
 export class SearchComponent implements OnInit {
 
   constructor( private _stock: StockApiService,
+                private _data: DataService
               // private _chart: ChartComponent 
               ) { }
 
@@ -25,7 +28,7 @@ export class SearchComponent implements OnInit {
     this._stock.mainPropertyKey= 'Time Series (Daily)';
     this.isButtonActive = 'daily';
     if(symbol) {
-      // this._chart.onApi(symbol)
+     this._data.onApi(symbol)
     }
     else return 
   };
@@ -38,7 +41,7 @@ export class SearchComponent implements OnInit {
     this._stock.mainPropertyKey = 'Weekly Time Series';
     this.isButtonActive = 'weekly';
     if(symbol) {
-      // this._chart.onApi(symbol)
+      this._data.onApi(symbol)
     }
     else return 
   }; 
@@ -50,7 +53,7 @@ export class SearchComponent implements OnInit {
     this._stock.mainPropertyKey = 'Monthly Time Series';
     this.isButtonActive = 'monthly';
     if(symbol) {
-      // this._chart.onApi(symbol)
+      this._data.onApi(symbol)
     }
     else return 
   };
@@ -62,7 +65,7 @@ export class SearchComponent implements OnInit {
     this._stock.mainPropertyKey= 'Time Series (30min)'
     this.isButtonActive = 'intraDay';
     if(symbol) {
-      // this._chart.onApi(symbol)
+      this._data.onApi(symbol)
     }
     else return 
   };
