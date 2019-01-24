@@ -22,6 +22,7 @@ export class SearchComponent implements OnInit {
 
   //different api-point to request different data 
   getDailyyData(symbol) {
+    
     console.log(symbol, "day")
     this._stock.stockUrl1= 'TIME_SERIES_DAILY&symbol=';
     this._stock.stockUrl2= '&apikey=ARCGC8U9ZSC7IA7V';

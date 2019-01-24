@@ -123,6 +123,7 @@ export class DataService {
 
   onApi(symbol) {
     console.log(symbol, "onAPI")
+    this.finalLineChartArray = [];
     this._stock.getStockData(symbol)
       .subscribe((response: any) =>  {
         if( Object.keys(response)[0] == "Meta Data" ) {
@@ -148,6 +149,6 @@ export class DataService {
       });
     // un-comment if you want to show all of ur searches (bellow)
     //this.lineChartData = [];
-    this.finalLineChartArray = [];
+    
   };
 }
