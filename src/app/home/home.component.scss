@@ -1,21 +1,35 @@
 
 .main-parent {
     display: grid;
-   // width: 100%;
-    //height: 250px;
-    grid-template-areas: 'side search fav'
-                        'side chart fav' ;            
-    grid-template-rows: 200px 1fr;
+    grid-template-areas: 'side chart fav';            
+    grid-template-rows: 100%;
     grid-template-columns: 2fr 6fr 2fr ;
+
     grid-column-gap: 20px;
     grid-row-gap: none;
-    height: 100%;
+   // height: 100%;
 }
 @media screen and (max-width: 768px) {
-
+    .main-parent {
+        display: grid;
+        grid-template-areas: 'chart '
+                            'fav'
+                            'side ' ;            
+        grid-template-rows: 4fr 2fr 4fr ;
+        grid-template-columns: 1fr ;
+    
+        grid-column-gap: 20px;
+        grid-row-gap: none;
+       // height: 100%;
+    }
+    .main-side {
+        grid-area: side;
+        position: flex; 
+    }
+    // make it inside the sife file
 }
 .search1 {
-     grid-area: search;
+    // grid-area: search;
     // border: 2px solid black;
      margin: auto;
   //  position: relative;
