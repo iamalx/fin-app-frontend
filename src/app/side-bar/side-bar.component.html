@@ -1,6 +1,7 @@
-<div class="row ">
-    <div class="col-lg-5 col-md-8 col-sm-12">
-      <div class="card">
+<!-- class="col-lg-5 col-md-8 col-sm-12" -->
+<!-- <div class="row ">
+    <div class=""> -->
+      <div class="card side-wrapper">
         <div class="card-header">
         Most Current Data: {{ _stock.stockSymbol || uppercase}}
         </div>
@@ -22,12 +23,12 @@
           <button class="btn btn-sm btn-link">discover similar stocks</button>
         </div>
       </div>
-    </div>
-  </div>
+    <!-- </div>
+  </div> -->
 
-  <div class="row">
-    <div class="col-lg-5 col-md-8 col-sm-12 col-xs-1">
-      <div class="card"  *ngIf = "true">
+  <!-- <div class="row">
+    <div class=""> -->
+      <div class="card card side-wrapper"  *ngIf = "true">
        <!-- *ngIf='sideStockData.open || sideStockData.high' -->
       
         <div class="card-header">
@@ -78,5 +79,5 @@
           <button class="btn btn-sm btn-link">find similar articles</button>
         </div>
       </div>
-    </div>
-  </div>
+    <!-- </div>
+  </div> -->

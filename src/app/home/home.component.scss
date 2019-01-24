@@ -1,32 +1,30 @@
-// Copyright (c) 2016 VMware, Inc. All Rights Reserved.
-// This software is released under MIT license.
-// The full license information can be found in LICENSE in the root directory of this project.
-// .chart1, .table1 {
-//     border: 1px solid black;
-//     margin: 300px;
-//     width: 200px;
-// }
-// #canvas{
-//     position: absolute;
-//     width: 150%;
-//     height: 90%;
-// }
-.fav-side {
-    position: absolute;
-    top: 27.5%;
-    width: 40%;
-    height: 55%;
+
+.main-parent {
+    padding: 0;
+  margin: 0;
+  list-style: none;
+  border: 1px solid silver;
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .search1 {
+    border: 2px solid black;
     position: absolute;
-    height: 200px;
-    width: 400px;
-    margin: -100px 0px 0px -200px;
-    top: 22%;
-    left: 50%; //border: 1px solid black;
+    margin: 20px auto 0px auto;
+    // top: 22%;
+   border: 1px solid black;
     //padding: 10px;
 }
 .wrapper {
+    border: 2px solid black;
     // border: 1px solid grey;
     width: 60%;
     height: 68%;
@@ -34,10 +32,20 @@
     margin: 160px auto 0px auto;
 }
 .main-side {
+    border: 2px solid black;
     position: absolute;
-    left: 83%;
+    // left: 83%;
     top: 25%;
-    width: 40%;
+    width: 300px;
+    height: 55%;
+}
+
+.fav-side {
+    border: 2px solid black;
+    position: absolute;
+    left: 81%;
+    top: 27.5%;
+    width: 17%;
     height: 55%;
 }
 
