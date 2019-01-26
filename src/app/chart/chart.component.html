@@ -1,7 +1,7 @@
-<div class="row" *ngIf="_data.finalLineChartArray.length > 0">
+
   
-    <div class="">
-      <div class = 'canvas-wrapper'>
+   
+      <div class = 'canvas-wrapper' *ngIf="_data.finalLineChartArray.length > 0">
         <canvas baseChart id='canvas' 
         [datasets]="_data.lineChartData" 
         [labels]="_data.lineChartLabels" 
@@ -12,7 +12,7 @@
         (chartHover)="_data.chartHovered($event)"
         (chartClick)="_data.chartClicked($event)"></canvas>
       </div>
-    </div>
+
 
     <!-- <div class="table1" style="margin-bottom: 10px">
       <table class="dates1 table table-responsive table-condensed">
@@ -25,4 +25,3 @@
       </table>
     </div> -->
     
-  </div>

@@ -1,7 +1,23 @@
 .canvas-wrapper {
     position: relative;
     margin: 15px auto 0px auto;
-    height: 60vh;
-    width: 55vw;
+    height: 50vw;
+    width: 60vw;
     padding-left: 3vw;
+    min-height: 520px;
+    min-width:  500px;
 }
+
+@media screen and (max-width: 1224px) {
+    .canvas-wrapper{
+        height: 520px!important;
+//         min-height: 305px;
+        width: 580px!important ;
+        min-height: 300px;
+        min-width:  300px;  
+      }
+}
+
+// @media screen and (max-width: 768px) {
+    
+// }

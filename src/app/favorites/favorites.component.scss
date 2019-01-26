@@ -4,7 +4,7 @@
 }
 
 #label1 {
-    margin: 10px 0px 0px 0px;
+    margin: 20px 0px 0px 0px;
 }
 
 .fav-wrapper {
@@ -37,9 +37,10 @@
 }
 
 .table-header{
-    display: -webkit-box;
+    display: flex;
     margin: 0px!important;
     justify-content: space-between;
+   flex-wrap: wrap;
 }
 
 #add-button{

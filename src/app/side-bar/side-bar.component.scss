@@ -20,3 +20,13 @@
 .card-footer {
     font-size : 5px;
 }
+
+@media screen and (max-width: 1224px) {
+    .main-wrapper{
+        display: flex;
+        justify-content: space-between;
+    }
+    .side-wrapper{
+        width: 49%
+    }
+}
