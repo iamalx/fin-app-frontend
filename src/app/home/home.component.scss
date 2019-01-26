@@ -1,59 +1,68 @@
-
 .main-parent {
     display: grid;
-    grid-template-areas: 'side chart fav';            
-    grid-template-rows: 100%;
+    grid-template-areas: 'data chart fav'
+                        ' news chart fav';            
     grid-template-columns: 2fr 6fr 2fr ;
+    grid-template-rows: 1fr 1fr;
     grid-column-gap: 20px;
-    grid-row-gap: none;
+    grid-row-gap: 10px;
 }
 .search1 {
     margin: auto;
     width: 445px;
     height: 95px;
 }
+.news{
+    grid-area: news; 
+}
 .wrapper {
     grid-area: chart;
     height: 30vw;
     min-height: 335px;
 }
-.main-side {
+.data {
     grid-area: side;
 }
-
 .fav-side {
     grid-area: fav;
 }
-
 @media screen and (max-width: 1224px) {
     .main-parent {
         display: grid;
-        grid-template-areas: 'chart fav'
-                            'side side';            
+        grid-template-areas: 'chart  fav'
+                            'side . ';            
         grid-template-rows: 6fr 4fr ;
-        grid-template-columns: 7fr 3fr ;
+        grid-template-columns: 7fr 3fr  ;
         grid-column-gap: 20px;
-        grid-row-gap: none;
+        grid-row-gap: 0px;
         height: 100%;
     }
-    .main-side {
-        grid-area: side;
-        position: flex; 
+    .side-wrapper{
+        grid-area:  side;
+        display: flex;
+        justify-content: space-between;
     }
+    .data, .news {
+        width: 49%;
+    }
+    // .main-side {
+    //     grid-area: side;
+    //     position: flex; 
+    // }
 }
 
 @media screen and (max-width: 768px) {
     .main-parent {
         display: grid;
         grid-template-areas: 'chart chart '
-                            'side fav';            
+                            'data fav';            
         grid-template-rows: 6fr 4fr  ;
         grid-template-columns: 1fr 1fr ;
         grid-column-gap: 20px;
         grid-row-gap: 20px;
         height: 100%;
     }
-    .main-side {
+    .data {
         grid-area: side;
         position: flex; 
     }

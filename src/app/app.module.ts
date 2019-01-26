@@ -16,6 +16,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { SearchComponent } from './search/search.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { ChartComponent } from './chart/chart.component';
+import { NewsComponent } from './news/news.component';
 
 import { StockApiService } from './stock-api.service'
 import { NewsApiService } from './news-api.service';
@@ -23,7 +24,6 @@ import { UserService } from './user.service';
 import { DataService } from './data.service';
 
 import { ChartsModule } from 'ng2-charts';
-
 
 @NgModule({
     declarations: [
@@ -36,7 +36,8 @@ import { ChartsModule } from 'ng2-charts';
         FavoritesComponent,
         SearchComponent,
         SideBarComponent,
-        ChartComponent
+        ChartComponent,
+        NewsComponent
     ],
     imports: [
         BrowserAnimationsModule,
