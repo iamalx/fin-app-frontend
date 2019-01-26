@@ -45,19 +45,19 @@
 @media screen and (max-width: 768px) {
     .main-parent {
         display: grid;
-        grid-template-areas: 'chart '
-                            'fav'
-                            'side';            
-        grid-template-rows: 4fr 2fr 4fr ;
-        grid-template-columns: 1fr ;
+        grid-template-areas: 'chart chart '
+                            'side fav';            
+        grid-template-rows: 6fr 4fr  ;
+        grid-template-columns: 1fr 1fr ;
         grid-column-gap: 20px;
-        grid-row-gap: none;
+        grid-row-gap: 20px;
         height: 100%;
     }
     .main-side {
         grid-area: side;
         position: flex; 
     }
+  
 }
 
 

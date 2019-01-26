@@ -30,3 +30,17 @@
         width: 49%
     }
 }
+
+@media screen and (max-width: 768px) {
+    .main-wrapper{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap
+    }
+    .side-wrapper{
+        min-width: 300px;
+    }
+    #news-wrapper{
+        width: 100%;
+    }
+}
