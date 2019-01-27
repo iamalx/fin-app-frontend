@@ -98,10 +98,10 @@ export class DataService {
         this.newsArray = [];
         response.forEach( each => {
           this.newsData = {
-            title: `${each.headline.slice(0,70)}...`,
+            title: each.headline.slice(0,70),
             imgs: each.image,
             source: each.source,
-            summary: `${each.summary.slice(0,148)}...` ,
+            summary: each.summary.slice(0,100) ,
             url: each.url
           };
           this.newsArray.push(this.newsData)

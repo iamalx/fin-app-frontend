@@ -5,7 +5,7 @@
     Most Current Data: {{ _stock.stockSymbol || uppercase}}
     </div>
     <div class="card-block">
-      <div class="card-title data-body">
+      <div class="card-title data-body" >
         <ol>
           <li>Open: {{_data.sideStockData.open}}
           <li>Close: {{_data.sideStockData.close}}
@@ -13,13 +13,13 @@
           <li>Low: {{_data.sideStockData.low}}
         </ol>
       </div>
-      <div class="card-text">
+      <div class="card-text" id='date'>
         {{_data.sideStockData.date}}
       </div>
     </div>
-    <div *ngIf='_data.sideStockData.open || _data.sideStockData.high' class="card-footer foot">
-      <button class="btn btn-sm btn-link">see more data</button>
-      <button class="btn btn-sm btn-link">discover similar stocks</button>
+    <div  class="card-footer foot">
+      <button class="btn btn-sm btn-link"
+              *ngIf='_data.sideStockData.open || _data.sideStockData.high'>see in depth analysis</button>
     </div>
   </div>
   
