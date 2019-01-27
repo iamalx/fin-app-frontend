@@ -66,6 +66,12 @@
     display: inline;
 }
 
+@media screen and (max-width: 668px ) {
+    .table-wrapper {
+        margin-top: 0px;
+    }
+}
+
 
 
 
