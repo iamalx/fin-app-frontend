@@ -10,20 +10,20 @@
         <span class="title">Clarity</span>
       </a>
     </div>
-    <div class="header-nav" [clr-nav-level]="1">
-          <a class="nav-link" href="#" [routerLink]="['/home']" routerLinkActive="active"><span class="nav-text">Home</span></a>
-          <a class="nav-link" href="#" [routerLink]="['/about']" routerLinkActive="active"><span class="nav-text">About</span></a>
+    <div class="header-nav " [clr-nav-level]="1">
+          <a class="nav-link" href="#" [routerLink]="['/home']" routerLinkActive="active"><span class="nav-text nav-a">Home</span></a>
+          <a class="nav-link" href="#" [routerLink]="['/about']" routerLinkActive="active"><span class="nav-text nav-a">About</span></a>
       </div>
       <div class='middle'>
     </div>
   <!--===== Left tabs ===================-->
      <div *ngIf='!_user.displayLogin' class='header-actions'>  
     
-          <a class='nav-link sign1' href='#' [routerLink]="['/register']" routerLinkActive="active" (click)='signUp()'><span class="nav-text">Sign Up</span></a>
-          <a class='nav-link sign2' href='#' [routerLink]="['/login']" routerLinkActive="active"><span class="nav-text">log in</span></a>
+          <a class='nav-link sign1' href='#' [routerLink]="['/register']" routerLinkActive="active" (click)='signUp()'><span class="nav-text nav-a">Sign Up</span></a>
+          <a class='nav-link sign2' href='#' [routerLink]="['/login']" routerLinkActive="active"><span class="nav-text nav-a">log in</span></a>
      </div>
      <div *ngIf='_user.displayLogin' class='header-actions'>
-      <a class='nav-link sign1'  routerLinkActive="active"><span class="nav-text">My profile</span></a>
+      <a class='nav-link sign1'  routerLinkActive="active"><span class="nav-text nav-a">My profile</span></a>
       <app-logout></app-logout>
      </div>
     

@@ -14,6 +14,11 @@
 .header-nav,
 .header-actions {
   background-color: rgb(0, 51, 102);
+  vertical-align: middle;
+}
+
+.nav-a {
+  line-height: 1.7rem!important;
 }
 
 .not-login,
