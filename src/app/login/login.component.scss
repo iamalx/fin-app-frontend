@@ -6,7 +6,7 @@
     height: 550px;
     color: rgb(208, 208, 208);
     margin: 3% auto;
-   
+
 }
 
 .clr-icon {
@@ -18,13 +18,9 @@
     }
 }
 
-#header,
-p {
+#header{
     color: white;
     font-weight: 600;
-}
-
-#header {
     position: relative;
     top: -10px;
 }
@@ -40,7 +36,6 @@ p {
     position: relative;
     top: 30px;
     left: 7%;
-
 }
 
 .inputbox {
@@ -54,12 +49,10 @@ p {
 }
 
 ::placeholder {
-
     opacity: 1;
 }
 
 #remember {
-
     border: none;
     background-color: white;
     width: 17px;
@@ -77,24 +70,14 @@ p {
     border-radius: 25px;
     background-color: white;
     position: relative;
-    top: 10px; //color:black;
+    top: 10px; 
     border: none;
     width: 100px;
     height: 45px;
-    margin-bottom: 15px; //font-size: 20px;
-}
-
-a p {
-    background-color: grey;
-    width: 50px;
-    height: 50px;
-    position: relative;
-    left: 45%;
-    top: 20px;
+    margin-bottom: 15px; 
 }
 
 .message {
-
     position: relative;
     top: 12%;
     left: 30%;
@@ -107,22 +90,3 @@ a p {
 #forgot-pass{
     color: white;
 }
-
-
-// <div class='wrapper' width='500px'>
-//     <div class='upper'>
-//      <a src=''></a>
-//      <h1>LOG IN</h1>
-//       </div>
-//     <div class='form-class'>
-//      <form>
-//          <input type='text'><br>
-//          <input type='text'><br>
-//          <input type='text'><br>
-//      </form>     
-//     </div> 
-//     <div class='bottom'>
-//         <button>Login</button><br><br><br>
-//         <p>Forgot Password</p>
-//     </div>
-// </div>
