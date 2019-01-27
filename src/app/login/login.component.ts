@@ -35,7 +35,9 @@ export class LoginComponent implements OnInit {
                 window.sessionStorage.setItem('userId', response.userId);
                 this._user.showUserNav(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'));
                 this._router.navigate([`/home`]);
+                alert("Login successfully");
                 this._user.loginFavorite = "My Favorites";
+
             })
     };
 //called when buttton is clicked and sets the user input values to Userdata obj

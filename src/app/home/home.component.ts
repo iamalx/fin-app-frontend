@@ -7,7 +7,7 @@
 import { Router ,ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { Component, OnInit } from '@angular/core';
-
+import { DataService } from '../data.service';
 
 @Component({
     styleUrls: ['./home.component.scss'],
@@ -15,7 +15,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(  private _user: UserService ) {}
+  constructor(  private _user: UserService,
+                private _data: DataService ) {}
 
   ngOnInit() {
 

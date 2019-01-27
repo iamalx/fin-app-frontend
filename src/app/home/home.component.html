@@ -20,7 +20,7 @@
         
     <div class='wrapper card'>
       <app-chart></app-chart>
-      <div class="card-footer"></div>
+      <div class="card-footer" *ngIf="!_data.finalLineChartArray.length > 0"></div>
     </div> 
 
     <div class='fav-side'>
