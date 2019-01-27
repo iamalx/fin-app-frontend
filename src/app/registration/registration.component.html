@@ -5,7 +5,7 @@
   </aside>
 
   <div class="main">
-    <h1>Sign Up</h1>
+    <h1 id='header'>Sign Up</h1>
     <main class="typeSec">
       <form>
         <label for="">First Name</label><br>
@@ -23,12 +23,12 @@
         </div>
       </form>
     </main>
-    <section class="sign">
-      <a  id="up" class="btn btn-primary" 
+    <section class="sign-section">
+      <a  id="sign-up" class="btn btn-primary" 
           (click)="signFunct(firstName.value, lastName.value, email.value, password.value,  repassword.value)">
         <span> Sign up </span>
       </a>
-      <a id="in" class='btn btn-link' (click)="logFunct()"> 
+      <a id="sign-in" class='btn btn-link' (click)="logFunct()"> 
         <span>Sign in</span>
       </a>
     </section>
