@@ -1,10 +1,10 @@
 
-<div class='table-wrapper'>   
-    <div class='table-header'>    
+<div class='table-wrapper card'>   
+    <div class='table-header card-header'>    
         <h4 id='label1'>Favorite Stocks</h4> 
-        <button class='btn btn-sm btn-outline' id="add-button" [disabled]="!_stock.stockSymbol" (click)='addFavorite()'>add stock</button>
+        <button class='btn btn-primary' id="add-button" [disabled]="!_stock.stockSymbol" (click)='addFavorite()'>add stock</button>
     </div>    
-    <table class="table" id='table1'>
+    <table class="table table-noborder" id='table1'>
         <thead>
             <tr>
                 <th class="left">Stock</th>
@@ -38,7 +38,7 @@
                 <p>Are you sure you want to delete <strong>{{stockToDelete.symbol}}</strong>? This action is permenant and cannot be recovered.</p>
             </div>
             <div class="modal-footer ">
-                <button class="btn btn-sm btn-outline  foot-button" type="button" (click)='cancelDeleteStock()'>Cancel</button>
+                <button class="btn btn-outline  foot-button" type="button" (click)='cancelDeleteStock()'>Cancel</button>
                 <button class="btn btm-sm btn-primary " type="button" (click)='deleteFavorite()'>Ok</button>
             </div>
         </div>

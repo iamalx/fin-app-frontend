@@ -5,7 +5,22 @@
     margin-top: 0px;
 }
 
+#table1{
+    margin: 0px; 
+    margin-left: 5px;
+}
+
+.table-header{
+    display: flex;
+    padding: 11px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 5px 5px 0px 5px;
+}
+
 #label1 {
+    font-size: 16px;
+    padding: 5px;
     margin: 0px 0px 0px 0px;
 }
 
@@ -34,17 +49,6 @@
     margin: 0px!important;
 }
 
-#table1{
-    margin: 0px; 
-}
-
-.table-header{
-    display: flex;
-    margin: 0px!important;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
 #add-button{
     margin: 0px 0px 5px 0px;
 }
@@ -62,13 +66,6 @@
     display: inline;
 }
 
-#label1 {
-    font-size: 16px;
-}
-
-.foot-button {
-    font-size: 5px
-}
 
 
 

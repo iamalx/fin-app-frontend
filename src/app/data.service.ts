@@ -98,7 +98,7 @@ export class DataService {
         this.newsArray = [];
         response.forEach( each => {
           this.newsData = {
-            title: each.headline.slice(0,70),
+            title: `${each.headline.slice(0,65)}...`,
             imgs: each.image,
             source: each.source,
             summary: each.summary.slice(0,100) ,

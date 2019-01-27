@@ -1,18 +1,20 @@
 
   
    
-      <div class = 'canvas-wrapper' *ngIf="_data.finalLineChartArray.length > 0">
-        <canvas baseChart id='canvas' 
-        [datasets]="_data.lineChartData" 
-        [labels]="_data.lineChartLabels" 
-        [colors]="_data.lineChartColors"
-        [options]="_data.lineChartOptions" 
-        [legend]="_data.lineChartLegend" 
-        [chartType]="_data.lineChartType"
-        (chartHover)="_data.chartHovered($event)"
-        (chartClick)="_data.chartClicked($event)"></canvas>
-      </div>
 
+        <div class='canvas-wrapper' *ngIf="_data.finalLineChartArray.length > 0">
+          <canvas baseChart id='canvas' 
+          [datasets]="_data.lineChartData" 
+          [labels]="_data.lineChartLabels" 
+          [colors]="_data.lineChartColors"
+          [options]="_data.lineChartOptions" 
+          [legend]="_data.lineChartLegend" 
+          [chartType]="_data.lineChartType"
+          (chartHover)="_data.chartHovered($event)"
+          (chartClick)="_data.chartClicked($event)">
+          </canvas>
+        </div>
+     
 
     <!-- <div class="table1" style="margin-bottom: 10px">
       <table class="dates1 table table-responsive table-condensed">
