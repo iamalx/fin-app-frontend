@@ -1,12 +1,12 @@
 .wrapper {
-    border-radius: 20px;
-    position: absolute;
-    left: 40%;
-    top: 20%;
-    background: linear-gradient(to bottom, rgb(26, 140, 255), rgb(51, 153, 255));
+    border-radius: 10px;
+    position: relative;
+    background: linear-gradient(to bottom,rgb(2, 91, 135),rgb(5, 122, 181));
     width: 390px;
     height: 550px;
-    color: white;
+    color: rgb(208, 208, 208);
+    margin: 3% auto;
+   
 }
 
 .clr-icon {
@@ -16,7 +16,6 @@
         height: 100px;
         margin-left: 35px;
     }
-
 }
 
 #header,
@@ -70,7 +69,7 @@ p {
 .bottom {
     text-align: center;
     position: relative;
-    top: 100px;
+    top: 80px;
 
 }
 
@@ -82,7 +81,7 @@ p {
     border: none;
     width: 100px;
     height: 45px;
-    margin-bottom: 12px; //font-size: 20px;
+    margin-bottom: 15px; //font-size: 20px;
 }
 
 a p {
@@ -103,6 +102,10 @@ a p {
     margin-bottom: -40px;
     width: 250px;
     height: 40px;
+}
+
+#forgot-pass{
+    color: white;
 }
 
 
