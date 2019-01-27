@@ -3,6 +3,7 @@
     <span class="clr-icon clr-clarity-logo" ></span>
     <h1 id='header'>LOG IN</h1>
   </div>
+
   <div class='form-class'>
     <form>
       <input type='text' class='inputbox' placeholder='Email' #email><br>
@@ -10,10 +11,12 @@
     </form>
     <label for="remember"><input type='checkbox' id='remember' >Remeber me</label>
   </div> 
+
   <div class='message'> 
     {{noFillMessage}}
     {{noMatchMessage}}
   </div>  
+  
   <div class='bottom'>
     <button id='login-button'  class='btn' (click)='loginFunct(email.value, password.value)'>Login</button><br>
     <a id='forgot-pass' href=# >Forgot Password</a>
