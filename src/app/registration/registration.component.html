@@ -1,4 +1,9 @@
 <div class="wrapper card">
+  
+  <aside id="pic">
+      <img id='pic1' [src]='img'>
+  </aside>
+
   <div class="main">
     <h1>Sign Up</h1>
     <main class="typeSec">
@@ -12,19 +17,22 @@
         <label for="">Password</label><br>
         <input type="password"  class='required' name="password" #password required><br>
         <label for="">Repeat Password</label><br>
-        <input type="password"  class='required' name="repassword" #repassword required>
+        <input type="password"  id='pass-input' class='required' name="repassword" #repassword required>
         <div class='message'>
           {{passwordError}}<br> {{fillmessage}}
         </div>
       </form>
     </main>
     <section class="sign">
-      <a id="up" class="btn btn-primary" (click)="signFunct(firstName.value, lastName.value, email.value, password.value,  repassword.value)"><span> Sign up </span></a>
-      <a id="in" class='btn btn-link' (click)="logFunct()"> <span>Sign in </span></a>
+      <a  id="up" class="btn btn-primary" 
+          (click)="signFunct(firstName.value, lastName.value, email.value, password.value,  repassword.value)">
+        <span> Sign up </span>
+      </a>
+      <a id="in" class='btn btn-link' (click)="logFunct()"> 
+        <span>Sign in</span>
+      </a>
     </section>
   </div>
-  <aside id="pic">
-    <img id='pic1' [src]='img'>
-  </aside>
+
 </div>
  
