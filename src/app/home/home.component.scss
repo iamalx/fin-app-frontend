@@ -20,55 +20,63 @@
     height: 30vw;
     min-height: 335px;
 }
-.data {
-    grid-area: side;
-}
+// .data {
+//     grid-area: side;
+// }
 .fav-side {
     grid-area: fav;
 }
-@media screen and (max-width: 1224px) {
+
+@media screen and (max-width: 1224px) and (min-width: 668px ) {
     .main-parent {
         display: grid;
         grid-template-areas: 'chart  fav'
-                            'side . ';            
-        grid-template-rows: 6fr 4fr ;
+                            'news data';            
+        grid-template-rows: 6fr 4fr;
         grid-template-columns: 7fr 3fr  ;
         grid-column-gap: 20px;
-        grid-row-gap: 0px;
+        grid-row-gap: 10px;
         height: 100%;
     }
-    .side-wrapper{
-        grid-area:  side;
-        display: flex;
-        justify-content: space-between;
-    }
-    .data, .news {
-        width: 49%;
-    }
-    // .main-side {
-    //     grid-area: side;
-    //     position: flex; 
-    // }
+    
 }
 
-@media screen and (max-width: 768px) {
+// @media screen and (max-width: 768px) {
+//     .main-parent {
+//         display: grid;
+//         grid-template-areas: 'chart chart'
+//                             'data fav';            
+//         grid-template-rows: 6fr 4fr  ;
+//         grid-template-columns: 1fr 1fr ;
+//         grid-column-gap: 20px;
+//         grid-row-gap: 20px;
+//         height: 100%;
+//     }
+//     .data {
+//         grid-area: side;
+//         position: flex; 
+//     }
+// }
+
+@media screen and (max-width: 668px) {
     .main-parent {
         display: grid;
-        grid-template-areas: 'chart chart '
-                            'data fav';            
-        grid-template-rows: 6fr 4fr  ;
-        grid-template-columns: 1fr 1fr ;
+        grid-template-areas: 'chart'
+                            ' fav'
+                            ' data'
+                            ' news';            
+        grid-template-rows:  auto auto auto auto;
+        grid-template-columns: 1fr;
         grid-column-gap: 20px;
-        grid-row-gap: 20px;
+        //grid-row-gap: 20px;
         height: 100%;
     }
-    .data {
-        grid-area: side;
-        position: flex; 
-    }
-  
-}
+    //.data {
+    //     grid-area: side;
+    //   //  position: flex; 
+    // }
 
+}
 
 
 
