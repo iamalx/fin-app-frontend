@@ -13,6 +13,7 @@
     overflow-x: hidden;
     overflow-y: hidden; 
 }
+
 .search1 {
     margin: auto auto auto auto;
     width: 440px;
@@ -79,12 +80,16 @@
                             ' fav'
                             ' data'
                             ' news';            
-        grid-template-rows:  1fr .25fr .5fr .5fr;
+        grid-template-rows:  .5fr .25fr .4fr 1fr;
         grid-template-columns: 1fr;
         grid-column-gap: 20px;
         grid-row-gap: 20px;
         height: 100%;
         margin-top: 10px;
+        
+    }
+    .wrapper {
+        min-height: 235px;
     }
     .search1 {
         width: 98%;

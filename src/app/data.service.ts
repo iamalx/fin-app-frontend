@@ -18,14 +18,7 @@ export class DataService {
   public lineChartOptions: any = {
     responsive: true,
     legend: {
-      display: true,
-      labels: {
-      }, 
-      title: {
-        display: true,
-        position: "top", 
-        text: "Up-to-date prices"
-      }
+      display: true
     }
   };
   //public data: number[] = [6];
@@ -121,8 +114,7 @@ export class DataService {
     this.lineChartLabels = this.dateLabelsArray
   }
 
-  onApi(symbol) {
-    console.log(symbol, "onAPI")
+  onApi(symbol: string) {
     this.finalLineChartArray = [];
     this._stock.getStockData(symbol)
       .subscribe((response: any) =>  {

@@ -2,7 +2,7 @@
   
    
 
-        <div class='canvas-wrapper' *ngIf="_data.finalLineChartArray.length > 0">
+        <div class='canvas-wrapper' style="display: block;"  width="400" height="400" *ngIf="_data.finalLineChartArray.length > 0">
           <canvas baseChart id='canvas' 
           [datasets]="_data.lineChartData" 
           [labels]="_data.lineChartLabels" 
