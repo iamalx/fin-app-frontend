@@ -12,13 +12,15 @@ export class LogoutComponent implements OnInit {
                 private _router: Router) { }
 
   ngOnInit() {
+    console.log('onlogout')
   }
   //logs out by calling logOut in user.service and sending token
   onLogout() {
-    this._user.displayLogin = false;
+    // this._user.displayLogin = false;
     this._user.onLogOut(window.sessionStorage.getItem('token'))
       .subscribe( res => {
         alert("Logout successfully");
+        this._user.isLogIn = true;
         window.sessionStorage.clear();
         this._router.navigateByUrl('/login');
       })

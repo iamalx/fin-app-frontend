@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
-import { OnInit } from '@angular/core';
+import { Router,ActivatedRoute } from '@angular/router'
+// import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'my-app',
@@ -9,16 +10,8 @@ import { OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
     
-    constructor( private _user: UserService ) {
-    }
+    constructor( public _user: UserService) {}
     
     ngOnInit() {
-        this._user.showUserNav(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'));
     }
-    
-    isdisable: boolean= true;
-    signUp() {
-        this.isdisable = false;
-    }
-    // change logic above 'onSigUp'
 }

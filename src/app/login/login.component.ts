@@ -13,31 +13,33 @@ export class LoginComponent implements OnInit {
                 private _router: Router) { }
 
     ngOnInit() {}
-    
     noMatchMessage: string = '';
     noFillMessage: string = '';
     userData = {
         email: '',
         password: ''
     }
-    // getdataberification() {
-    //     this._user.getLogin()
-    //     .subscribe(
-    //         data => { this.userData = data}
-    //         )
-    // };
-//subscribes a user and gives a token 
 
+    getDataVerification() {
+        this._user.getUser(sessionStorage.getItem('userId'), sessionStorage.getItem('token'))
+            .subscribe( (data: any) => { 
+            this._router.navigate([`/home`]);
+            this._user.userLoginData.firstName = data.firstName;
+            this._user.userLoginData.lastName = data.lastName; 
+            alert(`Welcome ${this._user.userLoginData.firstName}!`);
+            this._user.loginFavorite = "My Favorites";
+            })
+    };
+
+// subscribes a user and gives a token 
     subscribeFunt() {
         this._user.onLogin(this.userData)
             .subscribe((response: any) => {
+                console.log(response, 'onLogin')
                 window.sessionStorage.setItem('token', response.token);
                 window.sessionStorage.setItem('userId', response.userId);
-                this._user.showUserNav(window.sessionStorage.getItem('token'), window.sessionStorage.getItem('userId'));
-                this._router.navigate([`/home`]);
-                alert("Login successfully");
-                this._user.loginFavorite = "My Favorites";
-
+                this._user.isLogIn = true;
+                this.getDataVerification()
             })
     };
 //called when buttton is clicked and sets the user input values to Userdata obj

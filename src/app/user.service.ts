@@ -1,14 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class UserService {
+export class UserService implements OnInit{
 
-  constructor(public _http: HttpClient) { }
+  constructor(public _http: HttpClient) {
+      window.sessionStorage.getItem('token') ? this.isLogIn = true : this.isLogIn = false;
+     console.log(this.isLogIn, 'Is login')
+   }
+
+  ngOnInit() {
+    console.log('dog')
+  }
   
   url: string=  "http://localhost:3000/api/finUsers";
   displayLogin: boolean = false;
   loginFavorite: string = 'Login to add to favorites';
+  userLoginData: any = {
+  }
+  isLogIn: boolean;
   // call function when user creates an account / post used info to mongodb
   postSign(newUser: any) {
     return this._http.post(this.url, newUser)
@@ -19,7 +29,7 @@ export class UserService {
   }
   //User/logout//
   onLogOut(token: string) {
-    return this._http.post(this.url + '/logout' + '?access_token'+ token , {})
+    return this._http.post(this.url + '/logout?access_token='+ token , {})
   }
   //usser/{id} 
   getUser(id: string, token: string) {
@@ -37,12 +47,12 @@ export class UserService {
     return this._http.delete( this.url + '/' + finUserId + '/favorites/' + id + '?access_token=' + token)
   };
   //called in constructor
-  showUserNav(id: string, token: string) {
-    console.log(window.sessionStorage.getItem('token'), "Service-logout-getItem");
-    console.log(window.sessionStorage.getItem('userId'), "Service-logout-getItem2");
-    if(id !== '' && token !== "") {
-      this.displayLogin = true;
-    }
-  }
+  // showUserNav(id: string, token: string) {
+  //   console.log(window.sessionStorage.getItem('token'), "Service-logout-getItem");
+  //   console.log(window.sessionStorage.getItem('userId'), "Service-logout-getItem2");
+  //   if(id !== '' && token !== "") {
+  //     this.displayLogin = true;
+  //   }
+  // }
   
 }

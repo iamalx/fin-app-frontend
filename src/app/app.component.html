@@ -17,12 +17,11 @@
       <div class='middle'>
     </div>
   <!--===== Left tabs ===================-->
-     <div *ngIf='!_user.displayLogin' class='header-actions'>  
-    
-          <a class='nav-link sign1' href='#' [routerLink]="['/register']" routerLinkActive="active" (click)='signUp()'><span class="nav-text nav-a">Sign Up</span></a>
+     <div *ngIf='_user.isLogIn == false' class='header-actions'>  
+          <a class='nav-link sign1' href='#' [routerLink]="['/register']" routerLinkActive="active"><span class="nav-text nav-a">Sign Up</span></a>
           <a class='nav-link sign2' href='#' [routerLink]="['/login']" routerLinkActive="active"><span class="nav-text nav-a">log in</span></a>
      </div>
-     <div *ngIf='_user.displayLogin' class='header-actions'>
+     <div *ngIf='_user.isLogIn == true' class='header-actions'>
       <a class='nav-link sign1'  routerLinkActive="active"><span class="nav-text nav-a">My profile</span></a>
       <app-logout></app-logout>
      </div>

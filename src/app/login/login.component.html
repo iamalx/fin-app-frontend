@@ -9,14 +9,14 @@
       <input type='text' class='inputbox' placeholder='Email' #email><br>
       <input type='password' class='inputbox' placeholder='Password' #password><br><br>
     </form>
-    <label for="remember"><input type='checkbox' id='remember' >Remeber me</label>
+    <label for="remember"><input type='checkbox' id='remember'>Remeber me</label>
   </div> 
 
   <div class='message'> 
     {{noFillMessage}}
     {{noMatchMessage}}
   </div>  
-  
+
   <div class='bottom'>
     <button id='login-button'  class='btn' (click)='loginFunct(email.value, password.value)'>Login</button><br>
     <a id='forgot-pass' href=# >Forgot Password</a>
