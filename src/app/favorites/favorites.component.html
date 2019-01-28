@@ -11,7 +11,7 @@
                 <th class="left">Price</th>
             </tr>
         </thead>
-        <tbody *ngIf='_user.displayLogin'>
+        <tbody>
             <tr *ngFor="let item of favoriteList; let i = index">
                 <td *ngIf='deleteStock == false' class='left'><a >{{item.symbol}}</a></td>
                 <td *ngIf='deleteStock == true' class='left' ><a class='on-click red-button'(click)="onDeleteStock(item)" >{{item.symbol}}</a></td>
@@ -19,9 +19,14 @@
             </tr>
         </tbody>
     </table>
-    <div class='delete-button'>
-        <button *ngIf='favoriteList && _user.displayLogin' class="btn btn-sm btn-link red-button" (click)="makeDeleteVisible()">{{deleteMessage}}</button>
-        <button *ngIf='!_user.displayLogin' class="btn btn-sm btn-link" [routerLink]="['/login']">Login to add to favorites</button>
+    <div class='delete-button' >
+        <button *ngIf='_user.isLogIn == true' class="btn btn-sm btn-link red-button" 
+                (click)="makeDeleteVisible()">{{deleteMessage}}
+        </button>
+        <button *ngIf='_user.isLogIn == false' 
+                class="btn btn-sm btn-link" 
+                [routerLink]="['/login']">Login to add to favorites
+        </button>
     </div>
 </div>
 

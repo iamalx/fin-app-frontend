@@ -2,8 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router , ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { StockApiService } from '../stock-api.service';
-// import { SideBarComponent } from '../side-bar/side-bar.component';
-
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 declare var carousel;

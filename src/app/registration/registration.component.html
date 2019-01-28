@@ -7,7 +7,7 @@
   <div class="main">
     <h1 id='header'>Sign Up</h1>
     <main class="typeSec">
-      <form>
+      <form (keyup.enter)="signFunct(firstName.value, lastName.value, email.value, password.value,  repassword.value)">
         <label class='label1' for="">First Name</label><br>
         <input type="text" class='required' name="firstname" #firstName required><br> 
         <label class='label1' for=''>Last Name</label><br>

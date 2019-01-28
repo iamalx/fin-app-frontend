@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
             this._user.userLoginData.firstName = data.firstName;
             this._user.userLoginData.lastName = data.lastName; 
             alert(`Welcome ${this._user.userLoginData.firstName}!`);
-            this._user.loginFavorite = "My Favorites";
             })
     };
 
@@ -35,7 +34,6 @@ export class LoginComponent implements OnInit {
     subscribeFunt() {
         this._user.onLogin(this.userData)
             .subscribe((response: any) => {
-                console.log(response, 'onLogin')
                 window.sessionStorage.setItem('token', response.token);
                 window.sessionStorage.setItem('userId', response.userId);
                 this._user.isLogIn = true;

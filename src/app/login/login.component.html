@@ -5,7 +5,7 @@
   </div>
 
   <div class='form-class'>
-    <form>
+    <form (keyup.enter)='loginFunct(email.value, password.value)'>
       <input type='text' class='inputbox' placeholder='Email' #email><br>
       <input type='password' class='inputbox' placeholder='Password' #password><br><br>
     </form>

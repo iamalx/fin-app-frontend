@@ -20,7 +20,7 @@ export class LogoutComponent implements OnInit {
     this._user.onLogOut(window.sessionStorage.getItem('token'))
       .subscribe( res => {
         alert("Logout successfully");
-        this._user.isLogIn = true;
+        this._user.isLogIn = false;
         window.sessionStorage.clear();
         this._router.navigateByUrl('/login');
       })
